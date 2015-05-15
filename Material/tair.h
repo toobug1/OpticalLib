@@ -20,6 +20,8 @@ public:
                                 double relativePressure);
 
     double get_extinction_coef(double wavelen) const;
+
+    // do some modify to test git/remote/pull
 };
 
 #endif // TAIR_H
