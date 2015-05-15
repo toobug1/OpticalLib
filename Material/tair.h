@@ -9,16 +9,16 @@ public:
     TAir();
     ~TAir();
 
-    /** @override */
     bool is_opaque(double wavelen) const;
-    /** @override */
+
     bool is_reflecting(double wavelen) const;
 
-    /** @override */
     double get_internal_transmittance(double wavelen, double thickness = 1.0) const;
-    /** @override */
-    double get_refractive_index(double wavelen) const;
-    /** @override */
+
+    double get_refractive_index(double wavelen) const; // 20deg one atmosphere
+    double get_refractive_index(double wavelen, double temperature,
+                                double relativePressure) const;
+
     double get_extinction_coef(double wavelen) const;
 };
 
