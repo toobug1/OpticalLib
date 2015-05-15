@@ -31,7 +31,7 @@ TVector3D TTriangle::get_centroid() const
 
 TVector3D TTriangle::normal() const
 {
-   TVector3D vec = QVector3D::normal(_v[0], _v[1], _v[2]);
+   TVector3D vec = TVector3D::normal(_v[0], _v[1], _v[2]);
    return vec;
 }
 

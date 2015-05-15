@@ -2,7 +2,7 @@
 
 #include <math.h>
 
-#include <gsl/gsl_interp.h>
+#include <gsl/gsl_spline.h>
 
 
 static double square(double x)
@@ -23,7 +23,6 @@ TMaterialBase::~TMaterialBase()
 double TMaterialBase::get_extinction_coef(double wavelen) const
 {
     // Beer-Lambert law
-    // FIXME check this formula
 //    return - (log(get_internal_transmittance(wavelen, 1.0)) * (wavelen * 1e-9f)) /
 //            (4 * M_PI * 0.001/* 1 mm */);
     if (m_absorbMap.isEmpty())
@@ -36,8 +35,7 @@ double TMaterialBase::get_extinction_coef(double wavelen) const
     }
     else
     {
-        // to get a linear interpolation
-        return getLinearInterpolation(wavelen);
+        return getInterpOfAbsorbCoeff(wavelen);
     }
 }
 
@@ -46,17 +44,10 @@ double TMaterialBase::get_internal_transmittance(double wavelen,
 {
     // Beer-Lambert law
 
-    // FIXME simplify and check
     double absorbCoeff = get_extinction_coef(wavelen);
-
     return pow(M_E, -absorbCoeff * thickness);
 }
 
-// compute internal transmittance from extinction coefficient
-double TMaterialBase::get_internal_transmittance(double wavelen) const
-{
-    return get_internal_transmittance(wavelen, 1.0);
-}
 
 // default reflectance at normal incidence, valid for metal and dielectric material
 double TMaterialBase::get_normal_reflectance(const TMaterialBase *from,
@@ -103,27 +94,55 @@ void TMaterialBase::insertAbsorbedCoeffi(double wavelen, double trans, double th
 }
 
 
-double TMaterialBase::getLinearInterpolation(double wavelen) const
+double TMaterialBase::getInterpOfAbsorbCoeff(double wavelen) const
 {
     int count = m_absorbMap.size();
     if (0 == count)
     {
+        // no data means the material isn't absorb for any wavelength.
+
         return 0.0;
     }
 
     if (count < 2)
     {
         // if only contains one elements in map, directly return first.
+
         return m_absorbMap.first();
     }
 
-    // otherwise, use GSL linear interpolation algorithm
+    if (wavelen <= m_absorbMap.firstKey())
+    {
+        return m_absorbMap.first();
+    }
+    if (wavelen >= m_absorbMap.lastKey())
+    {
+        return m_absorbMap.last();
+    }
 
-    // todo
+    // otherwise, use GSL interpolation algorithm
 
+    double x[count], y[count], rslt;
+    int i = 0;
+    QMap<double, double>::const_iterator iter = m_absorbMap.begin();
+    while (iter != m_absorbMap.end())
+    {
+        x[i] = iter.key();
+        y[i] = iter.value();
+        ++i;
+        ++iter;
+    }
 
+    gsl_interp_accel *acc = gsl_interp_accel_alloc();
+    gsl_spline *spline = gsl_spline_alloc(gsl_interp_cspline, count);
+    gsl_spline_init (spline, x, y, count);
 
-    return 0.0;
+    rslt = gsl_spline_eval (spline, wavelen, acc);
+
+    gsl_spline_free(spline);
+    gsl_interp_accel_free(acc);
+
+    return rslt;
 }
 
 int TMaterialBase::removeAbsorbedCoeffi(double wavelen)

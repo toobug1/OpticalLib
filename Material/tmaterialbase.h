@@ -3,22 +3,16 @@
 
 #include <QMap>
 
-#include <QObject>
-
-class TMaterialBase : public QObject
+class TMaterialBase
 {
 public:
     TMaterialBase();
-    TMaterialBase(QObject* parent = 0);
     virtual ~TMaterialBase();
 
     virtual bool is_opaque(double wavelen) const = 0;
     virtual bool is_reflecting(double wavelen) const = 0;
 
-    virtual double get_internal_transmittance(double wavelen, double thickness) const;
-
-    //transmittance for 1mm thickness.
-    inline double get_internal_transmittance(double wavelen) const;
+    virtual double get_internal_transmittance(double wavelen, double thickness = 1.0) const;
 
     //absolute refractive index @wavelen in nm.
     virtual double get_refractive_index(double wavelen) const = 0;
@@ -45,7 +39,8 @@ protected:
     QMap<wavelength, absorptionCoefficient> m_absorbMap;
 
 protected:
-    virtual double getLinearInterpolation(double wavelen) const;
+    virtual double getInterpOfAbsorbCoeff(double wavelen) const;
+    // wavelen shall be in [MinKey, MaxKey]
 };
 
 #endif // TMATERIALBASE_H
