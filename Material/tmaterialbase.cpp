@@ -15,6 +15,11 @@ TMaterialBase::TMaterialBase(): m_temp(20.0)
 
 }
 
+TMaterialBase::TMaterialBase(double temp) : m_temp(temp)
+{
+
+}
+
 TMaterialBase::~TMaterialBase()
 {
 
@@ -148,6 +153,11 @@ double TMaterialBase::getInterpOfAbsorbCoeff(double wavelen) const
 int TMaterialBase::removeAbsorbedCoeffi(double wavelen)
 {
     return m_absorbMap.remove(wavelen);
+}
+
+void TMaterialBase::clearAbsorbedCoeffi()
+{
+    m_absorbMap.clear();
 }
 
 

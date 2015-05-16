@@ -7,6 +7,7 @@ class TMaterialBase
 {
 public:
     TMaterialBase();
+    TMaterialBase(double temp);
     virtual ~TMaterialBase();
 
     virtual bool is_opaque(double wavelen) const = 0;
@@ -16,6 +17,8 @@ public:
 
     //absolute refractive index @wavelen in nm.
     virtual double get_refractive_index(double wavelen) const = 0;
+    virtual double get_refractive_index(double wavelen, double temperature,
+                                double relativePressure) const = 0;
     double get_refractive_index(double wavelen, const TMaterialBase &env) const;
 
     /* Get extinction coefficient. Subclasses _must_ provide this
@@ -30,6 +33,7 @@ public:
 
     void insertAbsorbedCoeffi(double wavelen, double trans, double thichness);
     int removeAbsorbedCoeffi(double wavelen);
+    void clearAbsorbedCoeffi();
 
 protected:
     double m_temp;        // celcius
@@ -40,7 +44,7 @@ protected:
 
 protected:
     virtual double getInterpOfAbsorbCoeff(double wavelen) const;
-    // wavelen shall be in [MinKey, MaxKey]
+    // wavelen shall be among [MinKey, MaxKey]
 };
 
 #endif // TMATERIALBASE_H

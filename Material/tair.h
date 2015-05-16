@@ -7,6 +7,7 @@ class TAir : public TMaterialBase
 {
 public:
     TAir();
+    TAir(double temp);
     ~TAir();
 
     bool is_opaque(double wavelen) const;
@@ -16,8 +17,8 @@ public:
     double get_internal_transmittance(double wavelen, double thickness = 1.0) const;
 
     double get_refractive_index(double wavelen) const; // one atmosphere && m_temp
-    static double get_refractive_index(double wavelen, double temperature,
-                                double relativePressure);
+    double get_refractive_index(double wavelen, double temperature,
+                                double relativePressure) const;
 
     double get_extinction_coef(double wavelen) const;
 
