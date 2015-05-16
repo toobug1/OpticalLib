@@ -8,7 +8,7 @@ TARGET = opticalLib
 TEMPLATE = lib
 CONFIG += staticlib
 
-####
+########
 
 SOURCES += \
     Math/tvector2d.cpp \
