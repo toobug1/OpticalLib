@@ -5,11 +5,6 @@
 #include <gsl/gsl_spline.h>
 
 
-static double square(double x)
-{
-    return x * x;
-}
-
 TMaterialBase::TMaterialBase(): m_temp(20.0)
 {
 
@@ -61,9 +56,9 @@ double TMaterialBase::get_normal_reflectance(const TMaterialBase *from,
     // McGraw Hill, Handbook of optics, vol1, 1995, 5-10 (47)
 
     double n0 = from->get_refractive_index(wavelen);
-    double k12 = square(get_extinction_coef(wavelen));
+    double k12 = pow(get_extinction_coef(wavelen), 2);
     double n1 = get_refractive_index(wavelen);
-    double res = (square(n0 - n1) + k12) / (square(n0 + n1) + k12);
+    double res = (pow(n0 - n1, 2) + k12) / (pow(n0 + n1, 2) + k12);
 
     return res;
 }
@@ -77,7 +72,7 @@ double TMaterialBase::get_normal_transmittance(const TMaterialBase *from,
     double n0 = from->get_refractive_index(wavelen);
     double n1 = get_refractive_index(wavelen);
 
-    return (4.0 * n0 * n1) / square(n0 + n1);
+    return (4.0 * n0 * n1) / pow(n0 + n1, 2);
 }
 
 
@@ -160,6 +155,23 @@ void TMaterialBase::clearAbsorbedCoeffi()
     m_absorbMap.clear();
 }
 
+
+QMap<double, double> TMaterialBase::get_trans_table() const
+{
+    QMap<double, double> mapTrans;
+
+    QMapIterator<wavelength, absorptionCoefficient> iter(m_absorbMap);
+
+    while (iter.hasNext())
+    {
+        double trans = pow(M_E, -iter.peekNext().value());
+        mapTrans[iter.peekNext().key()] = trans;
+        // peekNext() will not make iter+1 but next() will
+
+        iter.next();
+    }
+    return mapTrans;
+}
 
 
 

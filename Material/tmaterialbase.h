@@ -6,6 +6,8 @@
 
 class TMaterialBase : public QObject
 {
+    Q_OBJECT
+
 public:
     TMaterialBase();
     TMaterialBase(double temp);
@@ -35,11 +37,15 @@ public:
     int removeAbsorbedCoeffi(double wavelen);
     void clearAbsorbedCoeffi();
 
-protected:
-    double m_temp;        // celcius
-
+    typedef double transCoeff;
     typedef double wavelength;
     typedef double absorptionCoefficient;
+
+    QMap<wavelength, transCoeff> get_trans_table() const;
+
+
+protected:
+    double m_temp;        // celcius
     QMap<wavelength, absorptionCoefficient> m_absorbMap;
 
 protected:
