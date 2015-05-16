@@ -6,6 +6,11 @@ TAir::TAir()
 
 }
 
+TAir::TAir(double temp) : TMaterialBase(temp)
+{
+
+}
+
 TAir::~TAir()
 {
 
@@ -41,7 +46,7 @@ double TAir::get_refractive_index(double wavelen) const
 }
 
 double TAir::get_refractive_index(double wavelen, double temp,
-                                  double pressure)
+                                  double pressure) const
 {
 
     double Nref, Nair;
