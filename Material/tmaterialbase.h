@@ -2,8 +2,9 @@
 #define TMATERIALBASE_H
 
 #include <QMap>
+#include <QObject>
 
-class TMaterialBase
+class TMaterialBase : public QObject
 {
 public:
     TMaterialBase();
@@ -19,7 +20,6 @@ public:
     virtual double get_refractive_index(double wavelen) const = 0;
     virtual double get_refractive_index(double wavelen, double temperature,
                                 double relativePressure) const = 0;
-    double get_refractive_index(double wavelen, const TMaterialBase &env) const;
 
     /* Get extinction coefficient. Subclasses _must_ provide this
         function or the get_internal_transmittance() function. */
@@ -29,7 +29,7 @@ public:
     virtual double get_normal_transmittance(const TMaterialBase *from, double wavelen) const;
 
     void set_temperature(double temp);
-    virtual double get_temperature() const;
+    double get_temperature() const;
 
     void insertAbsorbedCoeffi(double wavelen, double trans, double thichness);
     int removeAbsorbedCoeffi(double wavelen);
@@ -43,7 +43,7 @@ protected:
     QMap<wavelength, absorptionCoefficient> m_absorbMap;
 
 protected:
-    virtual double getInterpOfAbsorbCoeff(double wavelen) const;
+    double getInterpOfAbsorbCoeff(double wavelen) const;
     // wavelen shall be among [MinKey, MaxKey]
 };
 
