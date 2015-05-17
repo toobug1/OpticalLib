@@ -16,6 +16,8 @@ class TDielectricBase : public TMaterialBase
     Q_PROPERTY(double tempE0 READ tempE0)
     Q_PROPERTY(double tempE1 READ tempE1)
     Q_PROPERTY(double tempLtk READ tempLtk)
+    Q_PROPERTY(double minWave READ minWave)
+    Q_PROPERTY(double maxWave READ maxWave)
 
 public:
     enum DispersionFormula
@@ -59,6 +61,8 @@ public:
     double tempE0() const {return m_E0;}
     double tempE1() const {return m_E1;}
     double tempLtk() const {return m_Ltk;}
+    double minWave() const {return m_MinWave;}
+    double maxWave() const {return m_MaxWave;}
 
 protected:
     DispersionFormula m_formula;
@@ -68,6 +72,8 @@ protected:
     double             m_E0;
     double             m_E1;
     double             m_Ltk;
+    double             m_MinWave;
+    double             m_MaxWave;
 
     QString m_name;
 };

@@ -19,7 +19,8 @@ SOURCES += \
     Math/ttriangle.cpp \
     Material/tmaterialbase.cpp \
     Material/tair.cpp \
-    Material/tdielectricbase.cpp
+    Material/tdielectricbase.cpp \
+    Material/tschott.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -32,7 +33,8 @@ HEADERS += \
     Math/ttriangle.h \
     Material/tmaterialbase.h \
     Material/tair.h \
-    Material/tdielectricbase.h
+    Material/tdielectricbase.h \
+    Material/tschott.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

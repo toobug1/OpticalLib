@@ -1,11 +1,11 @@
 #include "tdielectricbase.h"
 
-TDielectricBase::TDielectricBase() : m_formula(dfUnkonwn)
+TDielectricBase::TDielectricBase()
 {
 
 }
 
-TDielectricBase::TDielectricBase(double temp) : TMaterialBase(temp), m_formula(dfUnkonwn)
+TDielectricBase::TDielectricBase(double temp) : TMaterialBase(temp)
 {
 
 }
