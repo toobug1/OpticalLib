@@ -29,9 +29,5 @@ double TDielectricBase::get_refractive_index(double wavelen) const
     return get_refractive_index(wavelen, m_temp, 1.0);
 }
 
-double TDielectricBase::get_refractive_index(double wavelen, double temperature,
-                            double relativePressure) const
-{
 
-}
 
