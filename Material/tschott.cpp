@@ -7,7 +7,7 @@ TSchott::TSchott()
     m_formula = dfSchott;
 }
 
-TSchott::TSchott(double temp) : TDielectricBase(temp)
+TSchott::TSchott(double temp, const QString name) : TDielectricBase(temp, name)
 {
     m_formula = dfSchott;
 }
@@ -17,18 +17,17 @@ TSchott::~TSchott()
 
 }
 
-double TSchott::get_refractive_index(double wavelen, double temperature,
-                                     double relativePressure) const
+double TSchott::get_refractive_index(double wavelen) const
 {
-    double n_Tref;
+    double n;
     double Lamd = wavelen / 1000.0;
-
-    n_Tref =sqrt(A0 +
-                 A1*pow(Lamd,2) +
-                 A2*pow(Lamd, -2) +
-                 A3*pow(Lamd, -4) +
-                 A4*pow(Lamd, -6) +
-                 A5*pow(Lamd, -8));
-
-    // TODO
+    n = sqrt(m_A0 +
+             m_A1*pow(Lamd,2) +
+             m_A2*pow(Lamd, -2) +
+             m_A3*pow(Lamd, -4) +
+             m_A4*pow(Lamd, -6) +
+             m_A5*pow(Lamd, -8));
+    return n;
 }
+
+
