@@ -51,9 +51,9 @@ double TAir::get_refractive_index(double wavelen, double temp,
 
     double Nref, Nair;
     double powLamd = pow(wavelen/1000, 2.0);
-    Nref = 1.0 + ( 6432.8 +
-                   (2949810.0 * powLamd/ (146.0 * powLamd - 1.0)) +
-                   (25540.0 * powLamd / (41.0 * powLamd - 1.0))) * 1e-8;
+    Nref = 1.0 + (6432.8 +
+                 (2949810.0 * powLamd/ (146.0 * powLamd - 1.0)) +
+                 (25540.0 * powLamd / (41.0 * powLamd - 1.0))) * 1e-8;
 
     Nair = 1.0 + (Nref - 1) * pressure/(1.0 + (temp - 15.0) * 3.4785 * 1e-3);
 
