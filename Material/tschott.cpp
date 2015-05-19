@@ -22,21 +22,6 @@ TSchott::TSchott(double temp, const QString& name,
     setTempCoeff(tempCoeff, tempDispCoeffSize);
 }
 
-//TSchott::TSchott(double temp, const QString& name,
-//        double A0, double A1, double A2,
-//        double A3, double A4, double A5,
-//        double D0, double D1, double D2,
-//        double E0, double E1, double Ltk) :
-//    TDielectricBase(temp, name)
-//{
-//    m_formula = Schott;
-//    double dispCoeff[6] = {A0, A1, A2, A3, A4, A5};
-//    double tempCoeff[6] = {D0, D1, D2, E0, E1, Ltk};
-
-//    setDispCoeff(dispCoeff, 6);
-//    setTempCoeff(tempCoeff, 6);
-//}
-
 TSchott::~TSchott()
 {
 }
