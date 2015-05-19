@@ -103,6 +103,13 @@ int TDielectricBase::setTempCoeff(const double* tempCoeff, int size)
     return count;
 }
 
+void TDielectricBase::setTempCoeff(double D0, double D1, double D2,
+                                   double E0, double E1, double Ltk)
+{
+    double arr[6] = {D0, D1, D2, E0, E1, Ltk};
+    setTempCoeff(arr, 6);
+}
+
 
 double TDielectricBase::get_refractive_index(double wavelen, double temperature,
                                     double relativePressure) const

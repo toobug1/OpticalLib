@@ -8,13 +8,15 @@ class TSchott : public TDielectricBase
 public:
     TSchott();
     TSchott(double temp, const QString name);
-    TSchott(double temp, const QString name, const double* coeff, int n);
+    TSchott(double temp, const QString name, const double* dispCoeff, int n);
     TSchott(double temp, const QString name,
             double A0, double A1, double A2,
             double A3, double A4, double A5);
     ~TSchott();
 
     double get_refractive_index(double wavelen) const;
+
+    int setDispCoeff(const double* tempCoeff, int size);
 
 private:
     double m_A0;

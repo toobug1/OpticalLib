@@ -57,7 +57,10 @@ public:
     double maxWave() const {return m_MaxWave;}
     void   setMaxWave(double wave) {m_MaxWave = wave;}
 
-    int setTempCoeff(const double* tempCoeff, int size);
+    int  setTempCoeff(const double* tempCoeff, int size);
+    void setTempCoeff(double D0, double D1, double D2, double E0, double E1, double Ltk);
+
+    virtual int setDispCoeff(const double* dispCoeff, int size);
 
 protected:
     DispersionFormula  m_formula;
