@@ -5,7 +5,6 @@
 
 TDielectricBase::TDielectricBase()
 {
-
     init();
 }
 
@@ -29,20 +28,18 @@ bool TDielectricBase::is_reflecting(double wavelen) const
     return false;
 }
 
-
-
 void TDielectricBase::init(const QString& name)
 {
     m_name = name.toUpper();
-    //    m_formula = dfUnkonwn;
+
     m_D0 = 0.0;
     m_D1 = 0.0;
     m_D2 = 0.0;
     m_E0 = 0.0;
     m_E1 = 0.0;
     m_Ltk = 0.0;
-    m_MinWave = 0.0;
-    m_MaxWave = 0.0;
+    m_MinWave = MinWave;
+    m_MaxWave = MaxWave;
 }
 
 
@@ -72,6 +69,7 @@ int TDielectricBase::setTempCoeff(const double* tempCoeff, int size)
         m_D2 = tempCoeff[2];
         m_E0 = tempCoeff[3];
         m_E1 = tempCoeff[4];
+        m_Ltk = 0.0;
         break;
 
     case 4:
@@ -79,21 +77,35 @@ int TDielectricBase::setTempCoeff(const double* tempCoeff, int size)
         m_D1 = tempCoeff[1];
         m_D2 = tempCoeff[2];
         m_E0 = tempCoeff[3];
+        m_E1 = 0.0;
+        m_Ltk = 0.0;
         break;
 
     case 3:
         m_D0 = tempCoeff[0];
         m_D1 = tempCoeff[1];
         m_D2 = tempCoeff[2];
+        m_E0 = 0.0;
+        m_E1 = 0.0;
+        m_Ltk = 0.0;
         break;
 
     case 2:
         m_D0 = tempCoeff[0];
         m_D1 = tempCoeff[1];
+        m_D2 = 0.0;
+        m_E0 = 0.0;
+        m_E1 = 0.0;
+        m_Ltk = 0.0;
         break;
 
     case 1:
         m_D0 = tempCoeff[0];
+        m_D1 = 0.0;
+        m_D2 = 0.0;
+        m_E0 = 0.0;
+        m_E1 = 0.0;
+        m_Ltk = 0.0;
         break;
 
     default:
@@ -110,10 +122,44 @@ void TDielectricBase::setTempCoeff(double D0, double D1, double D2,
     setTempCoeff(arr, 6);
 }
 
+int TDielectricBase::getTempCoeff(double* tempCoeff, int size) const
+{
+    if (size < TempCoeffSize)
+    {
+        return 0;
+    }
+
+    tempCoeff[0] = m_D0;
+    tempCoeff[1] = m_D1;
+    tempCoeff[2] = m_D2;
+    tempCoeff[3] = m_E0;
+    tempCoeff[4] = m_E1;
+    tempCoeff[5] = m_Ltk;
+
+    return TempCoeffSize;
+}
+
+bool TDielectricBase::setWave(double minWave, double maxWave)
+{
+    if (minWave > maxWave || minWave < MinWave || maxWave > MaxWave)
+    {
+        return false;
+    }
+
+    m_MinWave = minWave;
+    m_MaxWave = maxWave;
+    return true;
+}
+
 
 double TDielectricBase::get_refractive_index(double wavelen, double temperature,
                                     double relativePressure) const
 {
+    if (wavelen < m_MinWave || wavelen > m_MaxWave)
+    {
+        return 0.0;
+    }
+
     double n_Tref;
     double Lamd = wavelen / 1000.0;
 
@@ -141,5 +187,16 @@ double TDielectricBase::get_refractive_index(double wavelen, double temperature,
     return  n_abs_T / n_air_T;
 
 }
+
+int TDielectricBase::setDispCoeff(const double* dispCoeff, int size)
+{
+    return 0;
+}
+
+int TDielectricBase::getDispCoeff(double* dispCoeff, int size) const
+{
+    return size;
+}
+
 
 
