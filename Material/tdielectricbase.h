@@ -1,5 +1,5 @@
 #ifndef TDIELECTRICBASE_H
-#define TDIELECTRICVASE_H
+#define TDIELECTRICBASE_H
 
 #include "tmaterialbase.h"
 
@@ -9,7 +9,7 @@ class TDielectricBase : public TMaterialBase
     Q_OBJECT
 
     Q_PROPERTY(QString name READ getName WRITE setName)
-    Q_PROPERTY(DispersionFormula formula READ formula)
+    Q_PROPERTY(DispersionFormula formula READ formula WRITE setFormula)
     Q_PROPERTY(double tempD0 READ tempD0)
     Q_PROPERTY(double tempD1 READ tempD1)
     Q_PROPERTY(double tempD2 READ tempD2)
@@ -22,9 +22,9 @@ class TDielectricBase : public TMaterialBase
 public:
     enum DispersionFormula
     {
-        dfSchott = 1, dfSellmeier1, dfHerzberger, dfSellmeier2,
-        dfConrady, dfSellmeier3, dfHandbook1, dfHandbook2,
-        dfSellmeier4, dfExtended, dfSellmeier5, dfUnkonwn = 0
+        Schott = 1, Sellmeier1, Herzberger, Sellmeier2,
+        Conrady, Sellmeier3, Handbook1, Handbook2,
+        Sellmeier4, Extended, Sellmeier5, Unkonwn = 0
     };
 
 public:
@@ -38,38 +38,39 @@ public:
     virtual double get_refractive_index(double wavelen) const = 0;
     virtual double get_refractive_index(double wavelen, double temperature,
                                         double relativePressure = 1.0) const;
-    // derived class from this must impliment this function.
-    // and needs a simply factory class which includes this base class pointer.
-    // its constructor function should be with a specialized tag
-    // that indicates which material type should be build.
 
-    virtual QString getName() const {return m_name;}
-    virtual void setName(const QString& str) {m_name = str.toUpper();}
+    QString getName() const {return m_name;}
+    void setName(const QString& str) {m_name = str.toUpper();}
     DispersionFormula formula() const {return m_formula;}
+    void setFormula(DispersionFormula formula) {m_formula = formula;}
+
     double tempD0() const {return m_D0;}
     double tempD1() const {return m_D1;}
     double tempD2() const {return m_D2;}
     double tempE0() const {return m_E0;}
     double tempE1() const {return m_E1;}
     double tempLtk() const {return m_Ltk;}
+
+    enum{MinWave = 0, MaxWave = 10000};    // 0~10000nm
+
     double minWave() const {return m_MinWave;}
     void   setMinWave(double wave) {m_MinWave = wave;}
     double maxWave() const {return m_MaxWave;}
     void   setMaxWave(double wave) {m_MaxWave = wave;}
+    bool   setWave(double minWave, double maxWave);
 
-    int  setTempCoeff(const double* tempCoeff, int size);
-    void setTempCoeff(double D0, double D1, double D2, double E0, double E1, double Ltk);
+    enum {TempCoeffSize = 6};
+    int  setTempCoeff(const double* tempCoeff, int size = TempCoeffSize);
+    void setTempCoeff(double D0, double D1, double D2,
+                      double E0, double E1, double Ltk);
+    int  getTempCoeff(double* tempCoeff, int size = TempCoeffSize) const;
 
     virtual int setDispCoeff(const double* dispCoeff, int size);
+    virtual int getDispCoeff(double* dispCoeff, int size) const;
 
 protected:
     DispersionFormula  m_formula;
-    double             m_D0;      // temperature Coeff.
-    double             m_D1;
-    double             m_D2;
-    double             m_E0;
-    double             m_E1;
-    double             m_Ltk;
+
     double             m_MinWave;
     double             m_MaxWave;
 
@@ -77,6 +78,14 @@ protected:
 
 private:
     void init(const QString& name = "");
+
+private:
+    double             m_D0;      // temperature Coeff.
+    double             m_D1;
+    double             m_D2;
+    double             m_E0;
+    double             m_E1;
+    double             m_Ltk;
 };
 
 #endif // TDIELECTRICBASE_H

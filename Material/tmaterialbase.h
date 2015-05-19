@@ -32,8 +32,6 @@ public:
 
     void set_temperature(double temp);
     double get_temperature() const;
-    virtual QString getName() const = 0;
-    virtual void setName(const QString& name) = 0;
 
     void insertAbsorbedCoeffi(double wavelen, double trans, double thichness);
     int removeAbsorbedCoeffi(double wavelen);

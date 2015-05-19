@@ -6,7 +6,8 @@
 
 TARGET = opticalLib
 TEMPLATE = lib
-CONFIG += staticlib
+#CONFIG += staticlib
+
 
 ########
 
@@ -20,7 +21,8 @@ SOURCES += \
     Material/tmaterialbase.cpp \
     Material/tair.cpp \
     Material/tdielectricbase.cpp \
-    Material/tschott.cpp
+    Material/tschott.cpp \
+    Material/tglass.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -34,10 +36,19 @@ HEADERS += \
     Material/tmaterialbase.h \
     Material/tair.h \
     Material/tdielectricbase.h \
-    Material/tschott.h
+    Material/tschott.h \
+    Material/tglass.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
 
+#LIBS += -lgsl \
+#        -lgslcblas
+
 QMAKE_CXXFLAGS +=  -Wno-unused-parameter
+
+win32: LIBS += -lgsl
+
+win32: LIBS += -lgslcblas
+
