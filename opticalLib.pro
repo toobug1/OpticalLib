@@ -22,7 +22,8 @@ SOURCES += \
     Material/tair.cpp \
     Material/tdielectricbase.cpp \
     Material/tschott.cpp \
-    Material/tglass.cpp
+    Material/tglass.cpp \
+    Material/tsellmeier1.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -37,7 +38,8 @@ HEADERS += \
     Material/tair.h \
     Material/tdielectricbase.h \
     Material/tschott.h \
-    Material/tglass.h
+    Material/tglass.h \
+    Material/tsellmeier1.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

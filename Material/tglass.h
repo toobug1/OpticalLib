@@ -10,8 +10,8 @@ class TGlass
 {
 public:
     TGlass();
-
     TGlass(const TGlass& glass);
+    TGlass(const TDielectricBase& mat);
 
     TGlass(TDielectricBase::DispersionFormula df,
            double temp, const QString& name);
@@ -21,17 +21,14 @@ public:
            const double* dispCoeff, int dispDispCoeffSize,
            const double* tempCoeff, int tempDispCoeffSize);
 
-    TGlass(const TDielectricBase& mat);
-
-    ~TGlass();
-
+    virtual ~TGlass();
     TGlass& operator=(const TGlass& glass);
 
-    double getRefractiveIndex(double wave, double temp, double rlPressure);
-
+    double getRefractiveIndex(double wave, double temp, double rlPressure = 1.0);
     const TDielectricBase* getGlassPtr() const;
+    bool isNull() const;
 
-    bool isNull() const {return getGlassPtr();}
+    enum {MAXCoeffSize = 10};
 
 private:
     TDielectricBase* m_glass;

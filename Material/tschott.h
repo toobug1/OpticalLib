@@ -20,7 +20,7 @@ public:
     //            double D0, double D1, double D2,
     //            double E0, double E1, double Ltk);
 
-    ~TSchott();
+    virtual ~TSchott();
 
     enum{DispCoeffSize = 6};
 

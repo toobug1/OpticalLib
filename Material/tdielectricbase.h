@@ -30,7 +30,7 @@ public:
 public:
     TDielectricBase();
     TDielectricBase(double temp, const QString& name);
-    ~TDielectricBase();
+    virtual ~TDielectricBase();
 
     virtual bool is_opaque(double wavelen) const;
     virtual bool is_reflecting(double wavelen) const;
