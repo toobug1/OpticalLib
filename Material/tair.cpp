@@ -58,6 +58,14 @@ double TAir::get_refractive_index(double wavelen, double temp,
     Nair = 1.0 + (Nref - 1) * pressure/(1.0 + (temp - 15.0) * 3.4785 * 1e-3);
 
     return Nair;
+}
 
+QString TAir::getName() const
+{
+    return "Air";
+}
+void TAir::setName(const QString& name)
+{
+    return;
 }
 

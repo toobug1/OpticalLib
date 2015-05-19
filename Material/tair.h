@@ -20,9 +20,12 @@ public:
 
     double get_refractive_index(double wavelen) const; // one atmosphere && m_temp
     double get_refractive_index(double wavelen, double temperature,
-                                double relativePressure) const;
+                                double relativePressure = 1.0) const;
 
     double get_extinction_coef(double wavelen) const;
+
+    QString getName() const;
+    void setName(const QString& name);
 
 };
 
