@@ -360,4 +360,14 @@ QDataStream &operator>>(QDataStream &stream, TVector3D &vector)
     return stream;
 }
 
+TVector2D TVector3D::project_xy() const  //LQ add
+{
+    TVector2D v;
+
+    v.xp = x();
+    v.yp = y();
+
+    return v;
+}
+
 

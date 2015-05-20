@@ -50,6 +50,18 @@ public:
     TVector3D &operator*=(const TVector3D& vector);
     TVector3D &operator/=(qreal divisor);
 
+    TVector3D operator/(const TVector3D& vec)
+    {
+        // LQ aa
+        TVector3D r;
+
+        r.xp = xp / vec.xp;
+        r.yp = yp / vec.yp;
+        r.zp = zp / vec.zp;
+
+        return r;
+    }
+
     static qreal dotProduct(const TVector3D& v1, const TVector3D& v2);
     static TVector3D crossProduct(const TVector3D& v1, const TVector3D& v2);
     static TVector3D normal(const TVector3D& v1, const TVector3D& v2);
@@ -80,6 +92,8 @@ public:
     QPointF toPointF() const;
 
     operator QVariant() const;
+
+    TVector2D project_xy() const;  //LQ add
 
 private:
     float xp, yp, zp;

@@ -86,7 +86,8 @@ void TCurveBase::derivative(const TVector2D & xy, TVector2D & dxdy) const
          double old_sag = p.origin().z();
 
          // project previous intersection point on curve
-         p.origin().z() = new_sag;
+//         p.origin().z() = new_sag;
+         p.origin().setZ(new_sag);
 
          // stop if close enough
          if (fabs(old_sag - new_sag) < 1e-10)
