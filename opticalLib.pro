@@ -23,7 +23,18 @@ SOURCES += \
     Material/tdielectricbase.cpp \
     Material/tschott.cpp \
     Material/tglass.cpp \
-    Material/tsellmeier1.cpp
+    Material/tsellmeier1.cpp \
+    Material/therzberger.cpp \
+    Material/tsellmeier2.cpp \
+    Material/tconrady.cpp \
+    Material/tsellmeier3.cpp \
+    Material/thandbook1.cpp \
+    Material/thandbook2.cpp \
+    Material/tsellmeier4.cpp \
+    Material/textended.cpp \
+    Material/tsellmeier5.cpp \
+    Curve/tcurvebase.cpp \
+    Math/tvectorpair3d.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -39,7 +50,18 @@ HEADERS += \
     Material/tdielectricbase.h \
     Material/tschott.h \
     Material/tglass.h \
-    Material/tsellmeier1.h
+    Material/tsellmeier1.h \
+    Material/therzberger.h \
+    Material/tsellmeier2.h \
+    Material/tconrady.h \
+    Material/tsellmeier3.h \
+    Material/thandbook1.h \
+    Material/thandbook2.h \
+    Material/tsellmeier4.h \
+    Material/textended.h \
+    Material/tsellmeier5.h \
+    Curve/tcurvebase.h \
+    Math/tvectorpair3d.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
