@@ -1,12 +1,12 @@
-#ifndef TMATRIX_HPP
-#define TMATRIX_HPP
+#ifndef TMATIX_HPP
+#define TMATIX_HPP
 
 #include "tmatrix.h"
 
 template<int N, int M, typename T>
-TMatrix<M, N, T> TMatrix<N, M, T>::transposed() const
+TMatrixBase<M, N, T> TMatrixBase<N, M, T>::transposed() const
 {
-    TMatrix<M, N, T> matrix;
+    TMatrixBase<M, N, T> matrix;
 
     for (int row = 0; row < M; ++row)
     {
@@ -19,7 +19,7 @@ TMatrix<M, N, T> TMatrix<N, M, T>::transposed() const
 }
 
 template<int N, int M, typename T>
-TMatrix<N, M, T>& TMatrix<N, M, T>::set_col(int col, T value)
+TMatrixBase<N, M, T>& TMatrixBase<N, M, T>::set_col(int col, T value)
 {
     for (int row = 0; row < M; ++row)
     {
@@ -29,7 +29,7 @@ TMatrix<N, M, T>& TMatrix<N, M, T>::set_col(int col, T value)
 }
 
 template<int N, int M, typename T>
-TMatrix<N, M, T>& TMatrix<N, M, T>::set_row(int row, T value)
+TMatrixBase<N, M, T>& TMatrixBase<N, M, T>::set_row(int row, T value)
 {
     for (int col = 0; col < N; ++col)
     {
@@ -39,7 +39,7 @@ TMatrix<N, M, T>& TMatrix<N, M, T>::set_row(int row, T value)
 }
 
 template<int N, int M, typename T>
-TMatrix<N, M, T>& TMatrix<N, M, T>::set_diag(T value)
+TMatrixBase<N, M, T>& TMatrixBase<N, M, T>::set_diag(T value)
 {
     for (int row = 0, col = 0; (row < M && col < N); ++row, ++col)
     {
@@ -163,5 +163,5 @@ std::ostream& operator<<(std::ostream& os, const QGenericMatrix<N, M, T>& matrix
 
 
 
-#endif // TMATRIX_HPP
+#endif // TMatrixBase_HPP
 
