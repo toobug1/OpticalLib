@@ -34,7 +34,11 @@ SOURCES += \
     Material/textended.cpp \
     Material/tsellmeier5.cpp \
     Curve/tcurvebase.cpp \
-    Math/tvectorpair3d.cpp
+    Math/tvectorpair3d.cpp \
+    Curve/tarray.cpp \
+    Curve/tcomposer.cpp \
+    Math/math_matrix.cc \
+    Math/math_transform.cc
 
 HEADERS += \
     Math/tvector2d.h \
@@ -61,7 +65,31 @@ HEADERS += \
     Material/textended.h \
     Material/tsellmeier5.h \
     Curve/tcurvebase.h \
-    Math/tvectorpair3d.h
+    Math/tvectorpair3d.h \
+    Curve/tarray.h \
+    Curve/tcomposer.h \
+    Math/tvector.h \
+    common.hh \
+    Math/VectorPair \
+    Math/Matrix \
+    Math/matrix.hh \
+    Math/matrix.hxx \
+    Math/Quaternion \
+    Math/quaternion.hh \
+    Math/quaternion.hxx \
+    Math/Transform \
+    Math/transform.hh \
+    Math/transform.hxx \
+    Math/Triangle \
+    Math/triangle.hh \
+    Math/triangle.hxx \
+    Math/Vector \
+    Math/vector.hh \
+    Math/vector.hxx \
+    Math/vector_pair.hh \
+    Math/vector_pair.hxx \
+    Error \
+    error.hh
 unix {
     target.path = /usr/lib
     INSTALLS += target

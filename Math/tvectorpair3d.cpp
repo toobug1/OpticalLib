@@ -40,6 +40,6 @@ const TVector3D& TVectorPair3D::normal()    const
 
 double TVectorPair3D::pl_ln_intersect_scale(const TVectorPair3D &line) const
 {
-    return (first * second - second * line.first) / (line.second * second);
+    return (TVector3D::dotProduct(first, second) - TVector3D::dotProduct(second, line.first)) / TVector3D::dotProduct(line.second, second);
 }
 

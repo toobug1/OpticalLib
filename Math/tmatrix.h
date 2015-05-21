@@ -1,32 +1,32 @@
-#ifndef TMATRIX_H
-#define TMATRIX_H
+#ifndef TMatrixBase_H
+#define TMatrixBase_H
 
 #include <iostream>
 
 #include <QtGui/QGenericMatrix>
 
 template<int N, int M, typename T>
-class TMatrix : public QGenericMatrix<N, M, T>
+class TMatrixBase : public QGenericMatrix<N, M, T>
 {
     // note: N is col, M is row
 public:
-    TMatrix() {}
-    TMatrix(const T* data) : QGenericMatrix<N, M, T>(data){}
-    ~TMatrix() {}
+    TMatrixBase() {}
+    TMatrixBase(const T* data) : QGenericMatrix<N, M, T>(data){}
+    ~TMatrixBase() {}
 
-    TMatrix<M, N, T> transposed() const;
-    TMatrix<N, M, T>& set_col(int col, T value);
-    TMatrix<N, M, T>& set_row(int row, T value);
-    TMatrix<N, M, T>& set_diag(T value);
+    TMatrixBase<M, N, T> transposed() const;
+    TMatrixBase<N, M, T>& set_col(int col, T value);
+    TMatrixBase<N, M, T>& set_row(int row, T value);
+    TMatrixBase<N, M, T>& set_diag(T value);
 
 };
 
-template<int N, typename T>
-class TSquareMatrix : public TMatrix<N, N, T>
+template<int N, typename T = double>
+class TSquareMatrix : public TMatrixBase<N, N, T>
 {
 public:
     TSquareMatrix() {}
-    TSquareMatrix(const T* data) : TMatrix<N, N, T>(data) {}
+    TSquareMatrix(const T* data) : TMatrixBase<N, N, T>(data) {}
 
 public:
     T determinant() const;
@@ -37,6 +37,8 @@ public:
 
     T cofactor(int row, int col) const;   // get cofactor at [row,col]
     TSquareMatrix<N - 1, T> getCofactorMatrix(int row, int col) const;
+
+
 };
 
 template<typename T>
@@ -61,4 +63,4 @@ template<int N, int M, typename T>
 std::ostream& operator<<(std::ostream& os, const QGenericMatrix<N, M, T>& matrix);
 
 
-#endif // TMATRIX_H
+#endif // TMatrixBase_H
