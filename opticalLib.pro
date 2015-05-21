@@ -38,7 +38,12 @@ SOURCES += \
     Curve/tarray.cpp \
     Curve/tcomposer.cpp \
     Math/math_matrix.cc \
-    Math/math_transform.cc
+    Math/math_transform.cc \
+    Curve/trotational.cpp \
+    Curve/tcurveroc.cpp \
+    Curve/tconicbase.cpp \
+    Curve/tflat.cpp \
+    Curve/tfoucault.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -89,7 +94,12 @@ HEADERS += \
     Math/vector_pair.hh \
     Math/vector_pair.hxx \
     Error \
-    error.hh
+    error.hh \
+    Curve/trotational.h \
+    Curve/tcurveroc.h \
+    Curve/tconicbase.h \
+    Curve/tflat.h \
+    Curve/tfoucault.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
