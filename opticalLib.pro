@@ -43,7 +43,12 @@ SOURCES += \
     Curve/tcurveroc.cpp \
     Curve/tconicbase.cpp \
     Curve/tflat.cpp \
-    Curve/tfoucault.cpp
+    Curve/tfoucault.cpp \
+    Curve/tparabola.cpp \
+    Curve/tpolynomial.cpp \
+    Curve/tsphere.cpp \
+    Curve/tspline.cpp \
+    Curve/tzernike.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -99,7 +104,12 @@ HEADERS += \
     Curve/tcurveroc.h \
     Curve/tconicbase.h \
     Curve/tflat.h \
-    Curve/tfoucault.h
+    Curve/tfoucault.h \
+    Curve/tparabola.h \
+    Curve/tpolynomial.h \
+    Curve/tsphere.h \
+    Curve/tspline.h \
+    Curve/tzernike.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
