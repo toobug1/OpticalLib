@@ -7,6 +7,7 @@
 
 #include "trotational.h"
 #include "tcurveroc.h"
+#include "Data/tdiscreteset.h"
 
 /*
    @short Define surface curve from Foucault test data.
@@ -124,8 +125,8 @@ private:
     double _offset;
     double _radius;
     double _ode_step;
-//    Data::DiscreteSet _reading;
-//    Data::DiscreteSet _sagitta;
+    TDiscreteSet _reading;
+    TDiscreteSet _sagitta;
     bool _updated;
 };
 

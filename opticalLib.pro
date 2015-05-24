@@ -54,7 +54,10 @@ SOURCES += \
     Data/tsamplesetbase.cpp \
     Data/tsampleset.cpp \
     Data/tinterpolate1d.cpp \
-    Data/tdiscreteset.cpp
+    Data/tdiscreteset.cpp \
+    Data/tgrid.cpp \
+    Data/tplot.cpp \
+    Data/tplotdata.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -121,7 +124,11 @@ HEADERS += \
     Data/tsamplesetbase.h \
     Data/tsampleset.h \
     Data/tinterpolate1d.h \
-    Data/tdiscreteset.h
+    Data/tdiscreteset.h \
+    Data/tgrid.h \
+    vlarray \
+    Data/tplot.h \
+    Data/tplotdata.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
