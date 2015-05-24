@@ -2,6 +2,7 @@
 #define TSPLINE_H
 
 #include "trotational.h"
+#include "Data/tdiscreteset.h"
 
 class TSpline : public TRotational
 {
@@ -27,7 +28,7 @@ public:
   inline double derivative(double r) const;
 
 protected:
-//  Data::DiscreteSet _data;
+   TDiscreteSet _data;
 
   // TODO
 };

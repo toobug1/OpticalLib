@@ -48,7 +48,16 @@ SOURCES += \
     Curve/tpolynomial.cpp \
     Curve/tsphere.cpp \
     Curve/tspline.cpp \
-    Curve/tzernike.cpp
+    Curve/tzernike.cpp \
+    Data/tset.cpp \
+    Data/tset1d.cpp \
+    Data/tsamplesetbase.cpp \
+    Data/tsampleset.cpp \
+    Data/tinterpolate1d.cpp \
+    Data/tdiscreteset.cpp \
+    Data/tgrid.cpp \
+    Data/tplot.cpp \
+    Data/tplotdata.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -109,7 +118,17 @@ HEADERS += \
     Curve/tpolynomial.h \
     Curve/tsphere.h \
     Curve/tspline.h \
-    Curve/tzernike.h
+    Curve/tzernike.h \
+    Data/tset.h \
+    Data/tset1d.h \
+    Data/tsamplesetbase.h \
+    Data/tsampleset.h \
+    Data/tinterpolate1d.h \
+    Data/tdiscreteset.h \
+    Data/tgrid.h \
+    vlarray \
+    Data/tplot.h \
+    Data/tplotdata.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
