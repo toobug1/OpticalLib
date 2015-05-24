@@ -1,5 +1,5 @@
 
-#include "Goptical/error.hh"
+#include "error.hh"
 
 namespace Goptical {
   using _Goptical::Error;
