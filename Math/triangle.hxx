@@ -28,7 +28,7 @@
 
 #include <ostream>
 
-#include "Goptical/Math/vector.hxx"
+#include "Math/vector.hxx"
 
 namespace _Goptical {
 

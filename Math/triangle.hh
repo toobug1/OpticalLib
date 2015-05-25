@@ -28,9 +28,12 @@
 
 #include <ostream>
 
-#include "Goptical/common.hh"
+#include "common.hh"
+#include "delegate"
 
-#include "Goptical/Math/vector.hh"
+#include "Math/vector.hh"
+
+using namespace dpp;
 
 namespace _Goptical {
 
