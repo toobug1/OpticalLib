@@ -69,7 +69,11 @@ SOURCES += \
     Shape/tpolygon.cpp \
     Shape/trectangle.cpp \
     Shape/tregularpolygon.cpp \
-    Shape/tring.cpp
+    Shape/tring.cpp \
+    Analysis/tfocus.cpp \
+    Analysis/tpointimage.cpp \
+    Analysis/trayfan.cpp \
+    Analysis/tspot.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -155,7 +159,11 @@ HEADERS += \
     Shape/tpolygon.h \
     Shape/trectangle.h \
     Shape/tregularpolygon.h \
-    Shape/tring.h
+    Shape/tring.h \
+    Analysis/tfocus.h \
+    Analysis/tpointimage.h \
+    Analysis/trayfan.h \
+    Analysis/tspot.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
