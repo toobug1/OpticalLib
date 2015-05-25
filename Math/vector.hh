@@ -29,6 +29,9 @@
 #include <ostream>
 
 #include "common.hh"
+#include "delegate"
+
+using namespace dpp;
 
 namespace _Goptical {
 
@@ -132,7 +135,7 @@ namespace _Goptical {
     template <typename T> struct Vector<2, T> : public VectorBase<2, T>
     {
       typedef VectorBase<2, T> base;
-//      typedef delegate<void (const Math::Vector2 &)> put_delegate_t;
+      typedef delegate<void (const Math::Vector2 &)> put_delegate_t;
 
       inline Vector();
 
@@ -176,7 +179,7 @@ namespace _Goptical {
     template <typename T> struct Vector<3, T> : public VectorBase<3, T>
     {
       typedef VectorBase<3, T> base;
-//      typedef delegate<void (const Vector<3, T> &)> put_delegate_t;
+      typedef delegate<void (const Vector<3, T> &)> put_delegate_t;
 
       inline Vector();
 

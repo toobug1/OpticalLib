@@ -1,6 +1,6 @@
 
-#include "Goptical/Math/triangle.hh"
-#include "Goptical/Math/triangle.hxx"
+#include "Math/triangle.hh"
+#include "Math/triangle.hxx"
 
 namespace Goptical {
   namespace Math {

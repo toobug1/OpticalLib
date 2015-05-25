@@ -1,6 +1,6 @@
 
-#include "Goptical/Math/quaternion.hh"
-#include "Goptical/Math/quaternion.hxx"
+#include "Math/quaternion.hh"
+#include "Math/quaternion.hxx"
 
 namespace Goptical {
   namespace Math {

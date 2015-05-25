@@ -57,7 +57,19 @@ SOURCES += \
     Data/tdiscreteset.cpp \
     Data/tgrid.cpp \
     Data/tplot.cpp \
-    Data/tplotdata.cpp
+    Data/tplotdata.cpp \
+    Shape/tshapebase.cpp \
+    Trace/tdistribution.cpp \
+    Trace/ttracer.cpp \
+    Shape/tdisk.cpp \
+    Shape/tellipse.cpp \
+    Shape/tellipticalring.cpp \
+    Shape/tcomposershape.cpp \
+    Shape/tinfinite.cpp \
+    Shape/tpolygon.cpp \
+    Shape/trectangle.cpp \
+    Shape/tregularpolygon.cpp \
+    Shape/tring.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -128,7 +140,22 @@ HEADERS += \
     Data/tgrid.h \
     vlarray \
     Data/tplot.h \
-    Data/tplotdata.h
+    Data/tplotdata.h \
+    Shape/tshapebase.h \
+    delegate \
+    Trace/tdistribution.h \
+    Trace/ttracer.h \
+    Shape/tdisk.h \
+    Shape/tellipse.h \
+    Shape/tellipticalring.h \
+    Shape/tcomposershape.h \
+    Shape/tshaperound.h \
+    Shape/tshaperound.h \
+    Shape/tinfinite.h \
+    Shape/tpolygon.h \
+    Shape/trectangle.h \
+    Shape/tregularpolygon.h \
+    Shape/tring.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
