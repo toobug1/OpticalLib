@@ -73,7 +73,10 @@ SOURCES += \
     Analysis/tfocus.cpp \
     Analysis/tpointimage.cpp \
     Analysis/trayfan.cpp \
-    Analysis/tspot.cpp
+    Analysis/tspot.cpp \
+    Light/tray.cpp \
+    Light/tspectralline.cpp \
+    Io/trgb.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -163,7 +166,10 @@ HEADERS += \
     Analysis/tfocus.h \
     Analysis/tpointimage.h \
     Analysis/trayfan.h \
-    Analysis/tspot.h
+    Analysis/tspot.h \
+    Light/tray.h \
+    Light/tspectralline.h \
+    Io/trgb.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
