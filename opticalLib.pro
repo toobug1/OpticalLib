@@ -76,7 +76,12 @@ SOURCES += \
     Analysis/tspot.cpp \
     Light/tray.cpp \
     Light/tspectralline.cpp \
-    Io/trgb.cpp
+    Io/trgb.cpp \
+    Sys/telement.cpp \
+    Sys/tcontainer.cpp \
+    Sys/tgroup.cpp \
+    Sys/tsurface.cpp \
+    Sys/timage.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -169,7 +174,12 @@ HEADERS += \
     Analysis/tspot.h \
     Light/tray.h \
     Light/tspectralline.h \
-    Io/trgb.h
+    Io/trgb.h \
+    Sys/telement.h \
+    Sys/tcontainer.h \
+    Sys/tgroup.h \
+    Sys/tsurface.h \
+    Sys/timage.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
