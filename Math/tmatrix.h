@@ -37,8 +37,6 @@ public:
 
     T cofactor(int row, int col) const;   // get cofactor at [row,col]
     TSquareMatrix<N - 1, T> getCofactorMatrix(int row, int col) const;
-
-
 };
 
 template<typename T>
