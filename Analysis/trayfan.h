@@ -84,26 +84,26 @@ public:
 private:
     void process_trace();
 
-    typedef double (TRayFan::*get_value_t)(const Trace::Ray &r,
-                                           const Trace::Ray &chief) const;
+    typedef double (TRayFan::*get_value_t)(const TTraceRay &r,
+                                           const TTraceRay &chief) const;
 
-    const Trace::Ray & find_chief_ray(const Trace::rays_queue_t &intercepts,
+    const TTraceRay & find_chief_ray(const Trace::rays_queue_t &intercepts,
                                       double wavelen);
 
-    double get_entrance_height(const Trace::Ray &r,
-                               const Trace::Ray &chief) const;
-    double get_entrance_angle(const Trace::Ray &r,
-                              const Trace::Ray &chief) const;
-    double get_transverse_distance(const Trace::Ray &r,
-                                   const Trace::Ray &chief) const;
-    double get_longitudinal_distance(const Trace::Ray &r,
-                                     const Trace::Ray &chief) const;
-    double get_optical_path_len(const Trace::Ray &r,
-                                const Trace::Ray &chief) const;
-    double get_image_angle(const Trace::Ray &r,
-                           const Trace::Ray &chief) const;
-    double get_exit_angle(const Trace::Ray &r,
-                          const Trace::Ray &chief) const;
+    double get_entrance_height(const TTraceRay &r,
+                               const TTraceRay &chief) const;
+    double get_entrance_angle(const TTraceRay &r,
+                              const TTraceRay &chief) const;
+    double get_transverse_distance(const TTraceRay &r,
+                                   const TTraceRay &chief) const;
+    double get_longitudinal_distance(const TTraceRay &r,
+                                     const TTraceRay &chief) const;
+    double get_optical_path_len(const TTraceRay &r,
+                                const TTraceRay &chief) const;
+    double get_image_angle(const TTraceRay &r,
+                           const TTraceRay &chief) const;
+    double get_exit_angle(const TTraceRay &r,
+                          const TTraceRay &chief) const;
 
     TTracer     _tracer;
     bool              _processed_trace;

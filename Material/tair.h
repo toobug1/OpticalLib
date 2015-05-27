@@ -5,8 +5,6 @@
 
 class TAir : public TMaterialBase
 {
-    Q_OBJECT
-
 public:
     TAir();
     TAir(double temp);
