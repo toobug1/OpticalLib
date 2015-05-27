@@ -6,18 +6,18 @@
 
 class TDielectricBase : public TMaterialBase
 {
-    Q_OBJECT
+//    Q_OBJECT
 
-    Q_PROPERTY(QString name READ getName WRITE setName)
-    Q_PROPERTY(DispersionFormula formula READ formula WRITE setFormula)
-    Q_PROPERTY(double tempD0 READ tempD0)
-    Q_PROPERTY(double tempD1 READ tempD1)
-    Q_PROPERTY(double tempD2 READ tempD2)
-    Q_PROPERTY(double tempE0 READ tempE0)
-    Q_PROPERTY(double tempE1 READ tempE1)
-    Q_PROPERTY(double tempLtk READ tempLtk)
-    Q_PROPERTY(double minWave READ minWave WRITE setMinWave)
-    Q_PROPERTY(double maxWave READ maxWave WRITE setMaxWave)
+//    Q_PROPERTY(QString name READ getName WRITE setName)
+//    Q_PROPERTY(DispersionFormula formula READ formula WRITE setFormula)
+//    Q_PROPERTY(double tempD0 READ tempD0)
+//    Q_PROPERTY(double tempD1 READ tempD1)
+//    Q_PROPERTY(double tempD2 READ tempD2)
+//    Q_PROPERTY(double tempE0 READ tempE0)
+//    Q_PROPERTY(double tempE1 READ tempE1)
+//    Q_PROPERTY(double tempLtk READ tempLtk)
+//    Q_PROPERTY(double minWave READ minWave WRITE setMinWave)
+//    Q_PROPERTY(double maxWave READ maxWave WRITE setMaxWave)
 
 public:
     enum DispersionFormula

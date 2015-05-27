@@ -11,6 +11,9 @@
 #include "thandbook2.h"
 #include "therzberger.h"
 
+
+const TGlass none;
+
 TGlass::TGlass()
 {
     m_glass = 0;
@@ -360,7 +363,10 @@ TGlass::TGlass(TDielectricBase::DispersionFormula df,
 
 TGlass::~TGlass()
 {
-    delete m_glass;
+    if (!m_glass)
+    {
+        delete m_glass;
+    }
     m_glass = 0;
 }
 
@@ -482,7 +488,14 @@ TGlass& TGlass::operator=(const TGlass& glass)
 
 double TGlass::getRefractiveIndex(double wave, double temp, double rlPressure)
 {
-    return m_glass->get_refractive_index(wave, temp, rlPressure);
+    if (m_glass)
+    {
+        return m_glass->get_refractive_index(wave, temp, rlPressure);
+    }
+    else
+    {
+        return 1.0;  // for the empty material
+    }
 }
 
 const TDielectricBase* TGlass::getGlassPtr() const

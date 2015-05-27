@@ -43,7 +43,7 @@ public:
 
     /** Trace a single ray through the surface */
     template <Trace::IntensityMode m>
-    void trace_ray(Trace::Result &result, Trace::Ray &incident,
+    void trace_ray(TResult &result, TTraceRay &incident,
                    const Math::VectorPair3 &local, const Math::VectorPair3 &intersect) const;
 
     /** Get surface apparent color */
@@ -61,22 +61,22 @@ protected:
 
     /** This function must be reimplemented by subclasses to handle
       incoming rays and generate new ones when in simple ray trace mode. */
-    virtual void trace_ray_simple(Trace::Result &result,
-                                  Trace::Ray &incident,
+    virtual void trace_ray_simple(TResult &result,
+                                  TTraceRay &incident,
                                   const Math::VectorPair3 &local,
                                   const Math::VectorPair3 &intersect) const;
 
     /** This function must be reimplemented by subclasses to handle
       incoming rays and generate new ones when in intensity ray trace mode. */
-    virtual void trace_ray_intensity(Trace::Result &result,
-                                     Trace::Ray &incident,
+    virtual void trace_ray_intensity(TResult &result,
+                                     TTraceRay &incident,
                                      const Math::VectorPair3 &local,
                                      const Math::VectorPair3 &intersect) const;
 
     /** This function must be reimplemented by subclasses to handle
       incoming rays and generate new ones when in polarized ray trace mode. */
-    virtual void trace_ray_polarized(Trace::Result &result,
-                                     Trace::Ray &incident,
+    virtual void trace_ray_polarized(TResult &result,
+                                     TTraceRay &incident,
                                      const Math::VectorPair3 &local,
                                      const Math::VectorPair3 &intersect) const;
 
@@ -95,16 +95,16 @@ private:
                        const Element *ref) const;
 
     template <Trace::IntensityMode m>
-    inline void process_rays_(Trace::Result &result,
+    inline void process_rays_(TResult &result,
                               Trace::rays_queue_t *input) const;
 
-    virtual void process_rays_simple(Trace::Result &result,
+    virtual void process_rays_simple(TResult &result,
                                      Trace::rays_queue_t *input) const;
 
-    virtual void process_rays_intensity(Trace::Result &result,
+    virtual void process_rays_intensity(TResult &result,
                                         Trace::rays_queue_t *input) const;
 
-    virtual void process_rays_polarized(Trace::Result &result,
+    virtual void process_rays_polarized(TResult &result,
                                         Trace::rays_queue_t *input) const;
 
     double                    _discard_intensity;

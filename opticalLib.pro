@@ -81,7 +81,15 @@ SOURCES += \
     Sys/tcontainer.cpp \
     Sys/tgroup.cpp \
     Sys/tsurface.cpp \
-    Sys/timage.cpp
+    Sys/timage.cpp \
+    Sys/topticalsurface.cpp \
+    Sys/tmirror.cpp \
+    Sys/tsource.cpp \
+    Sys/tsourcepoint.cpp \
+    Sys/tsourcerays.cpp \
+    Sys/tstop.cpp \
+    Sys/tlens.cpp \
+    Sys/tsystem.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -179,14 +187,21 @@ HEADERS += \
     Sys/tcontainer.h \
     Sys/tgroup.h \
     Sys/tsurface.h \
-    Sys/timage.h
+    Sys/timage.h \
+    vector_pool \
+    Sys/topticalsurface.h \
+    Sys/tmirror.h \
+    Sys/tsource.h \
+    Sys/tsourcepoint.h \
+    Sys/tsourcerays.h \
+    Sys/tstop.h\
+    Sys/tlens.h \
+    Sys/tsystem.h
+
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
-
-#LIBS += -lgsl \
-#        -lgslcblas
 
 QMAKE_CXXFLAGS +=  -Wno-unused-parameter
 

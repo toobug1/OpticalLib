@@ -34,4 +34,6 @@ private:
     TDielectricBase* m_glass;
 };
 
+extern const TGlass none;
+
 #endif // TGLASS_H

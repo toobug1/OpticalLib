@@ -17,16 +17,16 @@ public:
     TImage(const Math::VectorPair3 &position, double radius);
 
 private:
-    void trace_ray_simple(Trace::Result &result,
-                          Trace::Ray &incident,
+    void trace_ray_simple(TResult &result,
+                          TTraceRay &incident,
                           const Math::VectorPair3 &local,
                           const Math::VectorPair3 &intersect) const;
-    void trace_ray_intensity(Trace::Result &result,
-                             Trace::Ray &incident,
+    void trace_ray_intensity(TResult &result,
+                             TTraceRay &incident,
                              const Math::VectorPair3 &local,
                              const Math::VectorPair3 &intersect) const;
-    void trace_ray_polarized(Trace::Result &result,
-                             Trace::Ray &incident,
+    void trace_ray_polarized(TResult &result,
+                             TTraceRay &incident,
                              const Math::VectorPair3 &local,
                              const Math::VectorPair3 &intersect) const;
 };

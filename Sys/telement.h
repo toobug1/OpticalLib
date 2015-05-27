@@ -13,6 +13,7 @@ using namespace _Goptical;
 class TSystem;
 class TContainer;
 class TGroup;
+class TResult;
 
 class TElement
 {
@@ -132,7 +133,7 @@ public:
     /** Batch process a list of light rays interacting with element.
         This function is only used in sequential ray trace mode. */
     template <Trace::IntensityMode m>
-    inline void process_rays(Trace::Result &result,
+    inline void process_rays(TResult &result,
                              Trace::rays_queue_t *input) const;
 
     /** Draw element 2d layout using the given renderer in given
@@ -151,21 +152,21 @@ protected:
         reimplemented in subclasses if the element can interact with
         light in simple raytrace mode.
         This function is only used in sequential ray trace mode. */
-    virtual void process_rays_simple(Trace::Result &result,
+    virtual void process_rays_simple(TResult &result,
                                      Trace::rays_queue_t *input) const;
 
     /** This function process incoming light rays. It must be
         reimplemented in subclasses if the element can interact with
         light in intensity raytrace mode.
         This function is only used in sequential ray trace mode. */
-    virtual void process_rays_intensity(Trace::Result &result,
+    virtual void process_rays_intensity(TResult &result,
                                         Trace::rays_queue_t *input) const;
 
     /** This function process incoming light rays. It must be
         reimplemented in subclasses if the element can interact with
         light in polarized raytrace mode.
         This function is only used in sequential ray trace mode. */
-    virtual void process_rays_polarized(Trace::Result &result,
+    virtual void process_rays_polarized(TResult &result,
                                         Trace::rays_queue_t *input) const;
 
     /** This function is called from the @ref System class when the

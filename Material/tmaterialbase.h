@@ -4,9 +4,9 @@
 #include <QMap>
 #include <QObject>
 
-class TMaterialBase : public QObject
+class TMaterialBase/* : public QObject*/
 {
-    Q_OBJECT
+//    Q_OBJECT
 
 public:
     TMaterialBase();

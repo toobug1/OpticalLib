@@ -495,12 +495,12 @@ namespace _Goptical {
     class Distribution;
     class Tracer;
     class Params;
-    class Ray;
+    class TTraceRay;
     class Result;
     class Element;
     class Sequence;
 
-    typedef std::deque<Ray *> rays_queue_t;
+    typedef std::deque<TTraceRay *> rays_queue_t;
 
   }
 
