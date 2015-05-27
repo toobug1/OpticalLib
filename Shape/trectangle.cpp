@@ -126,7 +126,7 @@ unsigned int TRectangle::get_contour_count() const
     return 1;
 }
 
-inline Math::Vector2 TRectangle::get_step(double resolution) const
+Math::Vector2 TRectangle::get_step(double resolution) const
 {
     Math::Vector2 step;
 

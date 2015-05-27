@@ -13,14 +13,14 @@ public:
     virtual ~TPointImage();
 
     /** set Image which collect rays for analysis */
-    inline void set_image(Sys::Image *image);
+    void set_image(Sys::Image *image);
 
     /** return tracer object used for ray tracing. This will
       invalidate current analysis data */
-    inline TTracer & get_tracer();
+    TTracer & get_tracer();
 
     /** return tracer object used for ray tracing */
-    inline const TTracer & get_tracer() const;
+    const TTracer & get_tracer() const;
 
     /** invalidate current analysis data */
     virtual void invalidate() = 0;

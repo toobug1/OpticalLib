@@ -65,7 +65,7 @@ TDiscreteSetBase::~TDiscreteSetBase()
 {
 }
 
-inline unsigned int TDiscreteSetBase::get_interval(double x) const
+unsigned int TDiscreteSetBase::get_interval(double x) const
 {
     int min_idx = 0;
     int max_idx = _data.size() + 1;
@@ -83,7 +83,7 @@ inline unsigned int TDiscreteSetBase::get_interval(double x) const
     return min_idx;
 }
 
-inline unsigned int TDiscreteSetBase::get_nearest(double x) const
+unsigned int TDiscreteSetBase::get_nearest(double x) const
 {
     int min_idx = 0;
     int max_idx = _data.size();

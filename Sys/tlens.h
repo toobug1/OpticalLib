@@ -112,19 +112,19 @@ public:
     void set_shape(const QSharedPointer<TShapeBase> &s, unsigned int index);
 
     /** Get a reference to optical surface at given index */
-    inline const TOpticalSurface & get_surface(unsigned int index) const;
+    const TOpticalSurface & get_surface(unsigned int index) const;
     /** Get a reference to optical surface at given index */
-    inline TOpticalSurface & get_surface(unsigned int index);
+    TOpticalSurface & get_surface(unsigned int index);
 
     /** Get a reference to right optical surface element */
-    inline const TOpticalSurface & get_right_surface() const;
+    const TOpticalSurface & get_right_surface() const;
     /** Get a reference to right optical surface element */
-    inline TOpticalSurface & get_right_surface();
+    TOpticalSurface & get_right_surface();
 
     /** Get a reference to left optical surface element */
-    inline const TOpticalSurface & get_left_surface() const;
+    const TOpticalSurface & get_left_surface() const;
     /** Get a reference to left optical surface element */
-    inline TOpticalSurface & get_left_surface();
+    TOpticalSurface & get_left_surface();
 
     /** Get plane of last surface + thickness z offset */
     Math::VectorPair3 get_exit_plane() const;
@@ -132,9 +132,9 @@ public:
 private:
 
     /** prevent use of @ref Container::add */
-    inline void add(const QSharedPointer<TElement> &e);
+    void add(const QSharedPointer<TElement> &e);
     /** prevent use of @ref Container::remove */
-    inline void remove(TElement &e);
+    void remove(TElement &e);
 
     /** @override */
     void draw_2d_e(Io::Renderer &r, const TElement *ref) const;

@@ -32,7 +32,7 @@ private:
     void draw_3d_e(Io::Renderer &r, const TElement *ref) const;
 
     template <Trace::IntensityMode m>
-    inline void process_rays_(TResult &result,
+    void process_rays_(TResult &result,
                               Trace::rays_queue_t *input) const;
 
     /** @override */

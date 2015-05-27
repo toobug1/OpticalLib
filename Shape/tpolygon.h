@@ -14,8 +14,8 @@ public:
     void insert_vertex(const Math::Vector2 &v, unsigned int id);
     void delete_vertex(unsigned int id);
 
-    inline unsigned int get_vertices_count() const;
-    inline const Math::Vector2 & get_vertex(unsigned int id);
+    unsigned int get_vertices_count() const;
+    const Math::Vector2 & get_vertex(unsigned int id);
 
 private:
 
@@ -30,7 +30,7 @@ private:
     /** @override */
     bool inside(const Math::Vector2 &point) const;
     /** @override */
-    inline unsigned int get_contour_count() const;
+    unsigned int get_contour_count() const;
     /** @override */
     void get_contour(unsigned int contour,
                      const Math::Vector2::put_delegate_t  &f,

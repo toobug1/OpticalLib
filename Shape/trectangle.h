@@ -8,14 +8,14 @@ class TRectangle : public TShapeBase
 {
 public:
     /** Create a rectangle with given width and height */
-    inline TRectangle(double width, double height);
+    TRectangle(double width, double height);
     /** Create a square with given side length */
-    inline TRectangle(double sqsize);
+    TRectangle(double sqsize);
 
     /** @override */
-    inline double max_radius() const;
+    double max_radius() const;
     /** @override */
-    inline double min_radius() const;
+    double min_radius() const;
     /** @override */
     double get_outter_radius(const Math::Vector2 &dir) const;
     /** @override */

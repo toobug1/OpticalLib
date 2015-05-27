@@ -44,7 +44,7 @@ public:
     void set_material(unsigned index, const QSharedPointer<TGlass> &m);
 
     /** Get surface left or right material */
-    inline const TGlass & get_material(unsigned id) const;
+    const TGlass & get_material(unsigned id) const;
 
     /** Get surface natural color from material properties. */
     TRgb get_color(const Io::Renderer &r) const;

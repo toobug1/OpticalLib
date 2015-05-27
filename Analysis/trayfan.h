@@ -50,27 +50,27 @@ public:
     void set_plane(enum rayfan_plane_e plane);
 
     /** Get internal distribution object */
-    inline Trace::Distribution & get_distribution();
+    Trace::Distribution & get_distribution();
 
     /** Aberrations are considered in the given plane on the
       target surface. Default is to use the same plane as entrance
       pupil ray distribution plane. */
-    inline void set_aberration_plane(enum rayfan_plane_e plane);
+    void set_aberration_plane(enum rayfan_plane_e plane);
 
     /** Specify entrance pupil surface to use for analysis, query
       system for entrance pupil if none defined here. */
-    inline void set_entrance_surface(const Sys::Surface &s);
+    void set_entrance_surface(const Sys::Surface &s);
 
     /** Specify target surface (image or exit pupil) to use for
       analysis, query system for image surface if none defined
       here. */
-    inline void set_target_surface(const Sys::Surface &s);
+    void set_target_surface(const Sys::Surface &s);
 
     /** Set longitudinal reference ray (local to target
       surface). Longitudinal aberration computes distance between
       each rays and target surface plane along this reference
       vector. Default value is along the Z axis. */
-    inline void set_longitudinal_reference(const Math::VectorPair3 &ref);
+    void set_longitudinal_reference(const Math::VectorPair3 &ref);
 
     /** Get aberration plot, requested x value is plotted against
       requested y value. */

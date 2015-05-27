@@ -21,7 +21,7 @@ public:
     void set_position(const Math::Vector3 &pos);
 
     /** Change current point source infinity mode */
-    inline void set_mode(SourceInfinityMode mode);
+    void set_mode(SourceInfinityMode mode);
 
 private:
 
@@ -31,7 +31,7 @@ private:
                                  const targets_t &entry) const;
 
     template <SourceInfinityMode mode>
-    inline void get_lightrays_(Trace::Result &result,
+    void get_lightrays_(Trace::Result &result,
                                const Element &target) const;
 
     SourceInfinityMode _mode;

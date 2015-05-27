@@ -9,10 +9,10 @@ class TFocus : public TPointImage
 public:
     TFocus(Sys::TSystem &system);
 
-    inline void invalidate();
+    void invalidate();
 
     /** Get best point of focus in system global coordinates. */
-    inline const Math::VectorPair3 & get_best_focus();
+    const Math::VectorPair3 & get_best_focus();
 
 private:
     void process_focus();

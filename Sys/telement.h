@@ -133,7 +133,7 @@ public:
     /** Batch process a list of light rays interacting with element.
         This function is only used in sequential ray trace mode. */
     template <Trace::IntensityMode m>
-    inline void process_rays(TResult &result,
+    void process_rays(TResult &result,
                              Trace::rays_queue_t *input) const;
 
     /** Draw element 2d layout using the given renderer in given

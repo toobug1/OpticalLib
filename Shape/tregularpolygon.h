@@ -9,9 +9,9 @@ class TRegularPolygon : public TShapeBase
     TRegularPolygon(double radius, unsigned int edge_cnt, double degree_angle = 0.);
 
     /** @override */
-    inline double max_radius() const;
+    double max_radius() const;
     /** @override */
-    inline double min_radius() const;
+    double min_radius() const;
     /** @override */
     double get_outter_radius(const Math::Vector2 &dir) const;
     /** @override */
@@ -29,7 +29,7 @@ class TRegularPolygon : public TShapeBase
 
 private:
     /** get edge segment associated with sector where specified point lies */
-    inline Math::VectorPair2 get_edge(const Math::Vector2 &point) const;
+    Math::VectorPair2 get_edge(const Math::Vector2 &point) const;
     double get_radial_step(double resolution) const;
 
     double _radius;

@@ -12,19 +12,19 @@ class TSpot : public TPointImage
 public:
     TSpot(Sys::TSystem &system);
 
-    inline void invalidate();
+    void invalidate();
 
     /** Get spot maximum radius */
-    inline double get_max_radius();
+    double get_max_radius();
 
     /** Get spot root mean square radius */
-    inline double get_rms_radius();
+    double get_rms_radius();
 
     /** Get amount of light intensity in the whole spot */
-    inline double get_total_intensity();
+    double get_total_intensity();
 
     /** Get spot centroid */
-    inline const Math::Vector3 & get_centroid();
+    const Math::Vector3 & get_centroid();
 
     /** Get spot window center */
     Math::Vector3 get_center();
@@ -37,7 +37,7 @@ public:
 
     /** Set radius used for diagram drawing and encircled
       plots. Updated with spot max radius on ray trace */
-    inline void set_useful_radius(double radius);
+    void set_useful_radius(double radius);
 
     /** draw the rays intersection points only */
     void draw_spot(Io::RendererViewport &renderer);
@@ -48,7 +48,7 @@ public:
     /** Get a reference to axes object rendered with spot
       diagram. @ref Io::RendererAxes coordinates are updated on
       ray trace. */
-    inline Io::RendererAxes & get_diagram_axes();
+    Io::RendererAxes & get_diagram_axes();
 
 private:
     void process_trace();

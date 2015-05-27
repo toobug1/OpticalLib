@@ -89,7 +89,9 @@ SOURCES += \
     Sys/tsourcerays.cpp \
     Sys/tstop.cpp \
     Sys/tlens.cpp \
-    Sys/tsystem.cpp
+    Sys/tsystem.cpp \
+    Trace/tparams.cpp \
+    Trace/tsequence.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -196,7 +198,9 @@ HEADERS += \
     Sys/tsourcerays.h \
     Sys/tstop.h\
     Sys/tlens.h \
-    Sys/tsystem.h
+    Sys/tsystem.h \
+    Trace/tparams.h \
+    Trace/tsequence.h
 
 unix {
     target.path = /usr/lib

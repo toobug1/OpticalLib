@@ -20,14 +20,14 @@ public:
     virtual ~TSurface();
 
     /** Set surface curve */
-    inline void set_curve(const QSharedPointer<TCurveBase> &c);
+    void set_curve(const QSharedPointer<TCurveBase> &c);
     /** Get surface curve */
-    inline const QSharedPointer<TCurveBase>& get_curve() const;
+    const QSharedPointer<TCurveBase>& get_curve() const;
 
     /** Set surface shape */
-    inline void set_shape(const QSharedPointer<TShapeBase> &s);
+    void set_shape(const QSharedPointer<TShapeBase> &s);
     /** Get surface shape */
-    inline const QSharedPointer<TShapeBase> & get_shape() const;
+    const QSharedPointer<TShapeBase> & get_shape() const;
 
     /** Get intersection point and normal to surface at
       intersection. Return false if no intersection occured.
@@ -51,9 +51,9 @@ public:
 
     /** Set minimal ray intensity. Incident rays with less intensity
       will be discarded */
-    inline void set_discard_intensity(double intensity);
+    void set_discard_intensity(double intensity);
     /** Get minimal ray intensity. */
-    inline double get_discard_intensity() const;
+    double get_discard_intensity() const;
 
     Math::VectorPair3 get_bounding_box() const;
 
@@ -95,7 +95,7 @@ private:
                        const Element *ref) const;
 
     template <Trace::IntensityMode m>
-    inline void process_rays_(TResult &result,
+    void process_rays_(TResult &result,
                               Trace::rays_queue_t *input) const;
 
     virtual void process_rays_simple(TResult &result,

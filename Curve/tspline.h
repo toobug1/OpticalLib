@@ -12,10 +12,10 @@ public:
   ~TSpline();
 
   /** Get sagitta/derivative data container */
-//  inline const Data::DiscreteSet & get_data() const;
+  const TDiscreteSet & get_data() const;
 
-//  /** get sagitta/derivative data container */
-//  inline Data::DiscreteSet & get_data();
+  /** get sagitta/derivative data container */
+  TDiscreteSet & get_data();
 
   /** Clear all points and fit to an other rotationally symmetric curve.
       @param c Curve to fit
@@ -24,8 +24,8 @@ public:
   */
   void fit(const TRotational &c, double radius, unsigned int points);
 
-  inline double sagitta(double r) const;
-  inline double derivative(double r) const;
+  double sagitta(double r) const;
+  double derivative(double r) const;
 
 protected:
    TDiscreteSet _data;

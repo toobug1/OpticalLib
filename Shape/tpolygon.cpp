@@ -27,7 +27,7 @@ TPolygon::TPolygon()
 {
 }
 
-inline void TPolygon::update()
+void TPolygon::update()
 {
     size_t s = _vertices.size();
     if (s < 3)

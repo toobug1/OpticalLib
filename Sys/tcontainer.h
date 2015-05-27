@@ -17,7 +17,7 @@ class TContainer
     friend class TElement;
 
 public:
-    typedef std::list <QSharedPointer<TElement> > element_list_t;
+    typedef std::list <QSharedPointer<const TElement> > element_list_t;
 
     TContainer();
     virtual ~TContainer();
@@ -29,28 +29,28 @@ public:
     void remove(TElement &e);
 
     /** Find first element of type X in container and subcontainers */
-    template <class X> inline X* find() const;
+    template <class X>  X* find() const;
 
     /** Invoke a delegate for each element of type X in
         container and subcontainers */
     template <class X>
-    inline void get_elements(const delegate<void (const X &)> &d) const;
+    void get_elements(const delegate<void (const X &)> &d) const;
 
     /** Invoke a modifier delegate for each element of type X in
         container and subcontainers */
     template <class X>
-    inline void get_elements(const delegate<void (X &)> &d);
+    void get_elements(const delegate<void (X &)> &d);
 
     /** Disable all elements of specified type which are not specified element */
     template <class X>
-    inline void enable_single(const X &e);
+    void enable_single(const X &e);
 
     /** Test if element is contained in container and subcontainers */
     template <class X>
-    inline bool contains(const X *x) const;
+    bool contains(const X *x) const;
 
     /** Return a reference to container children list */
-    inline const element_list_t & get_element_list() const;
+    const element_list_t & get_element_list() const;
 
     /** Get system or element group bounding box */
     Math::VectorPair3 get_bounding_box() const;

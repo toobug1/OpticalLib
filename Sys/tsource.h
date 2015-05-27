@@ -16,30 +16,30 @@ public:
 
     /** Set material where light rays are generated. system
       environment material is used by default. */
-    inline void set_material(const QSharedPointer<TGlass> &m);
+    void set_material(const QSharedPointer<TGlass> &m);
 
     /** Add a new wavelen for ray generation */
-    inline void add_spectral_line(const TSpectralLine & l);
+    void add_spectral_line(const TSpectralLine & l);
 
     /** Set a wavelen in list for ray generation */
-    inline void set_spectral_line(const TSpectralLine & l,
+    void set_spectral_line(const TSpectralLine & l,
                                   int index = 0);
 
     /** Clear ray wavelen list and set a single wavelen */
-    inline void single_spectral_line(const TSpectralLine & l);
+    void single_spectral_line(const TSpectralLine & l);
 
     /** Clear wavelen list */
-    inline void clear_spectrum();
+    void clear_spectrum();
 
     /** Get maximal spectral line intensity */
-    inline double get_max_intensity() const;
+    double get_max_intensity() const;
 
     /** Get minimal spectral line intensity */
-    inline double get_min_intensity() const;
+    double get_min_intensity() const;
 
     /** Generate light rays from source */
     template <Trace::IntensityMode m>
-    inline void generate_rays(TResult &result,
+    void generate_rays(TResult &result,
                               const targets_t &entry) const;
 
 protected:

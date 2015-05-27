@@ -48,11 +48,11 @@ public:
     virtual void set_interpolation(Interpolation i) = 0;
 
     /** Get current interpolation method */
-    inline Interpolation get_interpolation();
+    Interpolation get_interpolation();
 
     // FIXME dataset version number
     /** Return version number which is incremented on each data set change/clear */
-    inline unsigned int get_version() const;
+    unsigned int get_version() const;
 
 protected:
     TSet();

@@ -7,12 +7,12 @@ class TInfinite
 {
 public:
   /** Create an infinite shape */
-  inline TInfinite();
+  TInfinite();
 
   /** @override */
-  inline double max_radius() const;
+  double max_radius() const;
   /** @override */
-  inline double min_radius() const;
+  double min_radius() const;
   /** @override */
   double get_outter_radius(const Math::Vector2 &dir) const;
   /** @override */

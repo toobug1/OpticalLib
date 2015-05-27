@@ -6,6 +6,7 @@
 #include "tcontainer.h"
 #include "tsurface.h"
 #include "Material/tglass.h"
+#include "Math/Transform"
 
 class TParams;
 
@@ -17,48 +18,48 @@ public:
     virtual ~TSystem();
 
     /** Define an entrance pupil surface used to project source rays */
-    inline void set_entrance_pupil(const QSharedPointer<TSurface> &entrance);
+    void set_entrance_pupil(const QSharedPointer<TSurface> &entrance);
     /** Discard defined entrance pupil */
-    inline void undef_entrance_pupil();
+    void undef_entrance_pupil();
     /** Get defined entrance pupil surface or try to guess it if none defined */
     const TSurface &get_entrance_pupil() const;
     /** Test if an entrance pupil has been defined */
-    inline bool has_entrance_pupil() const;
+    bool has_entrance_pupil() const;
 
     /** Define an exit pupil surface */
-    inline void set_exit_pupil(const QSharedPointer<TSurface> &exit);
+    void set_exit_pupil(const QSharedPointer<TSurface> &exit);
     /** Get exit pupil */
-    inline const TSurface &get_exit_pupil() const;
+    const TSurface &get_exit_pupil() const;
     /** Test if an exit pupil has been defined */
-    inline bool has_exit_pupil() const;
+    bool has_exit_pupil() const;
 
     /** Get default tracer parameters */
-    inline const TParams & get_tracer_params() const;
+    const TParams & get_tracer_params() const;
     /** Get default tracer parameters */
-    inline TParams & get_tracer_params();
+    TParams & get_tracer_params();
 
     /** Get transform between two elements local coordinates */
-    inline const Math::Transform<3> & get_transform(const TElement &from,
+    const Math::Transform<3> & get_transform(const TElement &from,
                                                     const TElement &to) const;
 
     /** Get transform from element local to global coordinates */
-    inline const Math::Transform<3> & get_global_transform(const TElement &from) const;
+    const Math::Transform<3> & get_global_transform(const TElement &from) const;
 
     /** Get transform from global to element local coordinates */
-    inline const Math::Transform<3> & get_local_transform(const TElement &to) const;
+    const Math::Transform<3> & get_local_transform(const TElement &to) const;
 
     /** Get system version. version is updated each time system or
       associated elements properties are changed */
-    inline unsigned int get_version() const;
+    unsigned int get_version() const;
 
     /** Get the number of registered elements in the system */
-    inline unsigned int get_element_count() const;
+    unsigned int get_element_count() const;
 
     /** Get registered element. first element has index 1 */
-    inline TElement & get_element(unsigned int index) const;
+    TElement & get_element(unsigned int index) const;
 
     /** Increase current system version */
-    inline void update_version();
+    void update_version();
 
     /** Find surface which colides with the given ray and update intersection point */
     TSurface * colide_next(const TParams &params,
@@ -69,10 +70,10 @@ public:
     void set_environment(const QSharedPointer<TGlass> &env);
 
     /** get environment material */
-    inline const TGlass & get_environment() const;
+    const TGlass & get_environment() const;
 
     /** @internal get environment material proxy */
-    inline const TGlass & get_environment_proxy() const;
+    const TGlass & get_environment_proxy() const;
 
     /** @internal Dump 3d transforms cache */
     void transform_cache_dump(std::ostream &o) const;
@@ -90,7 +91,7 @@ private:
     void index_put(const TElement &element);
 
     /** Get a reference to cache entry for transform between 2 elements (ids) */
-    inline Math::Transform<3> * & transform_cache_entry(unsigned int from,
+    Math::Transform<3> * & transform_cache_entry(unsigned int from,
                                                         unsigned int to) const;
 
     /** Compute and get 3d transform between element local and global coordinates */

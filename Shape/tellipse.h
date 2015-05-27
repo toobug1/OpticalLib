@@ -10,9 +10,9 @@ public:
     /** Set ellipse radius along x and y axis */
     void set_radius(double xr, double yr);
     /** Set ellipse radius along x axis */
-    inline double get_x_radius(void) const;
+    double get_x_radius(void) const;
     /** Set ellipse radius along y axis */
-    inline double get_y_radius(void) const;
+    double get_y_radius(void) const;
 
     /** @override */
     double max_radius() const;

@@ -12,7 +12,7 @@ class TGroup : public TElement, public TContainer
 public:
 
     /** Create a new group at given position */
-    inline TGroup(const Math::VectorPair3 &p);
+    TGroup(const Math::VectorPair3 &p);
 
     virtual ~TGroup();
 
