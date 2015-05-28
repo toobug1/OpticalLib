@@ -1,6 +1,7 @@
 #include "tcontainer.h"
 #include <limits>
 #include <Io/trendererviewport.h>
+#include "Io/trgb.h"
 
 // TODO
 
@@ -79,10 +80,6 @@ inline void TContainer::enable_single(const X &e_)
     }
 }
 
-//const TContainer::element_list_t & TContainer::get_element_list() const
-//{
-//    return _list;
-//}
 
 TContainer::TContainer()
     : _list()
@@ -173,7 +170,7 @@ void TContainer::draw_2d(TRenderer &r) const
     // optical axis
     Math::VectorPair3 b = get_bounding_box();
     r.draw_segment(Math::VectorPair2(b.z0(), 0., b.z1(), 0.),
-                   Io::rgb_gray);
+                   rgb_gray);
 
     if (const TElement *e = dynamic_cast<const TElement*>(this))
         return r.draw_element_2d(*e, e);
