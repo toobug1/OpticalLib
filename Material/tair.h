@@ -2,8 +2,9 @@
 #define TAIR_H
 
 #include "tmaterialbase.h"
+#include "tglass.h"
 
-class TAir : public TMaterialBase
+class TAir : public TMaterialBase, public TGlass
 {
 public:
     TAir();
@@ -26,5 +27,7 @@ public:
     void setName(const QString& name);
 
 };
+
+extern TAir air;
 
 #endif // TAIR_H

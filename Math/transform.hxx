@@ -245,15 +245,7 @@ namespace _Goptical {
       _linear = t._linear * _linear;
     }
 
-    template <int N>
-    std::ostream & operator<<(std::ostream &o, const TransformBase<N> &t)
-    {
-      o << "[ "<< N << "D transform, use_linear=" << t._use_linear << std::endl;
-      o << t._translation << std::endl;
-      o << t._linear << "]" <<  std::endl;
 
-      return o;
-    }
 
     // **********************************************************************
 

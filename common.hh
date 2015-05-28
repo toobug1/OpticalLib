@@ -571,7 +571,7 @@ namespace _Goptical {
   namespace Io {
     using namespace Goptical::Io;
 
-//    class Renderer;
+//    class TRenderer;
 //    class Renderer2d;
 //    class RendererViewport;
 //    class RendererAxes;

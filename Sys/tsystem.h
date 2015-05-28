@@ -71,7 +71,7 @@ public:
                           const TTraceRay &ray) const;
 
     /** set environment material */
-    void set_environment(const QSharedPointer<TGlass> &env);
+    void set_environment(const TGlass &env);
 
     /** get environment material */
     const TGlass & get_environment() const;

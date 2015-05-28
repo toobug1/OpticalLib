@@ -56,22 +56,22 @@ public:
     /** Get system or element group bounding box */
     Math::VectorPair3 get_bounding_box() const;
 
-    /** Setup the renderer 2d viewport to best fit for this
+    /** Setup the TRenderer 2d viewport to best fit for this
         system or element group. @pb This function calls
         @ref TRenderer::set_window and @ref TRenderer::set_feature_size. */
     void draw_2d_fit(TRendererViewport &r, bool keep_aspect = true) const;
 
-    /** Draw system 2d layout using specified renderer. @see draw_2d_fit */
+    /** Draw system 2d layout using specified TRenderer. @see draw_2d_fit */
     void draw_2d(TRenderer &r) const;
 
-    /** Move the renderer 3d camera to best fit for this
+    /** Move the TRenderer 3d camera to best fit for this
         system or element group. @pb This function calls
         @ref Io::RendererViewport::set_camera_transform
         and @ref TRenderer::set_feature_size. @pb
     */
     void draw_3d_fit(TRendererViewport &r, double z_offset = 0) const;
 
-    /** Draw system in 3d using specified renderer. @see draw_3d_fit */
+    /** Draw system in 3d using specified TRenderer. @see draw_3d_fit */
     void draw_3d(TRenderer &r) const;
 
 protected:
