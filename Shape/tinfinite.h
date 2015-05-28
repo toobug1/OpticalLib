@@ -2,6 +2,7 @@
 #define TINFINITE_H
 
 #include "tshapebase.h"
+#include "Trace/tdistribution.h"
 
 class TInfinite
 {
@@ -21,7 +22,7 @@ public:
   bool inside(const Math::Vector2 &point) const;
   /** @override */
   void get_pattern(const Math::Vector2::put_delegate_t  &v,
-                   const Trace::Distribution &d,
+                   const TDistribution &d,
                    bool unobstructed) const;
   /** @override */
   unsigned int get_contour_count() const;

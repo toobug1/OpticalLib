@@ -3,8 +3,13 @@
 
 #include "common.hh"
 #include "Trace/ttracer.h"
+#include "Trace/ttraceray.h"
 
 using namespace _Goptical;
+
+
+class TSystem;
+class TImage;
 
 class TPointImage
 {
@@ -29,11 +34,11 @@ protected:
     void get_default_image();
     void trace();
 
-    Sys::TSystem &    _system;
+    TSystem &    _system;
     TTracer           _tracer;
     bool              _processed_trace;
-    Sys::Image *      _image;
-    const Trace::rays_queue_t *_intercepts;
+    TImage *      _image;
+    const rays_queue_t *_intercepts;
 };
 
 #endif // TPOINTIMAGE_H

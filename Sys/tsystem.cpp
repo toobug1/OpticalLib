@@ -1,4 +1,6 @@
 #include "tsystem.h"
+#include "tsurface.h"
+#include "Trace/ttraceray.h"
 
 // TODO
 

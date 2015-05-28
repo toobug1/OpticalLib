@@ -8,6 +8,8 @@
 #include "Trace/tdistribution.h"
 #include "Math/VectorPair"
 #include "Data/tplot.h"
+#include "Trace/ttraceray.h"
+#include "Sys/tsurface.h"
 
 using namespace _Goptical;
 
@@ -50,7 +52,7 @@ public:
     void set_plane(enum rayfan_plane_e plane);
 
     /** Get internal distribution object */
-    Trace::Distribution & get_distribution();
+    TDistribution & get_distribution();
 
     /** Aberrations are considered in the given plane on the
       target surface. Default is to use the same plane as entrance
@@ -87,7 +89,7 @@ private:
     typedef double (TRayFan::*get_value_t)(const TTraceRay &r,
                                            const TTraceRay &chief) const;
 
-    const TTraceRay & find_chief_ray(const Trace::rays_queue_t &intercepts,
+    const TTraceRay & find_chief_ray(const rays_queue_t &intercepts,
                                       double wavelen);
 
     double get_entrance_height(const TTraceRay &r,
@@ -108,8 +110,8 @@ private:
     TTracer     _tracer;
     bool              _processed_trace;
 
-    const Sys::Surface *_entrance;
-    const Sys::Surface *_exit;
+    const TSurface *_entrance;
+    const TSurface *_exit;
 
     TDistribution _dist;
     Math::VectorPair3 _ref_ray;

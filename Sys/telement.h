@@ -7,6 +7,8 @@
 #include "Math/Vector"
 #include "Math/VectorPair"
 #include "Math/Transform"
+#include "Trace/ttraceray.h"
+
 
 using namespace _Goptical;
 
@@ -14,6 +16,7 @@ class TSystem;
 class TContainer;
 class TGroup;
 class TResult;
+
 
 class TElement
 {
@@ -134,7 +137,7 @@ public:
         This function is only used in sequential ray trace mode. */
     template <Trace::IntensityMode m>
     void process_rays(TResult &result,
-                             Trace::rays_queue_t *input) const;
+                            rays_queue_t *input) const;
 
     /** Draw element 2d layout using the given renderer in given
         element coordinates. */
@@ -153,21 +156,21 @@ protected:
         light in simple raytrace mode.
         This function is only used in sequential ray trace mode. */
     virtual void process_rays_simple(TResult &result,
-                                     Trace::rays_queue_t *input) const;
+                                     rays_queue_t *input) const;
 
     /** This function process incoming light rays. It must be
         reimplemented in subclasses if the element can interact with
         light in intensity raytrace mode.
         This function is only used in sequential ray trace mode. */
     virtual void process_rays_intensity(TResult &result,
-                                        Trace::rays_queue_t *input) const;
+                                        rays_queue_t *input) const;
 
     /** This function process incoming light rays. It must be
         reimplemented in subclasses if the element can interact with
         light in polarized raytrace mode.
         This function is only used in sequential ray trace mode. */
     virtual void process_rays_polarized(TResult &result,
-                                        Trace::rays_queue_t *input) const;
+                                        rays_queue_t *input) const;
 
     /** This function is called from the @ref System class when the
         element is added to a system */

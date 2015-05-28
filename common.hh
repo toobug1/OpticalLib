@@ -492,15 +492,15 @@ namespace _Goptical {
   namespace Trace {
     using namespace Goptical::Trace;
 
-    class Distribution;
-    class Tracer;
-    class Params;
-    class TTraceRay;
-    class Result;
-    class Element;
-    class Sequence;
+//    class TDistribution;
+//    class TTracer;
+//    class TParams;
+//    class TTraceRay;
+//    class TResult;
+//    class TElement;
+//    class TSequence;
 
-    typedef std::deque<TTraceRay *> rays_queue_t;
+
 
   }
 

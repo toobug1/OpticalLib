@@ -7,7 +7,8 @@
 #include "common.hh"
 #include "tdistribution.h"
 #include "tsequence.h"
-#include "Sys/tsurface.h"
+
+class TSurface;
 
 class TParams
 {
@@ -17,22 +18,22 @@ public:
     TParams();
 
     GOPTICAL_NOCONST_REF_ACCESSORS(TDistribution, default_distribution,
-                                   "default rays distribution pattern");
+                                   "default rays distribution pattern")
 
     GOPTICAL_ACCESSORS(unsigned int, max_bounce,
-                       "maximum ray bounce count, default is 50");
+                       "maximum ray bounce count, default is 50")
 
     GOPTICAL_ACCESSORS(double, lost_ray_length,
-                       "lost ray length");
+                       "lost ray length")
 
     GOPTICAL_ACCESSORS(IntensityMode, intensity_mode,
-                       "raytracing intensity mode");
+                       "raytracing intensity mode")
 
     GOPTICAL_ACCESSORS(bool, unobstructed,
-                       "unobstructed raytracing mode. Surface shapes are ignored, no rays are stopped");
+           "unobstructed raytracing mode. Surface shapes are ignored, no rays are stopped")
 
     GOPTICAL_ACCESSORS(PropagationMode, propagation_mode,
-                       "physical light propagation mode. @experimental @hidden");
+            "physical light propagation mode. @experimental @hidden")
 
     /** Set sequential ray tracing mode */
     void set_sequential_mode(const TSequence &seq);
@@ -56,7 +57,7 @@ public:
 private:
     typedef std::map<const TSurface *, TDistribution> _s_distribution_map_t;
 
-    QSharedPointer<Sequence>       _sequence;
+    QSharedPointer<TSequence>       _sequence;
     TDistribution              _default_distribution;
     _s_distribution_map_t     _s_distribution;
     unsigned int              _max_bounce;

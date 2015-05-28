@@ -27,12 +27,12 @@ private:
 
     void generate_rays_simple(TResult &result,
                               const targets_t &entry) const;
-    void generate_rays_intensity(Trace::Result &result,
+    void generate_rays_intensity(TResult &result,
                                  const targets_t &entry) const;
 
     template <SourceInfinityMode mode>
-    void get_lightrays_(Trace::Result &result,
-                               const Element &target) const;
+    void get_lightrays_(TResult &result,
+                               const TElement &target) const;
 
     SourceInfinityMode _mode;
 };
