@@ -93,7 +93,8 @@ SOURCES += \
     Trace/tparams.cpp \
     Trace/tsequence.cpp \
     Trace/ttraceray.cpp \
-    Io/trendererviewport.cpp
+    Io/trendererviewport.cpp \
+    Io/trenderer.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -204,7 +205,8 @@ HEADERS += \
     Trace/tparams.h \
     Trace/tsequence.h \
     Trace/ttraceray.h \
-    Io/trendererviewport.h
+    Io/trendererviewport.h \
+    Io/trenderer.h
 
 unix {
     target.path = /usr/lib

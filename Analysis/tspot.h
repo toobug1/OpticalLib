@@ -43,9 +43,9 @@ public:
     void set_useful_radius(double radius);
 
     /** draw the rays intersection points only */
-    void draw_spot(TRendererViewport &renderer);
+    void draw_spot(TRendererViewport &TRenderer);
     /** draw the spot diagram */
-    void draw_diagram(TRendererViewport &renderer,
+    void draw_diagram(TRendererViewport &TRenderer,
                       bool centroid_origin = true);
 
     /** Get a reference to axes object rendered with spot

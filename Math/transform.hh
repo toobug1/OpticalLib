@@ -39,10 +39,10 @@ namespace _Goptical {
 
   namespace Math {
 
-    template <int N> class TransformBase;
+//    template <int N> class TransformBase;
 
-    template <int N>
-    inline std::ostream & operator<<(std::ostream &o, const TransformBase<N> &t);
+//    template <int N>
+//    inline std::ostream & operator<<(std::ostream &o, const TransformBase<N> &t);
 
     /**
        @short Linear and affine transformation base class
@@ -56,7 +56,9 @@ namespace _Goptical {
 
     template <int N> class TransformBase
     {
-
+  public:
+        template <int>
+        friend std::ostream & operator<<(std::ostream &o, const TransformBase<N> &t);
     public:
       inline TransformBase();
       inline virtual ~TransformBase();
@@ -127,15 +129,15 @@ namespace _Goptical {
       /** apply affine transform to both vectors in pair */
       inline VectorPair<N> transform_pair(const VectorPair<N> &p) const;
 
-    protected:
+//    protected:
 
       Vector<N> _translation;
       Matrix<N> _linear;
       bool      _use_linear;
     };
 
-    template <int N>
-    std::ostream & operator<<(std::ostream &o, const TransformBase<N> &t);
+//    template <int N>
+//    std::ostream & operator<<(std::ostream &o, const TransformBase<N> &t);
 
     // **********************************************************************
 
@@ -209,6 +211,16 @@ namespace _Goptical {
         radian. axis parameter can be 0, 1 or 2 for x, y and z
         axes. */
     void get_rotation_matrix(Matrix<3> &m, unsigned int axis, double rangle);
+
+    template <int N>
+    std::ostream & operator<<(std::ostream &o, const TransformBase<N> &t)
+    {
+      o << "[ "<< N << "D transform, use_linear=" << t._use_linear << std::endl;
+      o << t._translation << std::endl;
+      o << t._linear << "]" <<  std::endl;
+
+      return o;
+    }
 
   }
 }

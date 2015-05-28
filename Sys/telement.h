@@ -136,11 +136,11 @@ public:
     void process_rays(TResult &result,
                       rays_queue_t *input) const;
 
-    /** Draw element 2d layout using the given renderer in given
+    /** Draw element 2d layout using the given TRenderer in given
         element coordinates. */
     virtual void draw_2d_e(TRenderer &r, const TElement *ref) const;
 
-    /** Draw element in 3d using the given renderer in given element
+    /** Draw element in 3d using the given TRenderer in given element
         coordinates */
     virtual void draw_3d_e(TRenderer &r, const TElement *ref) const;
 

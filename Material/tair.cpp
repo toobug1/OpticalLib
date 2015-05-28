@@ -1,6 +1,7 @@
 #include "tair.h"
 #include "math.h"
 
+TAir air;
 TAir::TAir()
 {
 
