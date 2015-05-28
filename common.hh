@@ -471,20 +471,20 @@ namespace _Goptical {
   namespace Sys {
     using namespace Goptical::Sys;
 
-    class Container;
-    class TSystem;
-    class Element;
-    class Surface;
-    class Image;
-    class Lens;
-    class Stop;
-    class Mirror;
-    class Group;
-    class OpticalSurface;
-    class Source;
-    class SourcePoint;
-    class SourcePointInfinity;
-    class Surface;
+//    class Container;
+//    class TSystem;
+//    class Element;
+//    class Surface;
+//    class Image;
+//    class Lens;
+//    class Stop;
+//    class Mirror;
+//    class Group;
+//    class OpticalSurface;
+//    class Source;
+//    class SourcePoint;
+//    class SourcePointInfinity;
+//    class Surface;
   }
 
   /** @module {Core}
@@ -492,15 +492,15 @@ namespace _Goptical {
   namespace Trace {
     using namespace Goptical::Trace;
 
-    class Distribution;
-    class Tracer;
-    class Params;
-    class TTraceRay;
-    class Result;
-    class Element;
-    class Sequence;
+//    class TDistribution;
+//    class TTracer;
+//    class TParams;
+//    class TTraceRay;
+//    class TResult;
+//    class TElement;
+//    class TSequence;
 
-    typedef std::deque<TTraceRay *> rays_queue_t;
+
 
   }
 
@@ -508,9 +508,9 @@ namespace _Goptical {
       @short 2d shapes used for surface contours */
   namespace Shape {
 
-    class Base;
-    class Ring;
-    class Infinite;
+//    class Base;
+//    class Ring;
+//    class Infinite;
 
   }
 
@@ -518,8 +518,8 @@ namespace _Goptical {
       @short Physical properties of light */
   namespace Light {
 
-    class SpectralLine;
-    class Ray;
+//    class SpectralLine;
+//    class Ray;
 
   }
 
@@ -556,13 +556,13 @@ namespace _Goptical {
         @short Abbe model for optical glass material */
     typedef Abbe<AbbeVeFormula> AbbeVe;
 
-    class Base;
-    class Catalog;
-    class Vacuum;
-    class Mirror;
-    class Dielectric;
-    class Metal;
-    class Sellmeier;
+//    class Base;
+//    class Catalog;
+//    class Vacuum;
+//    class Mirror;
+//    class Dielectric;
+//    class Metal;
+//    class Sellmeier;
 
   }
 
@@ -571,20 +571,20 @@ namespace _Goptical {
   namespace Io {
     using namespace Goptical::Io;
 
-    class Renderer;
-    class Renderer2d;
-    class RendererViewport;
-    class RendererAxes;
+//    class Renderer;
+//    class Renderer2d;
+//    class RendererViewport;
+//    class RendererAxes;
 
-    class RendererPlplot;
-    class RendererSvg;
-    class RendererGd;
-    class RendererDxf;
-    class RendererX11;
-    class RendererOpengl;
+//    class RendererPlplot;
+//    class RendererSvg;
+//    class RendererGd;
+//    class RendererDxf;
+//    class RendererX11;
+//    class RendererOpengl;
 
-    struct Rgb;
-    struct Rgb;
+//    struct Rgb;
+//    struct Rgb;
 
   }
 
@@ -593,35 +593,35 @@ namespace _Goptical {
   namespace Data {
     using namespace Goptical::Data;
 
-    class Set;
-    class Set1d;
-    class DiscreteSetBase;
-    class SampleSetBase;
-    class Grid;
-    class Plot;
-    class PlotData;
+//    class Set;
+//    class Set1d;
+//    class DiscreteSetBase;
+//    class SampleSetBase;
+//    class Grid;
+//    class Plot;
+//    class PlotData;
     
   }
 
   /** @module {Core}
       @short Surface curvature models */
   namespace Curve {
-    class Base;
-    class Rotational;
-    class Sphere;
-    class Flat;
-    class Conic;
-    class Foucault;
-    class Array;
+//    class Base;
+//    class Rotational;
+//    class Sphere;
+//    class Flat;
+//    class Conic;
+//    class Foucault;
+//    class Array;
   }
 
   /** @module {Core}
       @short Optical systems analysis tools */
   namespace Analysis {
-    class PointImage;
-    class Spot;
-    class Focus;
-    class RayFan;
+//    class PointImage;
+//    class Spot;
+//    class Focus;
+//    class RayFan;
   }
 
 }

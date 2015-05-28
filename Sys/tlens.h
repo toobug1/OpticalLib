@@ -137,11 +137,11 @@ private:
     void remove(TElement &e);
 
     /** @override */
-    void draw_2d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_2d_e(TRenderer &r, const TElement *ref) const;
     /** @override */
-    void draw_3d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_3d_e(TRenderer &r, const TElement *ref) const;
 
-    void draw_2d_edge(Io::Renderer &r, const TSurface &left, double l_y,
+    void draw_2d_edge(TRenderer &r, const TSurface &left, double l_y,
                       const TSurface &right, double r_y, LensEdge type,
                       const TElement *ref) const;
 

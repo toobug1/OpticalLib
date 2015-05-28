@@ -19,21 +19,21 @@ public:
     Stop(const Math::VectorPair3 &p, double radius);
 
     GOPTICAL_ACCESSORS(double, external_radius,
-                       "stop external radius. @see Stop");
+                       "stop external radius. @see Stop")
 
     GOPTICAL_ACCESSORS(bool, intercept_reemit,
-                       "intercept and reemit enabled. @see Stop");
+                       "intercept and reemit enabled. @see Stop")
 
 private:
 
     /** @override */
-    void draw_2d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_2d_e(TRenderer &r, const TElement *ref) const;
     /** @override Only draw stop surface edges */
-    void draw_3d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_3d_e(TRenderer &r, const TElement *ref) const;
 
     template <Trace::IntensityMode m>
     void process_rays_(TResult &result,
-                              Trace::rays_queue_t *input) const;
+                              rays_queue_t *input) const;
 
     /** @override */
     bool intersect(const TParams &params,
@@ -54,15 +54,15 @@ private:
 
     /** @override */
     void process_rays_simple(TResult &result,
-                             Trace::rays_queue_t *input) const;
+                             rays_queue_t *input) const;
 
     /** @override */
     void process_rays_intensity(TResult &result,
-                                Trace::rays_queue_t *input) const;
+                                rays_queue_t *input) const;
 
     /** @override */
     void process_rays_polarized(TResult &result,
-                                Trace::rays_queue_t *input) const;
+                                rays_queue_t *input) const;
 
     double _external_radius;
     bool _intercept_reemit;

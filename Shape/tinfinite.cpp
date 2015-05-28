@@ -27,7 +27,7 @@ Math::VectorPair2 TInfinite::get_bounding_box() const
     return Math::vector2_pair_00;
 }
 
-void TInfinite::get_pattern(const Math::Vector2::put_delegate_t  &f, const Trace::Distribution &d, bool unobstructed) const
+void TInfinite::get_pattern(const Math::Vector2::put_delegate_t  &f, const TDistribution &d, bool unobstructed) const
 {
     throw Error("can not distribute rays accross an TInfinite surface shape");
 }

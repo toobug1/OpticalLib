@@ -4,14 +4,18 @@
 #include <QSharedPointer>
 
 #include "tcontainer.h"
-#include "tsurface.h"
+
 #include "Material/tglass.h"
 #include "Math/Transform"
+#include "telement.h"
 
 class TParams;
+class TSurface;
+class TTraceRay;
 
 class TSystem : public TContainer
 {
+    friend class TElement;
 public:
     /** Create a new empty system. */
     TSystem();
@@ -100,7 +104,7 @@ private:
     const Math::Transform<3> & transform_g2l_cache_update(const TElement &e) const;
     /** Compute and get 3d transform between two elements local coordinates */
     const Math::Transform<3> & transform_cache_update(const TElement &from,
-                                                      const Element &to) const;
+                                                      const TElement &to) const;
 
     /** Flush all cached transforms associated with a given element */
     void transform_cache_flush(const TElement &element);

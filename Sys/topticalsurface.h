@@ -47,7 +47,7 @@ public:
     const TGlass & get_material(unsigned id) const;
 
     /** Get surface natural color from material properties. */
-    TRgb get_color(const Io::Renderer &r) const;
+    TRgb get_color(const TRenderer &r) const;
 
 private:
 

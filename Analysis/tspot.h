@@ -7,10 +7,13 @@
 #include "Data/tplot.h"
 #include "Math/VectorPair"
 
+class TRendererViewport;
+class TRendererAxes;
+
 class TSpot : public TPointImage
 {
 public:
-    TSpot(Sys::TSystem &system);
+    TSpot(TSystem &system);
 
     void invalidate();
 
@@ -40,15 +43,15 @@ public:
     void set_useful_radius(double radius);
 
     /** draw the rays intersection points only */
-    void draw_spot(Io::RendererViewport &renderer);
+    void draw_spot(TRendererViewport &renderer);
     /** draw the spot diagram */
-    void draw_diagram(Io::RendererViewport &renderer,
+    void draw_diagram(TRendererViewport &renderer,
                       bool centroid_origin = true);
 
     /** Get a reference to axes object rendered with spot
       diagram. @ref Io::RendererAxes coordinates are updated on
       ray trace. */
-    Io::RendererAxes & get_diagram_axes();
+    TRendererAxes & get_diagram_axes();
 
 private:
     void process_trace();

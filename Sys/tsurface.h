@@ -8,6 +8,9 @@
 #include "Shape/tshapebase.h"
 #include "Math/VectorPair"
 #include "Io/trgb.h"
+#include "Trace/tparams.h"
+#include "Trace/ttraceray.h"
+
 
 class TSurface : public TElement
 {
@@ -32,13 +35,13 @@ public:
     /** Get intersection point and normal to surface at
       intersection. Return false if no intersection occured.
   */
-    virtual bool intersect(const Trace::Params &params,
+    virtual bool intersect(const TParams &params,
                            Math::VectorPair3 &pt,
                            const Math::VectorPair3 &ray) const;
 
     /** Get distribution pattern points projected on the surface */
     void get_pattern(const Math::Vector3::put_delegate_t &f,
-                     const Trace::Distribution &d,
+                     const TDistribution &d,
                      bool unobstructed = false) const;
 
     /** Trace a single ray through the surface */
@@ -47,7 +50,7 @@ public:
                    const Math::VectorPair3 &local, const Math::VectorPair3 &intersect) const;
 
     /** Get surface apparent color */
-    virtual TRgb get_color(const Io::Renderer &r) const;
+    virtual TRgb get_color(const TRenderer &r) const;
 
     /** Set minimal ray intensity. Incident rays with less intensity
       will be discarded */
@@ -81,9 +84,9 @@ protected:
                                      const Math::VectorPair3 &intersect) const;
 
     /** @override */
-    void draw_2d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_2d_e(TRenderer &r, const TElement *ref) const;
     /** @override */
-    void draw_3d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_3d_e(TRenderer &r, const TElement *ref) const;
 
 private:
 
@@ -92,20 +95,20 @@ private:
                        unsigned int count,
                        double start,
                        double end,
-                       const Element *ref) const;
+                       const TElement *ref) const;
 
     template <Trace::IntensityMode m>
     void process_rays_(TResult &result,
-                              Trace::rays_queue_t *input) const;
+                              rays_queue_t *input) const;
 
     virtual void process_rays_simple(TResult &result,
-                                     Trace::rays_queue_t *input) const;
+                                     rays_queue_t *input) const;
 
     virtual void process_rays_intensity(TResult &result,
-                                        Trace::rays_queue_t *input) const;
+                                        rays_queue_t *input) const;
 
     virtual void process_rays_polarized(TResult &result,
-                                        Trace::rays_queue_t *input) const;
+                                        rays_queue_t *input) const;
 
     double                    _discard_intensity;
     QSharedPointer<TCurveBase>   _curve;

@@ -1,8 +1,9 @@
 #ifndef TSHAROROUND_H
 #define TSHAROROUND_H
 
-#include "common.hh"
 #include "Math/Triangle"
+#include "Trace/tdistribution.h"
+#include "Math/Vector"
 
 using namespace _Goptical;
 
@@ -12,7 +13,7 @@ public:
     /** @override */
     unsigned int get_contour_count() const;
     /** @override */
-    void get_pattern(const Math::Vector2::put_delegate_t  &v, const Trace::Distribution &d,
+    void get_pattern(const Math::Vector2::put_delegate_t  &v, const TDistribution &d,
                      bool unobstructed) const;
     /** @override */
     void get_contour(unsigned int contour, const Math::Vector2::put_delegate_t  &f,
@@ -43,6 +44,14 @@ void TShapeRound<X, hole>::get_triangles(const Math::Triangle<2>::put_delegate_t
                                          double resolution) const
 {
     get_triangles(f, resolution);
+}
+
+template <class X, bool hole>
+void TShapeRound<X, hole>::get_pattern(const Math::Vector2::put_delegate_t  &v,
+                                       const TDistribution &d,
+                                       bool unobstructed) const
+{
+    get_pattern(v, d, unobstructed);
 }
 
 #endif // TSHAROROUND_H

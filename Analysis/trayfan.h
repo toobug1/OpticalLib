@@ -8,6 +8,8 @@
 #include "Trace/tdistribution.h"
 #include "Math/VectorPair"
 #include "Data/tplot.h"
+#include "Trace/ttraceray.h"
+#include "Sys/tsurface.h"
 
 using namespace _Goptical;
 
@@ -43,14 +45,14 @@ public:
         TangentialAberration = 1
     };
 
-    TRayFan(const Sys::TSystem &system,
+    TRayFan(const TSystem &system,
             enum rayfan_plane_e plane = TangentialAberration);
 
     /** Set entrance pupil ray distribution plane. */
     void set_plane(enum rayfan_plane_e plane);
 
     /** Get internal distribution object */
-    Trace::Distribution & get_distribution();
+    TDistribution & get_distribution();
 
     /** Aberrations are considered in the given plane on the
       target surface. Default is to use the same plane as entrance
@@ -59,12 +61,12 @@ public:
 
     /** Specify entrance pupil surface to use for analysis, query
       system for entrance pupil if none defined here. */
-    void set_entrance_surface(const Sys::Surface &s);
+    void set_entrance_surface(const TSurface &s);
 
     /** Specify target surface (image or exit pupil) to use for
       analysis, query system for image surface if none defined
       here. */
-    void set_target_surface(const Sys::Surface &s);
+    void set_target_surface(const TSurface &s);
 
     /** Set longitudinal reference ray (local to target
       surface). Longitudinal aberration computes distance between
@@ -87,7 +89,7 @@ private:
     typedef double (TRayFan::*get_value_t)(const TTraceRay &r,
                                            const TTraceRay &chief) const;
 
-    const TTraceRay & find_chief_ray(const Trace::rays_queue_t &intercepts,
+    const TTraceRay & find_chief_ray(const rays_queue_t &intercepts,
                                       double wavelen);
 
     double get_entrance_height(const TTraceRay &r,
@@ -108,8 +110,8 @@ private:
     TTracer     _tracer;
     bool              _processed_trace;
 
-    const Sys::Surface *_entrance;
-    const Sys::Surface *_exit;
+    const TSurface *_entrance;
+    const TSurface *_exit;
 
     TDistribution _dist;
     Math::VectorPair3 _ref_ray;
