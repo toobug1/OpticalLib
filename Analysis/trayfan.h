@@ -45,7 +45,7 @@ public:
         TangentialAberration = 1
     };
 
-    TRayFan(const Sys::TSystem &system,
+    TRayFan(const TSystem &system,
             enum rayfan_plane_e plane = TangentialAberration);
 
     /** Set entrance pupil ray distribution plane. */
@@ -61,12 +61,12 @@ public:
 
     /** Specify entrance pupil surface to use for analysis, query
       system for entrance pupil if none defined here. */
-    void set_entrance_surface(const Sys::Surface &s);
+    void set_entrance_surface(const TSurface &s);
 
     /** Specify target surface (image or exit pupil) to use for
       analysis, query system for image surface if none defined
       here. */
-    void set_target_surface(const Sys::Surface &s);
+    void set_target_surface(const TSurface &s);
 
     /** Set longitudinal reference ray (local to target
       surface). Longitudinal aberration computes distance between

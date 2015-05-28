@@ -27,9 +27,9 @@ public:
 private:
 
     /** @override */
-    void draw_2d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_2d_e(TRenderer &r, const TElement *ref) const;
     /** @override Only draw stop surface edges */
-    void draw_3d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_3d_e(TRenderer &r, const TElement *ref) const;
 
     template <Trace::IntensityMode m>
     void process_rays_(TResult &result,

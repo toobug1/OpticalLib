@@ -7,7 +7,7 @@
 class TFocus : public TPointImage
 {
 public:
-    TFocus(Sys::TSystem &system);
+    TFocus(TSystem &system);
 
     void invalidate();
 

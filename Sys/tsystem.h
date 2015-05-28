@@ -7,6 +7,7 @@
 
 #include "Material/tglass.h"
 #include "Math/Transform"
+#include "telement.h"
 
 class TParams;
 class TSurface;
@@ -14,6 +15,7 @@ class TTraceRay;
 
 class TSystem : public TContainer
 {
+    friend class TElement;
 public:
     /** Create a new empty system. */
     TSystem();

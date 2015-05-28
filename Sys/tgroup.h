@@ -20,9 +20,9 @@ public:
 
 protected:
     /** @override */
-    void draw_2d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_2d_e(TRenderer &r, const TElement *ref) const;
     /** @override */
-    void draw_3d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_3d_e(TRenderer &r, const TElement *ref) const;
 
 private:
     void added(TElement &e);

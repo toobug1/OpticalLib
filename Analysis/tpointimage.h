@@ -14,11 +14,11 @@ class TImage;
 class TPointImage
 {
 public:
-    TPointImage(Sys::TSystem &system);
+    TPointImage(TSystem &system);
     virtual ~TPointImage();
 
     /** set Image which collect rays for analysis */
-    void set_image(Sys::Image *image);
+    void set_image(TImage *image);
 
     /** return tracer object used for ray tracing. This will
       invalidate current analysis data */

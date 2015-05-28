@@ -10,6 +10,7 @@
 #include "telement.h"
 #include "Math/VectorPair"
 
+class TRendererViewport;
 
 class TContainer
 {
@@ -17,7 +18,7 @@ class TContainer
     friend class TElement;
 
 public:
-    typedef std::list <QSharedPointer<const TElement> > element_list_t;
+    typedef std::list <QSharedPointer<TElement> > element_list_t;
 
     TContainer();
     virtual ~TContainer();
@@ -57,21 +58,21 @@ public:
 
     /** Setup the renderer 2d viewport to best fit for this
         system or element group. @pb This function calls
-        @ref Io::Renderer::set_window and @ref Io::Renderer::set_feature_size. */
-    void draw_2d_fit(Io::RendererViewport &r, bool keep_aspect = true) const;
+        @ref TRenderer::set_window and @ref TRenderer::set_feature_size. */
+    void draw_2d_fit(TRendererViewport &r, bool keep_aspect = true) const;
 
     /** Draw system 2d layout using specified renderer. @see draw_2d_fit */
-    void draw_2d(Io::Renderer &r) const;
+    void draw_2d(TRenderer &r) const;
 
     /** Move the renderer 3d camera to best fit for this
         system or element group. @pb This function calls
         @ref Io::RendererViewport::set_camera_transform
-        and @ref Io::Renderer::set_feature_size. @pb
+        and @ref TRenderer::set_feature_size. @pb
     */
-    void draw_3d_fit(Io::RendererViewport &r, double z_offset = 0) const;
+    void draw_3d_fit(TRendererViewport &r, double z_offset = 0) const;
 
     /** Draw system in 3d using specified renderer. @see draw_3d_fit */
-    void draw_3d(Io::Renderer &r) const;
+    void draw_3d(TRenderer &r) const;
 
 protected:
 

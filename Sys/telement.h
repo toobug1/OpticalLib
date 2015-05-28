@@ -4,11 +4,8 @@
 #include <iostream>
 
 #include "common.hh"
-#include "Math/Vector"
-#include "Math/VectorPair"
-#include "Math/Transform"
 #include "Trace/ttraceray.h"
-
+#include "Math/Transform"
 
 using namespace _Goptical;
 
@@ -16,7 +13,7 @@ class TSystem;
 class TContainer;
 class TGroup;
 class TResult;
-
+class TRenderer;
 
 class TElement
 {
@@ -137,15 +134,15 @@ public:
         This function is only used in sequential ray trace mode. */
     template <Trace::IntensityMode m>
     void process_rays(TResult &result,
-                            rays_queue_t *input) const;
+                      rays_queue_t *input) const;
 
     /** Draw element 2d layout using the given renderer in given
         element coordinates. */
-    virtual void draw_2d_e(Io::Renderer &r, const TElement *ref) const;
+    virtual void draw_2d_e(TRenderer &r, const TElement *ref) const;
 
     /** Draw element in 3d using the given renderer in given element
         coordinates */
-    virtual void draw_3d_e(Io::Renderer &r, const TElement *ref) const;
+    virtual void draw_3d_e(TRenderer &r, const TElement *ref) const;
 
     virtual void print(std::ostream &o) const;
 
@@ -185,7 +182,7 @@ protected:
     virtual void system_moved();
 
 private:
-    TSystem *_system;
+    TSystem *   _system;
     TContainer *_container;
 
     bool      _enabled;

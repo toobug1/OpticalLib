@@ -50,7 +50,7 @@ public:
                    const Math::VectorPair3 &local, const Math::VectorPair3 &intersect) const;
 
     /** Get surface apparent color */
-    virtual TRgb get_color(const Io::Renderer &r) const;
+    virtual TRgb get_color(const TRenderer &r) const;
 
     /** Set minimal ray intensity. Incident rays with less intensity
       will be discarded */
@@ -84,9 +84,9 @@ protected:
                                      const Math::VectorPair3 &intersect) const;
 
     /** @override */
-    void draw_2d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_2d_e(TRenderer &r, const TElement *ref) const;
     /** @override */
-    void draw_3d_e(Io::Renderer &r, const TElement *ref) const;
+    void draw_3d_e(TRenderer &r, const TElement *ref) const;
 
 private:
 

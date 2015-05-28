@@ -14,43 +14,53 @@ const Math::Transform<3> & TSystem::get_global_transform(const TElement &from) c
     Math::Transform<3> * &e = transform_cache_entry(from.id(), 0);
 
     // TODO
-//    if (!e)
-//        transform_l2g_cache_update(from);
+    //    if (!e)
+    //        transform_l2g_cache_update(from);
 
     return *e;
 }
 
 const Math::Transform<3> & TSystem::transform_l2g_cache_update(const TElement &element) const
 {
-  Math::Transform<3> * & e = transform_cache_entry(element.id(), 0);
+    Math::Transform<3> * & e = transform_cache_entry(element.id(), 0);
 
-  // TODO
-//  if (!e)
-//    {
-//      Math::Transform<3> t(element._transform);
-//      const TElement *i1 = &element;
+    // TODO
+    //  if (!e)
+    //    {
+    //      Math::Transform<3> t(element._transform);
+    //      const TElement *i1 = &element;
 
-//      while (const TElement *i2 =
-//                             (dynamic_cast<TGroup *>(i1->_container)))
-//        {
-//          t.compose(i2->_transform);
+    //      while (const TElement *i2 =
+    //                             (dynamic_cast<TGroup *>(i1->_container)))
+    //        {
+    //          t.compose(i2->_transform);
 
-//          i1 = i2;
-//        }
+    //          i1 = i2;
+    //        }
 
-//      assert(!e);
-//      e = new Math::Transform<3>(t);
-//    }
+    //      assert(!e);
+    //      e = new Math::Transform<3>(t);
+    //    }
 
-  return *e;
+    return *e;
 }
 
 const Math::Transform<3> & TSystem::transform_g2l_cache_update(const TElement &element) const
 {
-  Math::Transform<3> * & e = transform_cache_entry(0, element.id());
+    Math::Transform<3> * & e = transform_cache_entry(0, element.id());
 
-  if (!e)
-    e = new Math::Transform<3>(transform_l2g_cache_update(element).inverse());
+    if (!e)
+        e = new Math::Transform<3>(transform_l2g_cache_update(element).inverse());
 
-  return *e;
+    return *e;
+}
+
+const Math::Transform<3> & TSystem::get_transform(const TElement &from, const TElement &to) const
+{
+    Math::Transform<3> * &e = transform_cache_entry(from.id(), to.id());
+    // TODO
+//    if (!e)
+//        transform_cache_update(from, to);
+
+    return *e;
 }
