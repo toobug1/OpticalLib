@@ -30,7 +30,7 @@ public:
     void set_ray_color_mode(RayColorMode m);
 
     /** Set light ray intensity display mode */
-    void set_ray_intensity_mode(IntensityMode m);
+    void set_ray_intensity_mode(Io::IntensityMode m);
 
     /** Get foreground rgb color */
     const TRgb & rgb_foreground() const;
@@ -158,7 +158,7 @@ protected:
 
     TRgb              _styles_color[StyleLast];
     RayColorMode      _ray_color_mode;
-    IntensityMode     _intensity_mode;
+    Io::IntensityMode     _intensity_mode;
     float             _max_intensity; // max ray intensity updated on
 
 private:

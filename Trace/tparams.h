@@ -26,7 +26,7 @@ public:
     GOPTICAL_ACCESSORS(double, lost_ray_length,
                        "lost ray length")
 
-    GOPTICAL_ACCESSORS(IntensityMode, intensity_mode,
+    GOPTICAL_ACCESSORS(Trace::IntensityMode, intensity_mode,
                        "raytracing intensity mode")
 
     GOPTICAL_ACCESSORS(bool, unobstructed,
@@ -61,7 +61,7 @@ private:
     TDistribution              _default_distribution;
     _s_distribution_map_t     _s_distribution;
     unsigned int              _max_bounce;
-    IntensityMode             _intensity_mode;
+    Trace::IntensityMode             _intensity_mode;
     bool                      _sequential_mode;
     PropagationMode           _propagation_mode;
     bool                      _unobstructed;

@@ -260,7 +260,7 @@ namespace Goptical {
         TextAlignMiddle = 32,   //< Horizontally centered
       };
 
-    GOPTICAL_MASK_ENUM_OPS(TextAlignMask);
+    GOPTICAL_MASK_ENUM_OPS(TextAlignMask)
 
     /** Specifies light ray intensity rendering mode */
     enum IntensityMode
