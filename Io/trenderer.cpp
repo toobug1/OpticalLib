@@ -7,9 +7,6 @@
 #include "vlarray"
 #include "Error"
 
-// TODO
-
-
 TRenderer::~TRenderer()
 {
 }
@@ -281,7 +278,7 @@ void TRenderer::draw_circle(const Math::Vector2 &v,
     for (unsigned int i = 0; i < count; i++, a += astep)
         p[i] = v + Math::Vector2(r * cos(a), r * sin(a));
 
-    draw_polygon(&p[0], count, TRgb, filled, true);
+    draw_polygon(&p[0], count, rgb, filled, true);
 }
 
 void TRenderer::draw_triangle(const Math::Triangle<3> &t, const TRgb &rgb)

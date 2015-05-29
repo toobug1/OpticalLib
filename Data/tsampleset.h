@@ -7,8 +7,7 @@
 class TSampleSet : public TInterpolate1d<TSampleSetBase>
 {
 public:
-    TSampleSet(): TInterpolate1d<TSampleSetBase>()
-    {}
+    TSampleSet(): TInterpolate1d<TSampleSetBase>(){}
 
 };
 

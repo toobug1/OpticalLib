@@ -1,7 +1,7 @@
 #include "tsamplesetbase.h"
 
 #include "Error"
-#include "assert.h"
+#include <assert.h>
 
 void TSampleSetBase::set_metrics(double origin, double step)
 {

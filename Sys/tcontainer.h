@@ -7,10 +7,14 @@
 #include <QSharedPointer>
 
 #include "common.hh"
-#include "telement.h"
-#include "Math/VectorPair"
+#include "delegate"
 
 class TRendererViewport;
+class TElement;
+class TRenderer;
+
+using namespace _Goptical;
+using namespace dpp;
 
 class TContainer
 {
@@ -18,7 +22,7 @@ class TContainer
     friend class TElement;
 
 public:
-    typedef std::list <QSharedPointer<TElement> > element_list_t;
+    typedef std::list<QSharedPointer<TElement> > element_list_t;
 
     TContainer();
     virtual ~TContainer();

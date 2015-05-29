@@ -1,9 +1,13 @@
 #include "tcontainer.h"
 #include <limits>
-#include <Io/trendererviewport.h>
 #include "Io/trgb.h"
-
-// TODO
+#include "topticalsurface.h"
+#include "tsurface.h"
+#include "Io/trendererviewport.h"
+#include "telement.h"
+#include "Io/trenderer.h"
+#include "Math/VectorPair"
+#include "Math/Vector"
 
 const TContainer::element_list_t & TContainer::get_element_list() const
 {
@@ -29,8 +33,46 @@ template <class X> X* TContainer::find() const
     return 0;
 }
 
+template<> TOpticalSurface* TContainer::find<TOpticalSurface>() const
+{
+    GOPTICAL_FOREACH(i, _list)
+    {
+        TOpticalSurface *e;
+
+        if ((e = dynamic_cast<TOpticalSurface*>(i->data())))
+            return e;
+
+        TContainer *g;
+
+        if ((g = dynamic_cast<TContainer*>(i->data())) &&
+                (e = g->find<TOpticalSurface>()))
+            return e;
+    }
+
+    return 0;
+}
+
+template<> TSurface* TContainer::find<TSurface>() const
+{
+    GOPTICAL_FOREACH(i, _list)
+    {
+        TSurface *e;
+
+        if ((e = dynamic_cast<TOpticalSurface*>(i->data())))
+            return e;
+
+        TContainer *g;
+
+        if ((g = dynamic_cast<TContainer*>(i->data())) &&
+                (e = g->find<TSurface>()))
+            return e;
+    }
+
+    return 0;
+}
+
 template <class X>
-inline void TContainer::get_elements(const delegate<void (const X &)> &d) const
+void TContainer::get_elements(const delegate<void (const X &)> &d) const
 {
     GOPTICAL_FOREACH(i, _list)
     {
@@ -47,7 +89,7 @@ inline void TContainer::get_elements(const delegate<void (const X &)> &d) const
 }
 
 template <class X>
-inline void TContainer::get_elements(const delegate<void (X &)> &d)
+void TContainer::get_elements(const delegate<void (X &)> &d)
 {
     GOPTICAL_FOREACH(i, _list)
     {
@@ -64,7 +106,7 @@ inline void TContainer::get_elements(const delegate<void (X &)> &d)
 }
 
 template <class X>
-inline void TContainer::enable_single(const X &e_)
+void TContainer::enable_single(const X &e_)
 {
     GOPTICAL_FOREACH(i, _list)
     {

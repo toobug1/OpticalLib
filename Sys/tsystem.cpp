@@ -11,9 +11,6 @@
 
 #include <limits>
 
-
-// TODO
-
 Math::Transform<3> * & TSystem::transform_cache_entry(unsigned int from, unsigned int to) const
 {
     return const_cast<Math::Transform<3> * &>(_transform_cache[from * _e_count + to]);
@@ -23,7 +20,6 @@ const Math::Transform<3> & TSystem::get_global_transform(const TElement &from) c
 {
     Math::Transform<3> * &e = transform_cache_entry(from.id(), 0);
 
-    // TODO
     if (!e)
         transform_l2g_cache_update(from);
 
@@ -34,19 +30,19 @@ const Math::Transform<3> & TSystem::transform_l2g_cache_update(const TElement &e
 {
     Math::Transform<3> * & e = transform_cache_entry(element.id(), 0);
 
-    // TODO
+
     if (!e)
     {
         Math::Transform<3> t(element._transform);
         const TElement *i1 = &element;
 
-        //          while (const TElement *i2 =
-        //                                 (dynamic_cast<TGroup *>(i1->_container)))
-        //            {
-        //              t.compose(i2->_transform);
+        while (const TElement *i2 =
+               (dynamic_cast</*TGroup*/TElement *>(i1->_container)))
+        {
+            t.compose(i2->_transform);
 
-        //              i1 = i2;
-        //            }
+            i1 = i2;
+        }
 
         assert(!e);
         e = new Math::Transform<3>(t);
@@ -68,9 +64,9 @@ const Math::Transform<3> & TSystem::transform_g2l_cache_update(const TElement &e
 const Math::Transform<3> & TSystem::get_transform(const TElement &from, const TElement &to) const
 {
     Math::Transform<3> * &e = transform_cache_entry(from.id(), to.id());
-    // TODO
-    //    if (!e)
-    //        transform_cache_update(from, to);
+
+    if (!e)
+        transform_cache_update(from, to);
 
     return *e;
 }
@@ -157,8 +153,7 @@ TElement & TSystem::get_element(unsigned int index) const
 
 const TGlass & TSystem::get_environment() const
 {
-    TGlass mat(_env_proxy);
-    return mat;
+    return _env_proxy;
 }
 
 const TGlass & TSystem::get_environment_proxy() const
@@ -355,8 +350,8 @@ const TSurface & TSystem::get_entrance_pupil() const
 /** FIXME write an optimized version of this function which uses
     some kind of data structure (bsp tree?) */
 TSurface *TSystem::colide_next(const TParams &params,
-                             Math::VectorPair3 &intersect,
-                             const TTraceRay &ray) const
+                               Math::VectorPair3 &intersect,
+                               const TTraceRay &ray) const
 {
     const TElement *origin = ray.get_creator();
 
