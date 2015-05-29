@@ -24,13 +24,13 @@ template <class X> class TInterpolate1d : public X
 {
 
 public:
-    TInterpolate1d();
-    ~TInterpolate1d();
+    TInterpolate1d()  {}
+    ~TInterpolate1d() {}
 
-    double interpolate(const double x) const;
-    double interpolate(const double x, unsigned int deriv) const;
+    inline double interpolate(const double x) const;
+    inline double interpolate(const double x, unsigned int deriv) const;
 
-    void set_interpolation(Interpolation i);
+    void set_interpolation(Interpolation i) {this->_interpolation = i;}
 
 private:
     /** quadratic and cubic polynomial coefficients */
@@ -98,7 +98,7 @@ private:
     double update_cubic2_deriv_init(unsigned int d, double x) const;
     double interpolate_cubic(unsigned int d, double x) const;
 
-    void invalidate();
+//    void invalidate(){X::invalidate();}
 
     double (TInterpolate1d::*_update)(unsigned int d, double x) const;
     double (TInterpolate1d::*_interpolate)(unsigned int d, double x) const;
