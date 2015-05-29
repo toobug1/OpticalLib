@@ -52,8 +52,6 @@ SOURCES += \
     Data/tset.cpp \
     Data/tset1d.cpp \
     Data/tsamplesetbase.cpp \
-    Data/tsampleset.cpp \
-    Data/tinterpolate1d.cpp \
     Data/tdiscreteset.cpp \
     Data/tgrid.cpp \
     Data/tplot.cpp \
