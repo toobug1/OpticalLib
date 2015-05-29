@@ -65,7 +65,7 @@ private:
     double    _tot_intensity;
     double    _useful_radius;
 
-//    Io::RendererAxes _axes; TODO
+    TRendererAxes _axes;
 };
 
 #endif // TSPOT_H

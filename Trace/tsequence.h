@@ -10,7 +10,7 @@
 class TSequence
 {
     friend std::ostream & operator<<(std::ostream &o, const TSequence &s);
-    friend class Tracer;
+    friend class TTracer;
 
 public:
     /** Create a new empty sequence */

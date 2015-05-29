@@ -10,7 +10,7 @@
 
 class TResult
 {
-    friend class Tracer;
+    friend class TTracer;
 
   public:
     typedef std::vector<const TSource *> sources_t;

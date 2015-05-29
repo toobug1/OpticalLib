@@ -12,7 +12,7 @@ class TSurface;
 
 class TParams
 {
-    friend class Tracer;
+    friend class TTracer;
 
 public:
     TParams();

@@ -100,7 +100,7 @@ void TElement::set_enable_state(bool enabled)
 }
 
 template <Trace::IntensityMode m>
-inline void TElement::process_rays(TResult &result,
+void TElement::process_rays(TResult &result,
                                    rays_queue_t *input) const
 {
     switch (m)
