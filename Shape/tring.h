@@ -8,17 +8,17 @@ class TRingBase : public TShapeBase
 {
 public:
     /** Set ring external radius and hole radius */
-    inline void set_radius(double radius, double hole_radius);
+    void set_radius(double radius, double hole_radius);
 
     /** Get ring external radius */
-    inline double get_radius() const;
+    double get_radius() const;
     /** Get hole radius */
-    inline double get_hole_radius() const;
+    double get_hole_radius() const;
 
     /** @override */
-    inline double max_radius() const;
+    double max_radius() const;
     /** @override */
-    inline double min_radius() const;
+    double min_radius() const;
     /** @override */
     double get_outter_radius(const Math::Vector2 &dir) const;
     /** @override */
@@ -30,9 +30,9 @@ public:
 
 protected:
 
-    inline double get_external_xradius() const;
-    inline double get_internal_xradius() const;
-    inline double get_xy_ratio() const;
+    double get_external_xradius() const;
+    double get_internal_xradius() const;
+    double get_xy_ratio() const;
 
     double _radius, _hole_radius;
 };

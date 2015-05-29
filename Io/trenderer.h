@@ -80,7 +80,7 @@ public:
     virtual void draw_segment(const Math::VectorPair2 &s,
                               const TRgb &rgb = rgb_gray) = 0;
     /** @internal Draw a line segment in 2d */
-    inline void draw_segment(const Math::Vector2 &a,
+    void draw_segment(const Math::Vector2 &a,
                              const Math::Vector2 &b,
                              const TRgb &rgb = rgb_gray);
     /** @internal Draw a circle in 2d */
@@ -116,7 +116,7 @@ public:
     virtual void draw_segment(const Math::VectorPair3 &l,
                               const TRgb &rgb = rgb_gray) = 0;
     /** @internal Draw a line segment in 3d */
-    inline void draw_segment(const Math::Vector3 &a,
+    void draw_segment(const Math::Vector3 &a,
                              const Math::Vector3 &b,
                              const TRgb &rgb = rgb_gray);
     /** @internal Draw polygon in 3d */

@@ -3,6 +3,7 @@
 
 #include "trenderer.h"
 #include "Math/Transform"
+#include "trendereraxes.h"
 
 class TRendererAxes;
 class TPlot;
@@ -34,7 +35,7 @@ public:
     void set_margin(double left, double bottom, double right, double top);
 
     /** @see __set_margin1__ */
-    inline void set_margin(double width, double height);
+    void set_margin(double width, double height);
 
     /** @alias set_margin_output1
         Set amount of 2d margin space for @ref set_window operation in
