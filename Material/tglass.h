@@ -27,6 +27,8 @@ public:
     double getRefractiveIndex(double wave, double temp, double rlPressure = 1.0);
     const TDielectricBase* getGlassPtr() const;
     bool isNull() const;
+    double get_internal_transmittance(double wavelen,
+                                      double thickness = 1.0) const;
 
     enum {MAXCoeffSize = 10};
 

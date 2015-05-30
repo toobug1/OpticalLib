@@ -3,6 +3,7 @@
 
 #include <QSharedPointer>
 
+#include "common.hh"
 #include "telement.h"
 #include "Curve/tcurvebase.h"
 #include "Shape/tshapebase.h"
@@ -99,7 +100,7 @@ private:
 
     template <Trace::IntensityMode m>
     void process_rays_(TResult &result,
-                              rays_queue_t *input) const;
+                       rays_queue_t *input) const;
 
     virtual void process_rays_simple(TResult &result,
                                      rays_queue_t *input) const;

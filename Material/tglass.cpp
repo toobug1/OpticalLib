@@ -508,3 +508,9 @@ bool TGlass::isNull() const
     return !m_glass;
 }
 
+double TGlass::get_internal_transmittance(double wavelen,
+                                          double thickness ) const
+{
+    return m_glass->get_internal_transmittance(wavelen, thickness);
+}
+

@@ -93,5 +93,75 @@ private:
     element_list_t            _list;
 };
 
+template <class X> X* TContainer::find() const
+{
+    GOPTICAL_FOREACH(i, _list)
+    {
+        X *e;
+
+        if ((e = dynamic_cast<X*>(i->data())))
+            return e;
+
+        TContainer *g;
+
+        if ((g = dynamic_cast<TContainer*>(i->data())) &&
+                (e = g->find<X>()))
+            return e;
+    }
+
+    return 0;
+}
+
+
+template <class X>
+void TContainer::get_elements(const delegate<void (const X &)> &d) const
+{
+    GOPTICAL_FOREACH(i, _list)
+    {
+        X     *e;
+
+        if ((e = dynamic_cast<X*>(i->data())))
+            d(*e);
+
+        TContainer *g;
+
+        if ((g = dynamic_cast<TContainer*>(i->data())))
+            g->get_elements<X>(d);
+    }
+}
+
+template <class X>
+void TContainer::get_elements(const delegate<void (X &)> &d)
+{
+    GOPTICAL_FOREACH(i, _list)
+    {
+        X     *e;
+
+        if ((e = dynamic_cast<X*>(i->data())))
+            d(*e);
+
+        TContainer *g;
+
+        if ((g = dynamic_cast<TContainer*>(i->data())))
+            g->get_elements<X>(d);
+    }
+}
+
+template <class X>
+void TContainer::enable_single(const X &e_)
+{
+    GOPTICAL_FOREACH(i, _list)
+    {
+        X     *e;
+
+        if ((e = dynamic_cast<X*>(i->data())))
+            e->set_enable_state(e == &e_);
+
+        TContainer *g;
+
+        if ((g = dynamic_cast<TContainer*>(i->data())))
+            g->enable_single<X>(e_);
+    }
+}
 
 #endif // TCONTAINER_H

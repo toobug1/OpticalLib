@@ -99,25 +99,7 @@ void TElement::set_enable_state(bool enabled)
     _enabled = enabled;
 }
 
-template <Trace::IntensityMode m>
-void TElement::process_rays(TResult &result,
-                                   rays_queue_t *input) const
-{
-    switch (m)
-    {
-    case Trace::SimpleTrace:
-        process_rays_simple(result, input);
-        break;
 
-    case Trace::IntensityTrace:
-        process_rays_intensity(result, input);
-        break;
-
-    case Trace::PolarizedTrace:
-        process_rays_polarized(result, input);
-        break;
-    }
-}
 
 
 TElement::TElement(const Math::VectorPair3 &plane)
