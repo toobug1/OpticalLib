@@ -40,7 +40,7 @@ public:
     /** Generate light rays from source */
     template <Trace::IntensityMode m>
     void generate_rays(TResult &result,
-                              const targets_t &entry) const;
+                       const targets_t &entry) const;
 
 protected:
 
@@ -66,7 +66,23 @@ protected:
 
     std::vector<TSpectralLine>  _spectrum;
     double                      _min_intensity, _max_intensity;
-    QSharedPointer<TGlass>   _mat;
+    QSharedPointer<TGlass>      _mat;
 };
+
+
+template <Trace::IntensityMode m>
+void TSource::generate_rays(TResult &result,
+                            const targets_t &entry) const
+{
+  switch (m)
+    {
+    case Trace::SimpleTrace:
+      return generate_rays_simple(result, entry);
+    case Trace::IntensityTrace:
+      return generate_rays_intensity(result, entry);
+    case Trace::PolarizedTrace:
+      return generate_rays_polarized(result, entry);
+    }
+}
 
 #endif // TSOURCE_H

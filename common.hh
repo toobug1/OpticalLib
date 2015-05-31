@@ -38,11 +38,11 @@
 #include <vector>
 #include <deque>
 
-//#include "Goptical/vector_pool" /* mkdoc:skip */
-//#include "Goptical/ref"    /* mkdoc:skip */
-//#include "Goptical/delegate"       /* mkdoc:skip */
-//#include "Goptical/fstring"        /* mkdoc:skip */
-//#include "Goptical/vlarray"        /* mkdoc:skip */
+#include "vector_pool" /* mkdoc:skip */
+#include "ref"    /* mkdoc:skip */
+#include "delegate"       /* mkdoc:skip */
+#include "fstring"        /* mkdoc:skip */
+#include "vlarray"        /* mkdoc:skip */
 
 #include <math.h>
 

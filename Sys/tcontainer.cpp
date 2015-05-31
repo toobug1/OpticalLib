@@ -14,113 +14,46 @@ const TContainer::element_list_t & TContainer::get_element_list() const
     return _list;
 }
 
-template <class X> X* TContainer::find() const
-{
-    GOPTICAL_FOREACH(i, _list)
-    {
-        X *e;
 
-        if ((e = dynamic_cast<X*>(i->data())))
-            return e;
 
-        TContainer *g;
+//template<> TOpticalSurface* TContainer::find<TOpticalSurface>() const
+//{
+//    GOPTICAL_FOREACH(i, _list)
+//    {
+//        TOpticalSurface *e;
 
-        if ((g = dynamic_cast<TContainer*>(i->data())) &&
-                (e = g->find<X>()))
-            return e;
-    }
+//        if ((e = dynamic_cast<TOpticalSurface*>(i->data())))
+//            return e;
 
-    return 0;
-}
+//        TContainer *g;
 
-template<> TOpticalSurface* TContainer::find<TOpticalSurface>() const
-{
-    GOPTICAL_FOREACH(i, _list)
-    {
-        TOpticalSurface *e;
+//        if ((g = dynamic_cast<TContainer*>(i->data())) &&
+//                (e = g->find<TOpticalSurface>()))
+//            return e;
+//    }
 
-        if ((e = dynamic_cast<TOpticalSurface*>(i->data())))
-            return e;
+//    return 0;
+//}
 
-        TContainer *g;
+//template<> TSurface* TContainer::find<TSurface>() const
+//{
+//    GOPTICAL_FOREACH(i, _list)
+//    {
+//        TSurface *e;
 
-        if ((g = dynamic_cast<TContainer*>(i->data())) &&
-                (e = g->find<TOpticalSurface>()))
-            return e;
-    }
+//        if ((e = dynamic_cast<TOpticalSurface*>(i->data())))
+//            return e;
 
-    return 0;
-}
+//        TContainer *g;
 
-template<> TSurface* TContainer::find<TSurface>() const
-{
-    GOPTICAL_FOREACH(i, _list)
-    {
-        TSurface *e;
+//        if ((g = dynamic_cast<TContainer*>(i->data())) &&
+//                (e = g->find<TSurface>()))
+//            return e;
+//    }
 
-        if ((e = dynamic_cast<TOpticalSurface*>(i->data())))
-            return e;
+//    return 0;
+//}
 
-        TContainer *g;
-
-        if ((g = dynamic_cast<TContainer*>(i->data())) &&
-                (e = g->find<TSurface>()))
-            return e;
-    }
-
-    return 0;
-}
-
-template <class X>
-void TContainer::get_elements(const delegate<void (const X &)> &d) const
-{
-    GOPTICAL_FOREACH(i, _list)
-    {
-        X     *e;
-
-        if ((e = dynamic_cast<X*>(i->data())))
-            d(*e);
-
-        TContainer *g;
-
-        if ((g = dynamic_cast<TContainer*>(i->data())))
-            g->get_elements<X>(d);
-    }
-}
-
-template <class X>
-void TContainer::get_elements(const delegate<void (X &)> &d)
-{
-    GOPTICAL_FOREACH(i, _list)
-    {
-        X     *e;
-
-        if ((e = dynamic_cast<X*>(i->data())))
-            d(*e);
-
-        TContainer *g;
-
-        if ((g = dynamic_cast<TContainer*>(i->data())))
-            g->get_elements<X>(d);
-    }
-}
-
-template <class X>
-void TContainer::enable_single(const X &e_)
-{
-    GOPTICAL_FOREACH(i, _list)
-    {
-        X     *e;
-
-        if ((e = dynamic_cast<X*>(i->data())))
-            e->set_enable_state(e == &e_);
-
-        TContainer *g;
-
-        if ((g = dynamic_cast<TContainer*>(i->data())))
-            g->enable_single<X>(e_);
-    }
-}
 
 
 TContainer::TContainer()

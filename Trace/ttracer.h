@@ -43,8 +43,8 @@ public:
 
 private:
 
-    template <IntensityMode m> void trace_template();
-    template <IntensityMode m> void trace_seq_template();
+    template <Trace::IntensityMode m> void trace_template();
+    template <Trace::IntensityMode m> void trace_seq_template();
 
     QSharedPointer<TSystem>    _system;
     TParams                    _params;

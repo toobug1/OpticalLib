@@ -7,6 +7,8 @@
 #include "Sys/telement.h"
 #include "Sys/tsource.h"
 #include "ttraceray.h"
+#include "Sys/telement.h"
+#include "Sys/tcontainer.h"
 
 void TTracer::set_trace_result(TResult &res)
 {

@@ -36,7 +36,7 @@ public:
             "physical light propagation mode. @experimental @hidden")
 
     /** Set sequential ray tracing mode */
-    void set_sequential_mode(const TSequence &seq);
+    void set_sequential_mode(const QSharedPointer<TSequence> &seq);
 
     /** Set non sequential ray tracing mode (default) */
     void set_nonsequential_mode();

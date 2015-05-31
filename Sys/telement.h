@@ -195,5 +195,24 @@ private:
     Math::Transform<3> _transform;
 };
 
+template <Trace::IntensityMode m>
+void TElement::process_rays(TResult &result,
+                                   rays_queue_t *input) const
+{
+    switch (m)
+    {
+    case Trace::SimpleTrace:
+        process_rays_simple(result, input);
+        break;
+
+    case Trace::IntensityTrace:
+        process_rays_intensity(result, input);
+        break;
+
+    case Trace::PolarizedTrace:
+        process_rays_polarized(result, input);
+        break;
+    }
+}
 
 #endif // TELEMENT_H

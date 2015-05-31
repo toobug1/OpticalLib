@@ -57,8 +57,6 @@ SOURCES += \
     Data/tplot.cpp \
     Data/tplotdata.cpp \
     Shape/tshapebase.cpp \
-    Trace/tdistribution.cpp \
-    Trace/ttracer.cpp \
     Shape/tdisk.cpp \
     Shape/tellipse.cpp \
     Shape/tellipticalring.cpp \
@@ -94,7 +92,9 @@ SOURCES += \
     Io/trendererviewport.cpp \
     Io/trenderer.cpp \
     Trace/tresult.cpp \
-    Io/trendereraxes.cpp
+    Io/trendereraxes.cpp \
+    Trace/tdistribution.cpp \
+    Trace/ttracer.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -209,7 +209,8 @@ HEADERS += \
     Io/trenderer.h \
     Trace/tresult.h \
     Io/trendereraxes.h \
-    fstring
+    fstring \
+    ref
 
 unix {
     target.path = /usr/lib
