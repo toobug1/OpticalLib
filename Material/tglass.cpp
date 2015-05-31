@@ -486,11 +486,25 @@ TGlass& TGlass::operator=(const TGlass& glass)
     return *this;
 }
 
-double TGlass::getRefractiveIndex(double wave, double temp, double rlPressure)
+double TGlass::getRefractiveIndex(double wave,
+                                  double temp,
+                                  double rlPressure) const
 {
     if (m_glass)
     {
         return m_glass->get_refractive_index(wave, temp, rlPressure);
+    }
+    else
+    {
+        return 1.0;  // for the empty material
+    }
+}
+
+double TGlass::getRefractiveIndex(double wave)const
+{
+    if (m_glass)
+    {
+        return m_glass->get_refractive_index(wave, m_glass->get_temperature(), 1.0);
     }
     else
     {

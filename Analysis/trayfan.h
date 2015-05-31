@@ -45,7 +45,7 @@ public:
         TangentialAberration = 1
     };
 
-    TRayFan(const TSystem &system,
+    TRayFan(const QSharedPointer<TSystem> &system,
             enum rayfan_plane_e plane = TangentialAberration);
 
     /** Set entrance pupil ray distribution plane. */

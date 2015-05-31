@@ -24,7 +24,8 @@ public:
     virtual ~TGlass();
     TGlass& operator=(const TGlass& glass);
 
-    double getRefractiveIndex(double wave, double temp, double rlPressure = 1.0);
+    double getRefractiveIndex(double wave, double temp, double rlPressure = 1.0) const;
+    double getRefractiveIndex(double wave) const;
     const TDielectricBase* getGlassPtr() const;
     bool isNull() const;
     double get_internal_transmittance(double wavelen,

@@ -209,7 +209,8 @@ HEADERS += \
     Io/trenderer.h \
     Trace/tresult.h \
     Io/trendereraxes.h \
-    fstring
+    fstring \
+    ref
 
 unix {
     target.path = /usr/lib
