@@ -14,19 +14,20 @@ public:
 
     /** Create an optical surface at specified location. */
     TOpticalSurface(const Math::VectorPair3 &p,
-                   const QSharedPointer<TCurveBase> &curve,
-                   const QSharedPointer<TShapeBase> &shape,
-                   const QSharedPointer<TGlass> &left,
-                   const QSharedPointer<TGlass> &right);
+                    const QSharedPointer<TCurveBase> &curve,
+                    const QSharedPointer<TShapeBase> &shape,
+                    const QSharedPointer<TGlass> &left,
+                    const QSharedPointer<TGlass> &right);
 
     /** Create a circular aperture optical surface at specified
       location.
       @param ap_radius circular aperture radius.
   */
     TOpticalSurface(const Math::VectorPair3 &p,
-                   const QSharedPointer<TCurveBase> &curve, double ap_radius,
-                   const QSharedPointer<TGlass> &left,
-                   const QSharedPointer<TGlass> &right);
+                    const QSharedPointer<TCurveBase> &curve,
+                    double ap_radius,
+                    const QSharedPointer<TGlass> &left,
+                    const QSharedPointer<TGlass> &right);
 
     /** Create a spherical optical surface with circular aperture at
       specified location.

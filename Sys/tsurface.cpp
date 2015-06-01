@@ -31,7 +31,7 @@ void TSurface::set_discard_intensity(double intensity)
     _discard_intensity = intensity;
 }
 
-inline double TSurface::get_discard_intensity() const
+double TSurface::get_discard_intensity() const
 {
     return _discard_intensity;
 }

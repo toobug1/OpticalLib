@@ -18,8 +18,8 @@ class TSurface : public TElement
 public:
     /** Create a surface element at given location. */
     TSurface(const Math::VectorPair3 &p,
-            const QSharedPointer<TCurveBase> &curve,
-            const QSharedPointer<TShapeBase> &shape);
+             const QSharedPointer<TCurveBase> &curve,
+             const QSharedPointer<TShapeBase> &shape);
 
     virtual ~TSurface();
 
@@ -47,8 +47,10 @@ public:
 
     /** Trace a single ray through the surface */
     template <Trace::IntensityMode m>
-    void trace_ray(TResult &result, TTraceRay &incident,
-                   const Math::VectorPair3 &local, const Math::VectorPair3 &intersect) const;
+    void trace_ray(TResult &result,
+                   TTraceRay &incident,
+                   const Math::VectorPair3 &local,
+                   const Math::VectorPair3 &intersect) const;
 
     /** Get surface apparent color */
     virtual TRgb get_color(const TRenderer &r) const;

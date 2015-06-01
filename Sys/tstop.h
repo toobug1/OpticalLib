@@ -3,6 +3,7 @@
 
 #include "tsurface.h"
 #include <QSharedPointer>
+#include "Trace/tresult.h"
 
 class TParams;
 
@@ -67,5 +68,35 @@ private:
     double _external_radius;
     bool _intercept_reemit;
 };
+
+
+template <Trace::IntensityMode m>
+inline void TStop::process_rays_(TResult &result,
+                                 rays_queue_t *input) const
+{
+    GOPTICAL_FOREACH(i, *input)
+    {
+        Math::VectorPair3 intersect;
+        TTraceRay  &ray = **i;
+
+        const Math::Transform<3> &t = ray.get_creator()->get_transform_to(*this);
+        Math::VectorPair3 local(t.transform_line(ray));
+
+        if (get_curve()->intersect(intersect.origin(), local))
+        {
+            if (intersect.origin().project_xy().len() < _external_radius)
+            {
+                get_curve()->normal(intersect.normal(), intersect.origin());
+
+                if (local.direction().z() < 0)
+                    intersect.normal() = -intersect.normal();
+
+                result.add_intercepted(*this, ray);
+
+                trace_ray<m>(result, ray, local, intersect);
+            }
+        }
+    }
+}
 
 #endif // TSTOP_H
