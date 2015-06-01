@@ -4,6 +4,8 @@
 #include "common.hh"
 #include "Trace/ttracer.h"
 #include "Trace/ttraceray.h"
+#include "Sys/timage.h"
+#include "Sys/tsurface.h"
 
 using namespace _Goptical;
 
@@ -35,9 +37,9 @@ protected:
     void trace();
 
     TSystem &    _system;
-    TTracer           _tracer;
-    bool              _processed_trace;
-    TImage *      _image;
+    TTracer      _tracer;
+    bool         _processed_trace;
+    TImage /*TSurface*/*     _image;
     const rays_queue_t *_intercepts;
 };
 

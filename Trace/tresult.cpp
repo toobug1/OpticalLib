@@ -1,6 +1,7 @@
 #include "tresult.h"
 #include "Sys/telement.h"
 #include "Io/trenderer.h"
+#include "Sys/timage.h"
 
 TResult::element_result_s & TResult::get_element_result(const TElement &e)
 {
@@ -237,7 +238,7 @@ Math::Vector3 TResult::get_intercepted_center(const TSurface &s) const
   return (win[0] + win[1]) / 2;
 }
 
-Math::Vector3 TResult::get_intercepted_centroid(const TSurface &s) const
+Math::Vector3 TResult::get_intercepted_centroid(const TSurface& s) const
 {
   const rays_queue_t & intercepts = get_intercepted(s);
   unsigned int      count = 0;

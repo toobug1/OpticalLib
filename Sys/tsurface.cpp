@@ -37,8 +37,8 @@ inline double TSurface::get_discard_intensity() const
 }
 
 TSurface::TSurface(const Math::VectorPair3 &p,
-                 const QSharedPointer<TCurveBase> &curve,
-                 const QSharedPointer<TShapeBase> &shape)
+                   const QSharedPointer<TCurveBase> &curve,
+                   const QSharedPointer<TShapeBase> &shape)
     : TElement(p),
       _discard_intensity(0),
       _curve(curve),

@@ -33,7 +33,7 @@ class TResult
     /** Get center of window */
     Math::Vector3 get_intercepted_center(const TSurface &s) const;
     /** Get centroid of all ray intercepted on a surface */
-    Math::Vector3 get_intercepted_centroid(const TSurface &s) const;
+    Math::Vector3 get_intercepted_centroid(const TSurface& s) const;
 
     /** Clear all result data */
     void clear();

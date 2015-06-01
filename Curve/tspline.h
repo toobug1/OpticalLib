@@ -29,8 +29,6 @@ public:
 
 protected:
    TDiscreteSet _data;
-
-  // TODO
 };
 
 #endif // TSPLINE_H

@@ -1,8 +1,13 @@
 #ifndef TIMAGE_H
 #define TIMAGE_H
 
+#include <QSharedPointer>
+
 #include "tsurface.h"
 #include "Math/VectorPair"
+#include "Trace/tresult.h"
+#include "Curve/tcurvebase.h"
+#include "Shape/tshapebase.h"
 
 class TImage : public TSurface
 {
