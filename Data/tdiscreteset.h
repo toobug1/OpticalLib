@@ -74,7 +74,6 @@ class TDiscreteSet : public TInterpolate1d<TDiscreteSetBase>
 public:
 
     TDiscreteSet() : TInterpolate1d<TDiscreteSetBase>() { }
-    void invalidate() {_data.clear();}
 };
 
 #endif // TDISCRETESETBASE_H

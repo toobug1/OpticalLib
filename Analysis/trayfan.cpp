@@ -322,13 +322,13 @@ QSharedPointer<TPlot> TRayFan::get_plot(enum rayfan_plot_type_e x,
         int pow10;
     } axis[] =
     {
-        { "Entrance ray height (normalized)", "", false },
-        { "Entrance ray angle", "degree", false },
+        { "Entrance ray height (normalized)", "", false, 0},
+        { "Entrance ray angle", "degree", false, 0},
         { "Transverse ray aberration", "m", true, -3 },
         { "Longitudinal ray aberration", "m", true, -3 },
-        { "Image ray angle", "degree", false },
-        { "Exit ray angle", "degree", false },
-        { "Optical path difference", "waves", false }
+        { "Image ray angle", "degree", false, 0},
+        { "Exit ray angle", "degree", false, 0},
+        { "Optical path difference", "waves", false, 0}
     };
 
     plot->set_title(axis[y].label + std::string(" fan (") +

@@ -4,7 +4,6 @@
 #include "Sys/timage.h"
 #include "Light/tspectralline.h"
 #include "Trace/tresult.h"
-#include "vlarray"
 #include "Error"
 
 TRenderer::~TRenderer()

@@ -321,7 +321,7 @@ namespace Goptical {
         Filled = 16,
       };
 
-    GOPTICAL_MASK_ENUM_OPS(PlotStyleMask);
+    GOPTICAL_MASK_ENUM_OPS(PlotStyleMask)
 
     /** Specifies data interpolation methods. Availability depends on data container used. */
     enum Interpolation

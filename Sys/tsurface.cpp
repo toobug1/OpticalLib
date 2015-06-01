@@ -5,7 +5,6 @@
 #include "Io/trenderer.h"
 #include "delegate"
 #include "Error"
-#include "vlarray"
 
 void TSurface::set_curve(const QSharedPointer<TCurveBase> &c)
 {
