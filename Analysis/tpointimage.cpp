@@ -1,6 +1,4 @@
 #include "tpointimage.h"
-#include "Sys/tsystem.h"
-#include "Sys/timage.h"
 #include "Trace/tresult.h"
 
 void TPointImage::set_image(TImage *image)

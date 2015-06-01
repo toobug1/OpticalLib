@@ -116,7 +116,7 @@ unsigned int TFoucault::add_uniform_zones(double hole_radius, unsigned int count
 
     double step = (_radius - hole_radius) / (double)count;
 
-    //  _reading.clear(); // TODO
+    _reading.clear();
 
     for (unsigned int i = 0; i < count; i++)
     {
