@@ -1,9 +1,9 @@
-#include "tmirror.h"
+#include "tmirrorsurface.h"
 #include "Curve/tconic.h"
 #include "Curve/tflat.h"
 #include "Shape/tdisk.h"
 
-TMirror::TMirror(const Math::VectorPair3 &p,
+TMirrorSurface::TMirrorSurface(const Math::VectorPair3 &p,
                  const QSharedPointer<TCurveBase> &curve,
                  const QSharedPointer<TShapeBase> &shape,
                  bool light_from_left,
@@ -15,7 +15,7 @@ TMirror::TMirror(const Math::VectorPair3 &p,
 {
 }
 
-TMirror::TMirror(const Math::VectorPair3 &p,
+TMirrorSurface::TMirrorSurface(const Math::VectorPair3 &p,
                  const QSharedPointer<TCurveBase> &curve,
                  double ap_radius,
                  bool light_from_left,
@@ -27,7 +27,7 @@ TMirror::TMirror(const Math::VectorPair3 &p,
 {
 }
 
-TMirror::TMirror(const Math::VectorPair3 &p,
+TMirrorSurface::TMirrorSurface(const Math::VectorPair3 &p,
                  double roc, double sc,
                  double ap_radius,
                  bool light_from_left,

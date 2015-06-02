@@ -79,7 +79,6 @@ SOURCES += \
     Sys/tsurface.cpp \
     Sys/timage.cpp \
     Sys/topticalsurface.cpp \
-    Sys/tmirror.cpp \
     Sys/tsource.cpp \
     Sys/tsourcepoint.cpp \
     Sys/tsourcerays.cpp \
@@ -98,7 +97,9 @@ SOURCES += \
     Curve/tconic.cpp \
     Io/timport.cpp \
     Material/tcatalog.cpp \
-    Io/timportzemax.cpp
+    Io/timportzemax.cpp \
+    Sys/tmirrorsurface.cpp \
+    Material/tmirror.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -199,7 +200,6 @@ HEADERS += \
     Sys/timage.h \
     vector_pool \
     Sys/topticalsurface.h \
-    Sys/tmirror.h \
     Sys/tsource.h \
     Sys/tsourcepoint.h \
     Sys/tsourcerays.h \
@@ -218,7 +218,9 @@ HEADERS += \
     Curve/tconic.h \
     Io/timport.h \
     Material/tcatalog.h \
-    Io/timportzemax.h
+    Io/timportzemax.h \
+    Sys/tmirrorsurface.h \
+    Material/tmirror.h
 
 unix {
     target.path = /usr/lib

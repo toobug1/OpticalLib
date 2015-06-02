@@ -4,7 +4,7 @@
 #include "tshapebase.h"
 #include "Trace/tdistribution.h"
 
-class TInfinite
+class TInfinite : public TShapeBase
 {
 public:
   /** Create an infinite shape */

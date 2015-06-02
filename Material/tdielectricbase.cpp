@@ -152,8 +152,9 @@ bool TDielectricBase::setWave(double minWave, double maxWave)
 }
 
 
-double TDielectricBase::get_refractive_index(double wavelen, double temperature,
-                                    double relativePressure) const
+double TDielectricBase::get_refractive_index(double wavelen,
+                                             double temperature,
+                                             double relativePressure) const
 {
     if (wavelen < m_MinWave || wavelen > m_MaxWave)
     {

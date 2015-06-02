@@ -50,7 +50,7 @@ class TRing : public TShapeRound<TRingBase, true>
 {
 public:
     /** Create a new ring with given external radius and hole radius. */
-    inline TRing(double radius, double hole_radius);
+    TRing(double radius, double hole_radius);
 };
 
 #endif // TRING_H

@@ -10,6 +10,7 @@
 #include "thandbook1.h"
 #include "thandbook2.h"
 #include "therzberger.h"
+#include "tmirror.h"
 
 
 const TGlass none;
@@ -104,6 +105,10 @@ TGlass::TGlass(const TDielectricBase& mat)
                                   mat.getName(),
                                   dispCoeff, THerzberger::DispCoeffSize,
                                   tempCoeff, TDielectricBase::TempCoeffSize);
+        break;
+
+    case TDielectricBase::Mirror:
+        m_glass = new TMirror();
         break;
 
     case TDielectricBase::Unkonwn:
@@ -216,6 +221,10 @@ TGlass::TGlass(const TGlass& glass)
                                   tempCoeff, TDielectricBase::TempCoeffSize);
         break;
 
+    case TDielectricBase::Mirror:
+        m_glass = new TMirror();
+        break;
+
     case TDielectricBase::Unkonwn:
         m_glass = 0;
         break;
@@ -279,6 +288,10 @@ TGlass::TGlass(TDielectricBase::DispersionFormula df,
 
     case TDielectricBase::Herzberger:
         m_glass = new THerzberger(temp, name);
+        break;
+
+    case TDielectricBase::Mirror:
+        m_glass = new TMirror();
         break;
 
     case TDielectricBase::Unkonwn:
@@ -350,6 +363,10 @@ TGlass::TGlass(TDielectricBase::DispersionFormula df,
     case TDielectricBase::Herzberger:
         m_glass = new THerzberger(temp, name, dispCoeff, dispDispCoeffSize,
                                   tempCoeff, tempDispCoeffSize);
+        break;
+
+    case TDielectricBase::Mirror:
+        m_glass = new TMirror();
         break;
 
     case TDielectricBase::Unkonwn:
@@ -467,6 +484,10 @@ TGlass& TGlass::operator=(const TGlass& glass)
                                   glass.m_glass->getName(),
                                   dispCoeff, THerzberger::DispCoeffSize,
                                   tempCoeff, TDielectricBase::TempCoeffSize);
+        break;
+
+    case TDielectricBase::Mirror:
+        m_glass = new TMirror();
         break;
 
     case TDielectricBase::Unkonwn:

@@ -1,9 +1,9 @@
-#ifndef TMIRROR_H
-#define TMIRROR_H
+#ifndef TMIRRORSURFACE_H
+#define TMIRRORSURFACE_H
 
 #include "topticalsurface.h"
 
-class TMirror : public TOpticalSurface
+class TMirrorSurface : public TOpticalSurface
 {
 public:
 #if 0
@@ -24,7 +24,7 @@ public:
     /** Create a mirror at given position with given shape and
       curve. Default is to reflect light coming from left using
       @ref Material::mirror material. */
-    TMirror(const Math::VectorPair3 &p,
+    TMirrorSurface(const Math::VectorPair3 &p,
             const QSharedPointer<TCurveBase> &curve,
             const QSharedPointer<TShapeBase> &shape,
             bool light_from_left,
@@ -34,7 +34,7 @@ public:
     /** Create a circular aperture mirror at given position with
       given curve. Default is to reflect light coming from left
       using @ref Material::mirror material. */
-    TMirror(const Math::VectorPair3 &p,
+    TMirrorSurface(const Math::VectorPair3 &p,
             const QSharedPointer<TCurveBase> &curve,
             double ap_radius,
             bool light_from_left,
@@ -44,7 +44,7 @@ public:
     /** Create a conic mirror with circular aperture at given
       position. Default is to reflect light coming from left using @ref
       Material::mirror material. */
-    TMirror(const Math::VectorPair3 &p,
+    TMirrorSurface(const Math::VectorPair3 &p,
             double roc, double sc,
             double ap_radius,
             bool light_from_left,

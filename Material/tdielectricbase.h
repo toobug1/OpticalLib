@@ -24,7 +24,7 @@ public:
     {
         Schott = 1, Sellmeier1, Herzberger, Sellmeier2,
         Conrady, Sellmeier3, Handbook1, Handbook2,
-        Sellmeier4, Extended, Sellmeier5, Unkonwn = 0
+        Sellmeier4, Extended, Sellmeier5, Mirror, Unkonwn = 0
     };
 
 public:
