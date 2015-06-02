@@ -25,31 +25,31 @@ public:
       curve. Default is to reflect light coming from left using
       @ref Material::mirror material. */
     TMirror(const Math::VectorPair3 &p,
-           const QSharedPointer<TCurveBase> &curve,
-           const QSharedPointer<TShapeBase> &shape,
-           bool light_from_left,
-           const QSharedPointer<TGlass> &metal,
-           const QSharedPointer<TGlass> &env = QSharedPointer<const TGlass>(&none));
+            const QSharedPointer<TCurveBase> &curve,
+            const QSharedPointer<TShapeBase> &shape,
+            bool light_from_left,
+            const QSharedPointer<TGlass> &metal,
+            const QSharedPointer<TGlass> &env = QSharedPointer<const TGlass>(&none));
 
     /** Create a circular aperture mirror at given position with
       given curve. Default is to reflect light coming from left
       using @ref Material::mirror material. */
     TMirror(const Math::VectorPair3 &p,
-           const QSharedPointer<TCurveBase> &curve,
-           double ap_radius,
-           bool light_from_left,
-           const QSharedPointer<TGlass> &metal,
-           const QSharedPointer<TGlass> &env = QSharedPointer<const TGlass>(&none));
+            const QSharedPointer<TCurveBase> &curve,
+            double ap_radius,
+            bool light_from_left,
+            const QSharedPointer<TGlass> &metal,
+            const QSharedPointer<TGlass> &env = QSharedPointer<const TGlass>(&none));
 
     /** Create a conic mirror with circular aperture at given
       position. Default is to reflect light coming from left using @ref
       Material::mirror material. */
     TMirror(const Math::VectorPair3 &p,
-           double roc, double sc,
-           double ap_radius,
-           bool light_from_left,
-           const QSharedPointer<TGlass> &metal,
-           const QSharedPointer<TGlass> &env = QSharedPointer<const TGlass>(&none));
+            double roc, double sc,
+            double ap_radius,
+            bool light_from_left,
+            const QSharedPointer<TGlass> &metal,
+            const QSharedPointer<TGlass> &env = QSharedPointer<const TGlass>(&none));
 };
 
 #endif // TMIRROR_H

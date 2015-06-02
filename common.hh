@@ -143,7 +143,7 @@
 // enums can not be forward declared, that's why they need to live in
 // the Goptical namespace
 namespace Goptical {
-//  using namespace dpp;
+  using namespace dpp;
 
   // enums
   namespace Sys {

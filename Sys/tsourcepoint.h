@@ -2,9 +2,12 @@
 #define TSOURCEPOINT_H
 
 #include "tsource.h"
+#include "tsurface.h"
 
-using namespace _Goptical::Sys
-;
+
+
+using namespace _Goptical::Sys;
+
 class TSourcePoint : public TSource
 {
 public:
@@ -36,5 +39,7 @@ private:
 
     SourceInfinityMode _mode;
 };
+
+
 
 #endif // TSOURCEPOINT_H

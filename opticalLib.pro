@@ -94,7 +94,9 @@ SOURCES += \
     Trace/tresult.cpp \
     Io/trendereraxes.cpp \
     Trace/tdistribution.cpp \
-    Trace/ttracer.cpp
+    Trace/ttracer.cpp \
+    Curve/tconic.cpp \
+    Io/timport.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -210,7 +212,9 @@ HEADERS += \
     Trace/tresult.h \
     Io/trendereraxes.h \
     fstring \
-    ref
+    ref \
+    Curve/tconic.h \
+    Io/timport.h
 
 unix {
     target.path = /usr/lib
