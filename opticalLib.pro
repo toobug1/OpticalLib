@@ -96,7 +96,9 @@ SOURCES += \
     Trace/tdistribution.cpp \
     Trace/ttracer.cpp \
     Curve/tconic.cpp \
-    Io/timport.cpp
+    Io/timport.cpp \
+    Material/tcatalog.cpp \
+    Io/timportzemax.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -214,7 +216,9 @@ HEADERS += \
     fstring \
     ref \
     Curve/tconic.h \
-    Io/timport.h
+    Io/timport.h \
+    Material/tcatalog.h \
+    Io/timportzemax.h
 
 unix {
     target.path = /usr/lib
