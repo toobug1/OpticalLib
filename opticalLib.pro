@@ -99,7 +99,8 @@ SOURCES += \
     Material/tcatalog.cpp \
     Io/timportzemax.cpp \
     Sys/tmirrorsurface.cpp \
-    Material/tmirror.cpp
+    Material/tmirror.cpp \
+    Io/trenderer2d.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -220,7 +221,8 @@ HEADERS += \
     Material/tcatalog.h \
     Io/timportzemax.h \
     Sys/tmirrorsurface.h \
-    Material/tmirror.h
+    Material/tmirror.h \
+    Io/trenderer2d.h
 
 unix {
     target.path = /usr/lib
