@@ -22,6 +22,18 @@
 #include "Material/tcatalog.h"
 #include "Material/tair.h"
 #include "Material/tmirror.h"
+#include "Material/tschott.h"
+#include "Material/textended.h"
+#include "Material/therzberger.h"
+#include "Material/tconrady.h"
+#include "Material/tsellmeier1.h"
+#include "Material/tsellmeier2.h"
+#include "Material/tsellmeier3.h"
+#include "Material/tsellmeier4.h"
+#include "Material/tsellmeier5.h"
+#include "Material/thandbook1.h"
+#include "Material/thandbook2.h"
+
 #include "Math/Transform"
 
 #include <fstream>
@@ -33,19 +45,21 @@
 
 #define ZMX_WARN(str) std::cerr << str << std::endl;
 
+#define MAX_DISP_COEFF_COUNT 10
+
 std::string TImportZemax::basename(const std::string &path)
 {
-//    std::string str(path);
+    //    std::string str(path);
 
-//    size_t n = str.rfind(PATH_SEPARATOR);
+    //    size_t n = str.rfind(PATH_SEPARATOR);
 
-//    if (n != std::string::npos)
-//        str.erase(0, n + 1);
+    //    if (n != std::string::npos)
+    //        str.erase(0, n + 1);
 
-//    n = str.rfind('.');
+    //    n = str.rfind('.');
 
-//    if (n != std::string::npos)
-//        str.erase(n);
+    //    if (n != std::string::npos)
+    //        str.erase(n);
 
     QString strPath = QString::fromStdString(path);
     QFileInfo info(strPath);
@@ -118,7 +132,7 @@ struct zemax_surface_s
     }
 };
 
-TShapeBase&
+QSharedPointer<TShapeBase>
 TImportZemax::get_ap_shape(const struct zemax_surface_s &surf,
                            double unit_factor) const
 {
@@ -136,40 +150,38 @@ TImportZemax::get_ap_shape(const struct zemax_surface_s &surf,
     case za_circular:
         if (surf.ap_params[0] > 0.0)
             shape.reset(new TRing(surf.ap_params[1] * unit_factor,
-                          surf.ap_params[0] * unit_factor));
+                        surf.ap_params[0] * unit_factor));
         else
-            r = GOPTICAL_REFNEW(Shape::Disk, surf.ap_params[1] * unit_factor);
+            shape.reset(new TDisk(surf.ap_params[1] * unit_factor));
         break;
 
     case za_elliptical:
-        r = GOPTICAL_REFNEW(Shape::Ellipse,
-                            surf.ap_params[0] * unit_factor,
-                surf.ap_params[1] * unit_factor);
+        shape.reset(new TEllipse(surf.ap_params[0] * unit_factor,
+                    surf.ap_params[1] * unit_factor));
         break;
 
     case za_rectangular:
-        r = GOPTICAL_REFNEW(Shape::Rectangle,
-                            surf.ap_params[0] * 2. * unit_factor,
-                surf.ap_params[1] * 2. * unit_factor);
+        shape.reset(new TRectangle(surf.ap_params[0] * 2. * unit_factor,
+                    surf.ap_params[1] * 2. * unit_factor));
         break;
     }
 
     if (surf.ap_decenter)
     {
-        ref<Shape::Composer> c = GOPTICAL_REFNEW(Shape::Composer);
+        QSharedPointer<TComposerShape>  c(new TComposerShape);
 
-        c->add_shape(*r).translate(Math::Vector2(surf.ap_params[2] * unit_factor,
-                                   surf.ap_params[3] * unit_factor));
+        c->add_shape(shape).translate(Math::Vector2(surf.ap_params[2] * unit_factor,
+                                      surf.ap_params[3] * unit_factor));
 
-        return *shape;
+        return shape;
     }
     else
     {
-        return *shape;
+        return shape;
     }
 }
 
-const_ref<Material::Base> TImportZemax::get_glass(Sys::System &sys, const struct zemax_surface_s &surf) const
+const TGlass& TImportZemax::get_glass(TSystem &sys, const struct zemax_surface_s &surf) const
 {
     switch (surf.gl_type)
     {
@@ -180,13 +192,13 @@ const_ref<Material::Base> TImportZemax::get_glass(Sys::System &sys, const struct
         return sys.get_environment();
 
     case zg_mirror:
-        return Material::mirror;
+        return mirror;
 
     case zg_fixed:
         GOPTICAL_FOREACH(c, _cat_list)
         {
             try {
-                return c->second->get_material(surf.gl_name);
+                return (c->second->get_material(surf.gl_name));
             } catch (...) {
             }
         }
@@ -197,7 +209,7 @@ const_ref<Material::Base> TImportZemax::get_glass(Sys::System &sys, const struct
     }
 }
 
-ref<Sys::System> TImportZemax::import_design(const std::string &filename)
+QSharedPointer<TSystem> TImportZemax::import_design(const std::string &filename)
 {
     std::ifstream file(filename.c_str());
     std::string line;
@@ -208,7 +220,7 @@ ref<Sys::System> TImportZemax::import_design(const std::string &filename)
     if (!file)
         throw Error("Unable to open file");
 
-    ref<Sys::System> sys = GOPTICAL_REFNEW(Sys::System);
+    QSharedPointer<TSystem> sys;
 
     while (std::getline(file, line))
     {
@@ -242,6 +254,8 @@ surf_end:
                        unit) < 1)
                 break;
 
+            // strcasecmp ignore case, and return 0 when equaling
+
             if (!strcasecmp(unit, "mm"))
                 unit_factor = 1.0;
             else if (!strcasecmp(unit, "cm"))
@@ -268,13 +282,12 @@ surf_end:
                        &temp, &pressure) < 2)
                 break;
 
-            ref<Material::AirKohlrausch68> env =
-                    ref<Material::AirKohlrausch68>::create();
+            QSharedPointer<TAir> env(&air);
 
             env->set_temperature(temp);
-            env->set_pressure(pressure * Material::AirKohlrausch68::std_pressure);
+            env->set_pressure(pressure * 1.0/*Material::AirKohlrausch68::std_pressure*/);
 
-            sys->set_environment(env);
+            sys->set_environment(*env);
 
             break;
         }
@@ -560,13 +573,13 @@ surf_end:
     Math::Transform<3> coord;
     coord.reset();
 
-    const_ref<Material::Base> last_mat = sys->get_environment();
+    TGlass last_mat = sys->get_environment();
 
     for (unsigned int i = 1; i < surf_array.size(); i++)
     {
         zemax_surface_s &surf = surf_array[i];
 
-        const_ref<Curve::Base> curve;
+        QSharedPointer<TCurveBase> curve;
 
         switch (surf.type)
         {
@@ -587,47 +600,55 @@ surf_end:
 
         case zs_standard:
             if (surf.roc == 0.0)
-                curve = Curve::flat;
+                curve.reset(&flat);
             else if (surf.coni == 0.0)
-                curve = GOPTICAL_REFNEW(Curve::Sphere, unit_factor * surf.roc);
+                curve.reset(new TSphere(unit_factor * surf.roc));
             else if (surf.coni == -1.0)
-                curve = GOPTICAL_REFNEW(Curve::Parabola, unit_factor * surf.roc);
+                curve.reset(new TParabola(unit_factor * surf.roc));
             else
-                curve = GOPTICAL_REFNEW(Curve::Conic, unit_factor * surf.roc, surf.coni);
+                curve.reset(new TConic(unit_factor * surf.roc, surf.coni));
             break;
         }
 
-        const_ref<Shape::Base> shape = get_ap_shape(surf, unit_factor);
+        QSharedPointer<TShapeBase> shape = get_ap_shape(surf, unit_factor);
 
-        ref<Sys::Element> element;
+        QSharedPointer<TElement> element;
 
         if (i == surf_array.size() - 1)
         {
-            element = GOPTICAL_REFNEW(Sys::Image, Math::vector3_0, curve, shape);
+            element.reset(new TImage(Math::vector3_0, curve, shape));
         }
         else if (surf.gl_type == zg_air && surf_array[i-1].gl_type == zg_air)
         {
-            ref<Sys::Surface> s = GOPTICAL_REFNEW(Sys::OpticalSurface, Math::vector3_0, curve, shape,
-                                                  Material::none, Material::none);
 
+            QSharedPointer<TSurface> s(new TOpticalSurface(Math::vector3_0,
+                                                           curve,
+                                                           shape,
+                                                           QSharedPointer<TGlass>(new TGlass()),
+                                                           QSharedPointer<TGlass>(new TGlass())));
             s->set_enable_state(false);
 
             element = s;
         }
         else
         {
-            const_ref<Material::Base> mat = get_glass(*sys, surf);
+            TGlass m = get_glass(*sys, surf);
+            QSharedPointer<TGlass> mat(&m);
 
-            element = GOPTICAL_REFNEW(Sys::OpticalSurface, Math::vector3_0,
-                                      curve, shape, last_mat, mat);
+
+            element.reset(new TOpticalSurface(Math::vector3_0,
+                                              curve,
+                                              shape,
+                                              QSharedPointer<TGlass>(&last_mat),
+                                              mat));
 
             if (surf.gl_type != zg_mirror)
-                last_mat = mat;
+                last_mat = *mat;
         }
 
         element->set_transform(coord);
 
-        sys->add(*element);
+        sys->add(element);
 
         coord.apply_translation(Math::Vector3(0.0, 0.0, unit_factor * surf.thick));
     }
@@ -640,7 +661,7 @@ surf_end:
 // Glass catalog import
 ////////////////////////////////////////////////////////////////////////
 
-ref<Material::Catalog> TImportZemax::import_catalog(const std::string &name)
+TCatalog& TImportZemax::import_catalog(const std::string &name)
 {
     std::string filename(_cat_path);
 
@@ -653,15 +674,15 @@ ref<Material::Catalog> TImportZemax::import_catalog(const std::string &name)
     return import_catalog(filename, name);
 }
 
-ref<Material::Catalog> TImportZemax::import_catalog_file(const std::string &filename)
+TCatalog& TImportZemax::import_catalog_file(const std::string &filename)
 {
     std::string name(basename(filename));
 
     return import_catalog(filename, name);
 }
 
-ref<Material::Catalog> TImportZemax::import_catalog(const std::string &filename,
-                                                   const std::string &catname)
+TCatalog& TImportZemax::import_catalog(const std::string &filename,
+                                       const std::string &catname)
 {
     std::ifstream file(filename.c_str());
     std::string line;
@@ -669,11 +690,11 @@ ref<Material::Catalog> TImportZemax::import_catalog(const std::string &filename,
     if (!file)
         throw Error("Unable to open file");
 
-    ref<Material::Catalog> cat = GOPTICAL_REFNEW(Material::Catalog, catname);
+    QSharedPointer<TCatalog> cat(new TCatalog(catname));
 
     // FIXME check already loaded catalog
 
-    ref<Material::Dielectric> mat;
+    TDielectricBase* mat;
 
     while (std::getline(file, line))
     {
@@ -684,6 +705,7 @@ ref<Material::Catalog> TImportZemax::import_catalog(const std::string &filename,
 
         const char *buf = line.c_str();
 
+        // actually ANSI takes 'char' type as 'int' in memory--LQ add
 #define AGF_TYPE(a, b) ((a) + ((b) << 8))
 
         int type = AGF_TYPE(buf[0], buf[1]);
@@ -697,7 +719,7 @@ ref<Material::Catalog> TImportZemax::import_catalog(const std::string &filename,
         case (AGF_TYPE('N', 'M')): {
             char name[32];
 
-            mat.invalidate();
+            mat = 0;
 
             if (sscanf(buf, "NM %s %u", name, &formula) != 2)
                 break;
@@ -705,186 +727,73 @@ ref<Material::Catalog> TImportZemax::import_catalog(const std::string &filename,
             switch (formula)
             {
             case (1):       // Schott
+                mat = new TSchott;
+                break;
             case (10):      // Extended
-            case (12):      // Extended 2
-                mat = GOPTICAL_REFNEW(Material::Schott);
+                mat = new TExtended;
                 break;
-
             case (3):       // Herzberger
-                mat = GOPTICAL_REFNEW(Material::Herzberger);
+                mat = new THerzberger;
                 break;
-
             case (5):       // Conrady
-                mat = GOPTICAL_REFNEW(Material::Conrady);
+                mat = new TConrady;
                 break;
-
             case (7):       // Hanbook 1
-                mat = GOPTICAL_REFNEW(Material::Handbook1);
+                mat = new THandbook1;
                 break;
-
             case (8):       // Hanbook 2
-                mat = GOPTICAL_REFNEW(Material::Handbook2);
+                mat = new THandbook2;
                 break;
-
             case (4):       // Sellmeier 2
-                mat = GOPTICAL_REFNEW(Material::SellmeierMod2);
+                mat = new TSellmeier2;
                 break;
-
             case (2):       // Sellmeier 1
+                mat = new TSellmeier1;
+                break;
             case (6):       // Sellmeier 3
+                mat = new TSellmeier3;
+                break;
             case (9):       // Sellmeier 4
+                mat = new TSellmeier4;
+                break;
             case (11):      // Sellmeier 5
-                mat = GOPTICAL_REFNEW(Material::Sellmeier);
+                mat = new TSellmeier5;
                 break;
             }
 
-            if (mat.valid())
+            if (mat)
             {
-                mat->set_measurement_medium(Material::air);
-                cat->add_material(name, *mat);
+//                mat->set_measurement_medium(Material::air);
+                cat->add_material(name, QSharedPointer<TGlass>(new TGlass(*mat)));
             }
 
             break;
-        }
+        } // case "NM"
 
             ////////////////////////////////////////////////////
             // Coefficient Data line
 
         case (AGF_TYPE('C', 'D')): {
-            double c0, c1, c2, c3, c4, c5, c6, c7, c8, c9;
+            double dispCoeff[MAX_DISP_COEFF_COUNT];
 
-            if (!mat.valid())
+            if (0 == mat)
                 break;
 
             if (sscanf(buf, "CD %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
-                       &c0, &c1, &c2, &c3, &c4, &c5, &c6, &c7, &c8, &c9) < 3)
+                       &dispCoeff[0],
+                       &dispCoeff[1],
+                       &dispCoeff[2],
+                       &dispCoeff[3],
+                       &dispCoeff[4],
+                       &dispCoeff[5],
+                       &dispCoeff[6],
+                       &dispCoeff[7],
+                       &dispCoeff[8],
+                       &dispCoeff[9]) < 3)
                 break;
 
-            switch (formula)
-            {
-            case (1): {     // Schott
-                Material::Schott &m = static_cast<Material::Schott &>(*mat);
-
-                m.set_terms_range(-8, 2);
-                m.set_term(0, c0);
-                m.set_term(2, c1);
-                m.set_term(-2, c2);
-                m.set_term(-4, c3);
-                m.set_term(-6, c4);
-                m.set_term(-8, c5);
-                break;
-            }
-
-            case (2): {     // Sellmeier 1
-                Material::Sellmeier &m = static_cast<Material::Sellmeier &>(*mat);
-
-                m.set_terms_count(3);
-                m.set_term(0, c0, c1);
-                m.set_term(1, c2, c3);
-                m.set_term(2, c4, c5);
-                m.set_contant_term(1.0);
-                break;
-            }
-
-            case (3): {     // Herzberger
-                Material::Herzberger &m = static_cast<Material::Herzberger &>(*mat);
-
-                m.set_coefficients(c0, c3, c4, c5, c1, c2);
-                break;
-            }
-
-            case (4): {     // Sellmeier 2
-                Material::SellmeierMod2 &m = static_cast<Material::SellmeierMod2 &>(*mat);
-                m.set_coefficients(c0, c1, c2, c3, c4);
-                break;
-            }
-
-            case (5): {     // Conrady
-                Material::Conrady &m = static_cast<Material::Conrady &>(*mat);
-
-                m.set_coefficients(c0, c1, c2);
-                break;
-            }
-            case (6): {     // Sellmeier 3
-                Material::Sellmeier &m = static_cast<Material::Sellmeier &>(*mat);
-
-                m.set_terms_count(4);
-                m.set_term(0, c0, c1);
-                m.set_term(1, c2, c3);
-                m.set_term(2, c4, c5);
-                m.set_term(3, c6, c7);
-                m.set_contant_term(1.0);
-                break;
-            }
-
-            case (7): {     // Hanbook 1
-                Material::Handbook1 &m = static_cast<Material::Handbook1 &>(*mat);
-                m.set_coefficients(c0, -c3, c1, c2);
-                break;
-            }
-            case (8): {     // Hanbook 2
-                Material::Handbook2 &m = static_cast<Material::Handbook2 &>(*mat);
-                m.set_coefficients(c0, -c3, c1, c2);
-                break;
-            }
-
-            case (9): {     // Sellmeier 4
-                Material::Sellmeier &m = static_cast<Material::Sellmeier &>(*mat);
-
-                m.set_terms_count(2);
-                m.set_term(0, c1, c2);
-                m.set_term(1, c3, c4);
-                m.set_contant_term(c0);
-                break;
-            }
-
-            case (10): {    // Extended
-                Material::Schott &m = static_cast<Material::Schott &>(*mat);
-
-                m.set_terms_range(-12, 2);
-                m.set_term(0, c0);
-                m.set_term(2, c1);
-                m.set_term(-2, c2);
-                m.set_term(-4, c3);
-                m.set_term(-6, c4);
-                m.set_term(-8, c5);
-                m.set_term(-10, c6);
-                m.set_term(-12, c7);
-                break;
-            }
-
-            case (11): {    // Sellmeier 5
-                Material::Sellmeier &m = static_cast<Material::Sellmeier &>(*mat);
-
-                m.set_terms_count(5);
-                m.set_term(0, c0, c1);
-                m.set_term(1, c2, c3);
-                m.set_term(2, c4, c5);
-                m.set_term(3, c6, c7);
-                m.set_term(4, c8, c9);
-                m.set_contant_term(1.0);
-                break;
-            }
-
-            case (12): {    // Extended 2
-                Material::Schott &m = static_cast<Material::Schott &>(*mat);
-
-                m.set_terms_range(-8, 6);
-                m.set_term(0, c0);
-                m.set_term(2, c1);
-                m.set_term(-2, c2);
-                m.set_term(-4, c3);
-                m.set_term(-6, c4);
-                m.set_term(-8, c5);
-                m.set_term(4, c6);
-                m.set_term(6, c7);
-                break;
-            }
-
-            }
-
-            break;
-        }
+            mat->setDispCoeff(dispCoeff, 10);
+        }  // case "CD"
 
             ////////////////////////////////////////////////////
             // Thermal Data line
@@ -892,24 +801,24 @@ ref<Material::Catalog> TImportZemax::import_catalog(const std::string &filename,
         case (AGF_TYPE('T', 'D')): {
             double d0, d1, d2, e0, e1, ltk, reftemp;
 
-            if (!mat.valid())
+            if (0 == mat)
                 break;
 
             if (sscanf(buf, "TD %lf %lf %lf %lf %lf %lf %lf",
                        &d0, &d1, &d2, &e0, &e1, &ltk, &reftemp) != 7)
                 break;
 
-            mat->set_temperature_schott(d0, d1, d2, e0, e1, ltk * 1000.);
+            mat->setTempCoeff(d0, d1, d2, e0, e1, ltk);
 
-            // Zemax glasses are measured in air medium
-            ref<Material::AirKohlrausch68> air =
-                    ref<Material::AirKohlrausch68>::create();
+//            // Zemax glasses are measured in air medium
+//            ref<Material::AirKohlrausch68> air =
+//                    ref<Material::AirKohlrausch68>::create();
 
-            air->set_temperature(reftemp);
-            mat->set_measurement_medium(*air);
+            mat->set_temperature(reftemp);
+//            mat->set_measurement_medium(*air);
 
             break;
-        }
+        } // case "TD"
 
             ////////////////////////////////////////////////////
             // Internal Transmition line
@@ -917,13 +826,13 @@ ref<Material::Catalog> TImportZemax::import_catalog(const std::string &filename,
         case (AGF_TYPE('I', 'T')): {
             double wl, it, th;
 
-            if (!mat.valid())
+            if (0 == mat)
                 break;
 
             if (sscanf(buf, "IT %lf %lf %lf", &wl, &it, &th) != 3)
                 break;
 
-            mat->set_internal_transmittance(wl * 1000.0, th, it);
+            mat->insertAbsorbedCoeffi(wl * 1000.0, th, it);
             break;
         }
 
@@ -933,14 +842,14 @@ ref<Material::Catalog> TImportZemax::import_catalog(const std::string &filename,
         case (AGF_TYPE('E', 'D')): {
             double tce, density;
 
-            if (!mat.valid())
+            if (0 == mat)
                 break;
 
             if (sscanf(buf, "ED %lf %*f %lf", &tce, &density) != 2)
                 break;
 
-            mat->set_thermal_expansion(tce * 1e-6);
-            mat->set_density(density);
+//            mat->set_thermal_expansion(tce * 1e-6);
+//            mat->set_density(density);
             break;
         }
 
@@ -950,13 +859,13 @@ ref<Material::Catalog> TImportZemax::import_catalog(const std::string &filename,
         case (AGF_TYPE('L', 'D')): {
             double low, high;
 
-            if (!mat.valid())
+            if (0 == mat)
                 break;
 
             if (sscanf(buf, "LD %lf %lf", &low, &high) != 2)
                 break;
 
-            mat->set_wavelen_range(low * 1000.0, high * 1000.0);
+            mat->setWave(low * 1000.0, high * 1000.0);
             break;
         }
 
@@ -966,17 +875,17 @@ ref<Material::Catalog> TImportZemax::import_catalog(const std::string &filename,
 
     _cat_list.insert(cat_map_t::value_type(catname, cat));
 
-    return cat;
+    return *cat;
 }
 
-ref<Material::Catalog> TImportZemax::get_catalog(const std::string &catalogname)
+TCatalog& TImportZemax::get_catalog(const std::string &catalogname)
 {
     cat_map_t::iterator i = _cat_list.find(catalogname);
 
     if (i == _cat_list.end())
         throw Error("no such catalog loaded");
 
-    return i->second;
+    return *i->second;
 }
 
 
@@ -984,43 +893,43 @@ ref<Material::Catalog> TImportZemax::get_catalog(const std::string &catalogname)
 // Table glass import
 ////////////////////////////////////////////////////////////////////////
 
-ref<Material::Dielectric> TImportZemax::import_table_glass(const std::string &filename)
-{
-    std::ifstream file(filename.c_str());
-    std::string line;
+//TDielectricBase& TImportZemax::import_table_glass(const std::string &filename)
+//{
+//    std::ifstream file(filename.c_str());
+//    std::string line;
 
-    if (!file)
-        throw Error("Unable to open file");
+//    if (!file)
+//        throw Error("Unable to open file");
 
-    ref<Material::DispersionTable> mat = GOPTICAL_REFNEW(Material::DispersionTable);
+//    ref<Material::DispersionTable> mat = GOPTICAL_REFNEW(Material::DispersionTable);
 
-    while (std::getline(file, line))
-    {
-        double wl, index, trans, thick;
-        const char *buf = line.c_str();
+//    while (std::getline(file, line))
+//    {
+//        double wl, index, trans, thick;
+//        const char *buf = line.c_str();
 
-        switch (sscanf(buf, "%lf %lf %lf %lf", &wl, &index, &trans, &thick))
-        {
-        case 0: {
-            double density;
+//        switch (sscanf(buf, "%lf %lf %lf %lf", &wl, &index, &trans, &thick))
+//        {
+//        case 0: {
+//            double density;
 
-            if (sscanf(buf, "DENSITY %lf", &density) == 1)
-                mat->set_density(density);
-            break;
-        }
+//            if (sscanf(buf, "DENSITY %lf", &density) == 1)
+//                mat->set_density(density);
+//            break;
+//        }
 
-        case 4:
-            mat->set_internal_transmittance(wl * 1000.0, thick, trans);
-        case 2:
-        case 3:
-            mat->set_refractive_index(wl * 1000.0, index);
-        default:
-            break;
-        }
-    }
+//        case 4:
+//            mat->set_internal_transmittance(wl * 1000.0, thick, trans);
+//        case 2:
+//        case 3:
+//            mat->set_refractive_index(wl * 1000.0, index);
+//        default:
+//            break;
+//        }
+//    }
 
-    return mat;
-}
+//    return mat;
+//}
 
 void TImportZemax::set_catalog_path(const std::string &path)
 {

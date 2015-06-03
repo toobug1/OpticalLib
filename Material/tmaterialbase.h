@@ -7,6 +7,7 @@
 class TMaterialBase/* : public QObject*/
 {
 //    Q_OBJECT
+    // Wavelength unit is nanometer by default;
 
 public:
     TMaterialBase();

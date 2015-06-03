@@ -86,6 +86,7 @@ private:
     double             m_E0;
     double             m_E1;
     double             m_Ltk;
+
 };
 
 #endif // TDIELECTRICBASE_H

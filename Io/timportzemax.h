@@ -20,7 +20,7 @@ class TImportZemax
 {
 public:
     /** @experimental */
-    TSystem& import_design(const std::string &filename);
+    QSharedPointer<TSystem> import_design(const std::string &filename);
 
     /** Set glass catalogs default path */
     void set_catalog_path(const std::string &path);
@@ -40,14 +40,14 @@ public:
     TCatalog& get_catalog(const std::string &name);
 
     /** Import Zemax table glass material file (@tt .ztg) */
-    TDielectricBase& import_table_glass(const std::string &filename);
+//    TDielectricBase& import_table_glass(const std::string &filename);
 
 private:
 
     static std::string basename(const std::string &path);
 
-    TShapeBase& get_ap_shape(const struct zemax_surface_s &surf, double unit_factor) const;
-    TMaterialBase& get_glass(TSystem &sys, const struct zemax_surface_s &surf) const;
+    QSharedPointer<TShapeBase> get_ap_shape(const struct zemax_surface_s &surf, double unit_factor) const;
+    const TGlass& get_glass(TSystem &sys, const struct zemax_surface_s &surf) const;
 
     typedef std::map<std::string, QSharedPointer<TCatalog> > cat_map_t;
 

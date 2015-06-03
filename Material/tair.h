@@ -1,6 +1,7 @@
 #ifndef TAIR_H
 #define TAIR_H
 
+#include "common.hh"
 #include "tmaterialbase.h"
 #include "tglass.h"
 
@@ -25,6 +26,12 @@ public:
 
     QString getName() const;
     void setName(const QString& name);
+
+    GOPTICAL_ACCESSORS(double, pressure,
+                       "relative air pressure in @em Pa @see std_pressure")
+
+  private:
+    double _pressure;
 
 };
 
