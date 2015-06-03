@@ -100,7 +100,8 @@ SOURCES += \
     Io/timportzemax.cpp \
     Sys/tmirrorsurface.cpp \
     Material/tmirror.cpp \
-    Io/trenderer2d.cpp
+    Io/trenderer2d.cpp \
+    Io/trendererdxf.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -222,7 +223,8 @@ HEADERS += \
     Io/timportzemax.h \
     Sys/tmirrorsurface.h \
     Material/tmirror.h \
-    Io/trenderer2d.h
+    Io/trenderer2d.h \
+    Io/trendererdxf.h
 
 unix {
     target.path = /usr/lib
@@ -235,3 +237,8 @@ win32: LIBS += -lgsl
 
 win32: LIBS += -lgslcblas
 
+
+unix|win32: LIBS += -L$$PWD/dime/Release/release/ -ldime
+
+INCLUDEPATH += $$PWD/dime/include
+DEPENDPATH += $$PWD/dime/include
