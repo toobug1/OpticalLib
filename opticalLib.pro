@@ -101,7 +101,8 @@ SOURCES += \
     Sys/tmirrorsurface.cpp \
     Material/tmirror.cpp \
     Io/trenderer2d.cpp \
-    Io/trendererdxf.cpp
+    Io/trendererdxf.cpp \
+    Io/trendereropengl.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -224,7 +225,8 @@ HEADERS += \
     Sys/tmirrorsurface.h \
     Material/tmirror.h \
     Io/trenderer2d.h \
-    Io/trendererdxf.h
+    Io/trendererdxf.h \
+    Io/trendereropengl.h
 
 unix {
     target.path = /usr/lib
