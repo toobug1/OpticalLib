@@ -242,3 +242,11 @@ unix|win32: LIBS += -L$$PWD/dime/Release/release/ -ldime
 
 INCLUDEPATH += $$PWD/dime/include
 DEPENDPATH += $$PWD/dime/include
+
+unix|win32: LIBS += -L$$PWD/lib/release -ldime
+
+INCLUDEPATH += $$PWD/lib
+DEPENDPATH += $$PWD/lib
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/lib/release/dime.lib
+else:unix|win32-g++: PRE_TARGETDEPS += $$PWD/lib/release/libdime.a
