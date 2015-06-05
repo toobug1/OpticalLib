@@ -102,7 +102,8 @@ SOURCES += \
     Material/tmirror.cpp \
     Io/trenderer2d.cpp \
     Io/trendererdxf.cpp \
-    Io/trendereropengl.cpp
+    Io/trendereropengl.cpp \
+    Io/trenderergd.cpp
 
 HEADERS += \
     Math/tvector2d.h \
@@ -226,7 +227,8 @@ HEADERS += \
     Material/tmirror.h \
     Io/trenderer2d.h \
     Io/trendererdxf.h \
-    Io/trendereropengl.h
+    Io/trendereropengl.h \
+    Io/trenderergd.h
 
 unix {
     target.path = /usr/lib
@@ -252,3 +254,10 @@ DEPENDPATH += $$PWD/lib
 
 win32:!win32-g++: PRE_TARGETDEPS += $$PWD/lib/release/dime.lib
 else:unix|win32-g++: PRE_TARGETDEPS += $$PWD/lib/release/libdime.a
+
+win32: LIBS += -L$$PWD/lib/GD/ -lgd
+
+INCLUDEPATH += $$PWD/lib/GD/include
+DEPENDPATH += $$PWD/lib/GD/include
+
+DISTFILES +=
