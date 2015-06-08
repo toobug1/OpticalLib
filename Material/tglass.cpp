@@ -118,7 +118,7 @@ TGlass::TGlass(const TDielectricBase& mat)
     default:
         break;
     }
-    if (!m_glass)
+    if (m_glass)
     {
         m_glass->setWave(mat.minWave(), mat.maxWave());
     }
@@ -232,7 +232,7 @@ TGlass::TGlass(const TGlass& glass)
     default:
         break;
     }
-    if (!m_glass)
+    if (m_glass)
     {
         m_glass->setWave(glass.m_glass->minWave(), glass.m_glass->maxWave());
     }
@@ -380,16 +380,16 @@ TGlass::TGlass(TDielectricBase::DispersionFormula df,
 
 TGlass::~TGlass()
 {
-    if (!m_glass)
+    if (m_glass)
     {
         delete m_glass;
+        m_glass = 0;
     }
-    m_glass = 0;
 }
 
 TGlass& TGlass::operator=(const TGlass& glass)
 {
-    if (!m_glass)  // m_glass has been used
+    if (m_glass)  // m_glass has been used
     {
         delete m_glass;
         m_glass = 0;
@@ -497,7 +497,7 @@ TGlass& TGlass::operator=(const TGlass& glass)
     default:
         break;
     }
-    if (!m_glass)
+    if (m_glass)
     {
         m_glass->setWave(glass.m_glass->minWave(), glass.m_glass->maxWave());
     }
